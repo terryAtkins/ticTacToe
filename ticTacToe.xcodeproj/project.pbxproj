@@ -13,6 +13,8 @@
 		DE8F2B571B2759B400356AE7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE8F2B561B2759B400356AE7 /* Images.xcassets */; };
 		DE8F2B5A1B2759B400356AE7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8F2B581B2759B400356AE7 /* LaunchScreen.xib */; };
 		DE8F2B661B2759B400356AE7 /* ticTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B651B2759B400356AE7 /* ticTacToeTests.swift */; };
+		DE8F2B761B2769C000356AE7 /* GameBroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B751B2769C000356AE7 /* GameBroad.swift */; };
+		DE8F2B781B276D4C00356AE7 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B771B276D4C00356AE7 /* Players.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		DE8F2B5F1B2759B400356AE7 /* ticTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ticTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8F2B641B2759B400356AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE8F2B651B2759B400356AE7 /* ticTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ticTacToeTests.swift; sourceTree = "<group>"; };
+		DE8F2B751B2769C000356AE7 /* GameBroad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBroad.swift; sourceTree = "<group>"; };
+		DE8F2B771B276D4C00356AE7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				DE8F2B561B2759B400356AE7 /* Images.xcassets */,
 				DE8F2B581B2759B400356AE7 /* LaunchScreen.xib */,
 				DE8F2B4D1B2759B400356AE7 /* Supporting Files */,
+				DE8F2B751B2769C000356AE7 /* GameBroad.swift */,
+				DE8F2B771B276D4C00356AE7 /* Players.swift */,
 			);
 			path = ticTacToe;
 			sourceTree = "<group>";
@@ -212,6 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8F2B761B2769C000356AE7 /* GameBroad.swift in Sources */,
+				DE8F2B781B276D4C00356AE7 /* Players.swift in Sources */,
 				DE8F2B521B2759B400356AE7 /* ViewController.swift in Sources */,
 				DE8F2B501B2759B400356AE7 /* AppDelegate.swift in Sources */,
 			);
