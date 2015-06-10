@@ -10,24 +10,31 @@ import UIKit
 
 public class GameBroad: NSObject {
     
-    public func setGameForFirstPlay() -> [[Int]] {
-        var gamesSquaresThreePerRowFromBottomLeftToTopRight = [[0,0,0],
+    public func gameBroadSquares() -> [[Int]] {
+        var gameSqaures = [[0,0,0],
             [0,0,0],
             [0,0,0]]
-        return gamesSquaresThreePerRowFromBottomLeftToTopRight
+        return gameSqaures
     }
     
     public func hasPlayerSelectedThreeInARowHorizontal() -> Bool {
         
-        var i = 0
-        var j = 0
         var playerDidSelectThreeInARow:Bool?
-        
-        if setGameForFirstPlay()[i][j] == setGameForFirstPlay()[i][j + 1] && setGameForFirstPlay()[i][j] == setGameForFirstPlay()[i][j + 2] {
+        var bottomLeftSquare = gameBroadSquares()[0][0]
+        var bottomCenterSqaure = gameBroadSquares()[0][1]
+        var bottomRightSquare = gameBroadSquares()[0][2]
+        var middleLeftSquare = gameBroadSquares()[1][0]
+        var middleCenterSquare = gameBroadSquares()[1][1]
+        var middleRightSquare = gameBroadSquares()[1][2]
+        var topLeftSquare = gameBroadSquares()[2][0]
+        var topCenterSquare = gameBroadSquares()[2][1]
+        var topRightSquare = gameBroadSquares()[2][2]
+
+        if bottomLeftSquare == bottomCenterSqaure && bottomLeftSquare == bottomRightSquare {
             playerDidSelectThreeInARow = true
-        } else if setGameForFirstPlay()[i + 1][j] == setGameForFirstPlay()[i + 1][j + 1] && setGameForFirstPlay()[i][j] == setGameForFirstPlay()[i + 1][j + 2] {
+        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
             playerDidSelectThreeInARow = true
-        } else if setGameForFirstPlay()[i + 1][j] == setGameForFirstPlay()[i + 1][j + 1] && setGameForFirstPlay()[i][j] == setGameForFirstPlay()[i + 1][j + 2] {
+        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
             playerDidSelectThreeInARow = true
         } else {
             playerDidSelectThreeInARow = false
