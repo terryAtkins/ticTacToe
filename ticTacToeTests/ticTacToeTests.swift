@@ -47,20 +47,22 @@ class ticTacToeTests: XCTestCase {
     
     func testThreeInARowHorizontal() {
         let threeInARowHorizontal = GameBroad()
-        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == true )
-//        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == false )
+//        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == true )
+        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == false )
 
     }
     
     func testThreeInARowVertical() {
         let threeInARowVertical = GameBroad()
-        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == true )
+//        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == true )
+        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == false )
     }
     func testThreeInARowDiagonal() {
         let threeInARowDiagonal = GameBroad()
-        XCTAssert(threeInARowDiagonal.hasPlayerSelectedThreeInARowDiagonal() == true)
+//        XCTAssert(threeInARowDiagonal.hasPlayerSelectedThreeInARowDiagonal() == true)
+        XCTAssert(threeInARowDiagonal.hasPlayerSelectedThreeInARowDiagonal() == false)
         }
-//        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == false)
+
     
     //    func testPerformanceExample() {
     //        // This is an example of a performance test case.
