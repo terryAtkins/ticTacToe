@@ -11,9 +11,9 @@ import UIKit
 public class GameBroad: NSObject {
     
     public func gameBroadSquares() -> [[Int]] {
-        var gameSquares = [[0,0,0],
-            [0,0,0],
-            [0,0,0]]
+        var gameSquares = [[1,0,0],
+            [0,1,0],
+            [0,0,1]]
         return gameSquares
     }
     
