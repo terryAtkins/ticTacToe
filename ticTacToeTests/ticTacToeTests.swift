@@ -50,8 +50,11 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(threeInARow.hasPlayerSelectedThreeInARowHorizontal() == true )
 //        XCTAssert(threeInARow.hasPlayerSelectedThreeInARowHorizontal() == false )
 
-        
-        
+    }
+    
+    func testThreeInARowVertical() {
+        let threeInARow = GameBroad()
+        XCTAssert(threeInARow.hasPlayerSelectedThreeInARowVertical() == true )
     }
     
     //    func testPerformanceExample() {
