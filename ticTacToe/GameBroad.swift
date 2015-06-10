@@ -11,9 +11,9 @@ import UIKit
 public class GameBroad: NSObject {
     
     public func gameBroadSquares() -> [[Int]] {
-        var gameSquares = [[1,0,0],
-            [0,1,0],
-            [0,0,1]]
+        var gameSquares = [[0,0,0],
+            [0,0,0],
+            [0,0,0]]
         return gameSquares
     }
     
@@ -49,7 +49,7 @@ public class GameBroad: NSObject {
         var playerDidSelectThreeInARow:Bool?
     
         let bottomLeftSquare = gameBroadSquares()[0][0]
-        let middleLeftSqaure = gameBroadSquares()[1][0]
+        let middleLeftSquare = gameBroadSquares()[1][0]
         let topLeftSquare = gameBroadSquares()[2][0]
         let bottomCenterSquare = gameBroadSquares()[0][1]
         let middleCenterSquare = gameBroadSquares()[1][1]
@@ -58,7 +58,7 @@ public class GameBroad: NSObject {
         let middleRightSquare = gameBroadSquares()[1][2]
         let topRightSquare = gameBroadSquares()[2][2]
         
-        if bottomLeftSquare == middleLeftSqaure && bottomLeftSquare == topLeftSquare {
+        if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
             playerDidSelectThreeInARow = true
         } else if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
             playerDidSelectThreeInARow = true
@@ -69,6 +69,24 @@ public class GameBroad: NSObject {
         }
         
         return playerDidSelectThreeInARow!
+    }
+    
+    public func hasPlayerSelectedThreeInARowDiagonal() -> Bool {
+        var playerDidSelectThreeInARow:Bool?
+        
+        let bottomLeftSquare = gameBroadSquares()[0][0]
+        let topLeftSquare = gameBroadSquares()[2][0]
+        let middleCenterSquare = gameBroadSquares()[1][1]
+        let bottomRightSquare = gameBroadSquares()[0][2]
+        let topRightSquare = gameBroadSquares()[2][2]
+        
+        if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
+            return true
+        } else if topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
+            return true
+        } else {
+            return false
+        }
     }
     
 }
