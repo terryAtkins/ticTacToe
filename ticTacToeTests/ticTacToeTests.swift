@@ -24,9 +24,22 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testGameBoard(){
-        let testBraod = GameBroad()
-        testBraod.gameBroadSquares()
-        //        XCTAssert(testBraod.setGameForFirstPlay().count == 9)
+        let testBoard = GameBoard()
+        testBoard.setBoard()
+        XCTAssert(testBoard.setBoard().count == 3)
+    }
+    
+    func testResetBoard() {
+        let reset = GameBoard()
+        reset.resetBoard()
+        var i = reset.gameSquares[0][0]
+        var j = reset.gameSquares[0][2]
+        var k = reset.gameSquares[1][0]
+        
+        XCTAssert(i == 0)
+        XCTAssert(j == 0)
+        XCTAssert(k == 0)
+        
     }
     
     func testWhichPlayerGoesFirst() {
@@ -41,34 +54,38 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(player.playerToPlayNext(1) == 2 )
         XCTAssert(player.playerToPlayNext(2) == 1 )
         
-        
-        
     }
     
     func testThreeInARowHorizontal() {
-        let threeInARowHorizontal = GameBroad()
-//        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == true )
-        XCTAssert(threeInARowHorizontal.hasPlayerSelectedThreeInARowHorizontal() == false )
-
+        let threeInARowHorizontal = GameBoard()
+        XCTAssert(threeInARowHorizontal.horizontal() == false )
+//        XCTAssert(threeInARowHorizontal.horizontal() == true )
+        
     }
+    
     
     func testThreeInARowVertical() {
-        let threeInARowVertical = GameBroad()
-//        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == true )
-        XCTAssert(threeInARowVertical.hasPlayerSelectedThreeInARowVertical() == false )
+        let threeInARowVertical = GameBoard()
+        XCTAssert(threeInARowVertical.vertical() == false )
+//        XCTAssert(threeInARowVertical.vertical() == true )
     }
     func testThreeInARowDiagonal() {
-        let threeInARowDiagonal = GameBroad()
-//        XCTAssert(threeInARowDiagonal.hasPlayerSelectedThreeInARowDiagonal() == true)
-        XCTAssert(threeInARowDiagonal.hasPlayerSelectedThreeInARowDiagonal() == false)
-        }
-
+        let threeInARowDiagonal = GameBoard()
+        XCTAssert(threeInARowDiagonal.diagonal() == false)
+//        XCTAssert(threeInARowDiagonal.diagonal() == true)
+    }
     
-    //    func testPerformanceExample() {
-    //        // This is an example of a performance test case.
-    //        self.measureBlock() {
-    //            // Put the code you want to measure the time of here.
-    //        }
-    //    }
+    func testThreeInARowReset() {
+        let threeReset = GameBoard()
+        threeReset.resetBoard()
+        var i = threeReset.gameSquares[0][2]
+        var j = threeReset.gameSquares[1][0]
+        var k = threeReset.gameSquares[2][1]
+        
+        XCTAssert(i == 0)
+        XCTAssert(j == 0)
+        XCTAssert(k == 0)
+    }
+
     
 }

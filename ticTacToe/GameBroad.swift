@@ -8,30 +8,49 @@
 
 import UIKit
 
-public class GameBroad: NSObject {
+public class GameBoard: NSObject {
     
-    public func gameBroadSquares() -> [[Int]] {
-        var gameSquares = [[1,0,1],
-            [1,0,0],
-            [0,1,0]]
+   public var gameSquares = [[1,0,1],[1,0,0],[0,1,0]]
+    private let bottomLeftSquare:Int?
+    private let bottomCenterSquare:Int?
+    private let bottomRightSquare:Int?
+    private let middleLeftSquare:Int?
+    private let middleCenterSquare:Int?
+    private let middleRightSquare:Int?
+    private let topLeftSquare:Int?
+    private let topCenterSquare:Int?
+    private let topRightSquare:Int?
+    
+    
+    public override init() {
+        
+//        gameSquares = [[1,0,1],[1,0,0],[0,1,0]]
+        
+        bottomLeftSquare = gameSquares[0][0]
+        bottomCenterSquare = gameSquares[0][1]
+        bottomRightSquare = gameSquares[0][2]
+        middleLeftSquare = gameSquares[1][0]
+        middleCenterSquare = gameSquares[1][1]
+        middleRightSquare = gameSquares[1][2]
+        topLeftSquare = gameSquares[2][0]
+        topCenterSquare = gameSquares[2][1]
+        topRightSquare = gameSquares[2][2]
+    }
+    
+    
+    public func setBoard() -> [[Int]] {
         return gameSquares
     }
     
-    public func hasPlayerSelectedThreeInARowHorizontal() -> Bool {
+    public func resetBoard() {
+        gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    }
+    
+    public func horizontal() -> Bool {
         
         var playerDidSelectThreeInARow:Bool?
         
-        let bottomLeftSquare = gameBroadSquares()[0][0]
-        let bottomCenterSqaure = gameBroadSquares()[0][1]
-        let bottomRightSquare = gameBroadSquares()[0][2]
-        let middleLeftSquare = gameBroadSquares()[1][0]
-        let middleCenterSquare = gameBroadSquares()[1][1]
-        let middleRightSquare = gameBroadSquares()[1][2]
-        let topLeftSquare = gameBroadSquares()[2][0]
-        let topCenterSquare = gameBroadSquares()[2][1]
-        let topRightSquare = gameBroadSquares()[2][2]
-
-        if bottomLeftSquare == bottomCenterSqaure && bottomLeftSquare == bottomRightSquare {
+        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
             playerDidSelectThreeInARow = true
         } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
             playerDidSelectThreeInARow = true
@@ -44,19 +63,10 @@ public class GameBroad: NSObject {
         return playerDidSelectThreeInARow!
     }
     
-    public func hasPlayerSelectedThreeInARowVertical() -> Bool {
+    
+    public func vertical() -> Bool {
         
         var playerDidSelectThreeInARow:Bool?
-    
-        let bottomLeftSquare = gameBroadSquares()[0][0]
-        let middleLeftSquare = gameBroadSquares()[1][0]
-        let topLeftSquare = gameBroadSquares()[2][0]
-        let bottomCenterSquare = gameBroadSquares()[0][1]
-        let middleCenterSquare = gameBroadSquares()[1][1]
-        let topCenterSquare = gameBroadSquares()[2][1]
-        let bottomRightSquare = gameBroadSquares()[0][2]
-        let middleRightSquare = gameBroadSquares()[1][2]
-        let topRightSquare = gameBroadSquares()[2][2]
         
         if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
             playerDidSelectThreeInARow = true
@@ -71,14 +81,9 @@ public class GameBroad: NSObject {
         return playerDidSelectThreeInARow!
     }
     
-    public func hasPlayerSelectedThreeInARowDiagonal() -> Bool {
+    
+    public func diagonal() -> Bool {
         var playerDidSelectThreeInARow:Bool?
-        
-        let bottomLeftSquare = gameBroadSquares()[0][0]
-        let topLeftSquare = gameBroadSquares()[2][0]
-        let middleCenterSquare = gameBroadSquares()[1][1]
-        let bottomRightSquare = gameBroadSquares()[0][2]
-        let topRightSquare = gameBroadSquares()[2][2]
         
         if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
             return true

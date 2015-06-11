@@ -9,8 +9,8 @@
 import UIKit
 
 public struct Players {
-    let playerOne:Int
-    let playerTwo:Int
+    let playerOne:Int?
+    let playerTwo:Int?
     
    public init() {
         playerOne = 1
@@ -19,9 +19,9 @@ public struct Players {
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
         if playerIdNumer == 1 {
-            return playerOne
+            return playerOne!
         } else {
-            return playerTwo
+            return playerTwo!
         }
     }
     
