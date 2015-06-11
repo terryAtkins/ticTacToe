@@ -10,7 +10,7 @@ import UIKit
 
 public class GameBoard: NSObject {
     
-   public var gameSquares = [[1,0,1],[1,0,0],[0,1,0]]
+    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
     private let bottomLeftSquare:Int?
     private let bottomCenterSquare:Int?
     private let bottomRightSquare:Int?
@@ -24,8 +24,6 @@ public class GameBoard: NSObject {
     
     public override init() {
         
-//        gameSquares = [[1,0,1],[1,0,0],[0,1,0]]
-        
         bottomLeftSquare = gameSquares[0][0]
         bottomCenterSquare = gameSquares[0][1]
         bottomRightSquare = gameSquares[0][2]
@@ -37,13 +35,18 @@ public class GameBoard: NSObject {
         topRightSquare = gameSquares[2][2]
     }
     
-    
-    public func setBoard() -> [[Int]] {
-        return gameSquares
-    }
-    
     public func resetBoard() {
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    }
+    
+    public func hasSquareBeenSelectedDuringPlay(squareId :Int) -> Bool {
+        let squareId = squareId
+        var result = false
+        while squareId != 0 {
+        result = true
+            return result
+        }
+        return result
     }
     
     public func horizontal() -> Bool {

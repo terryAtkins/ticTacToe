@@ -23,12 +23,6 @@ class ticTacToeTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGameBoard(){
-        let testBoard = GameBoard()
-        testBoard.setBoard()
-        XCTAssert(testBoard.setBoard().count == 3)
-    }
-    
     func testResetBoard() {
         let reset = GameBoard()
         reset.resetBoard()
@@ -56,23 +50,29 @@ class ticTacToeTests: XCTestCase {
         
     }
     
+    func testHasSquareBeenSelectedDuringPlay() {
+        let squareSelected = GameBoard()
+        XCTAssert(squareSelected.hasSquareBeenSelectedDuringPlay(0) == false, "squareSelected test failed")
+        XCTAssert(squareSelected.hasSquareBeenSelectedDuringPlay(1) == true, "squareSelected test failed")
+    }
+    
     func testThreeInARowHorizontal() {
         let threeInARowHorizontal = GameBoard()
-        XCTAssert(threeInARowHorizontal.horizontal() == false )
-//        XCTAssert(threeInARowHorizontal.horizontal() == true )
+        XCTAssert(threeInARowHorizontal.horizontal() == true )
+        //        XCTAssert(threeInARowHorizontal.horizontal() == false )
         
     }
     
     
     func testThreeInARowVertical() {
         let threeInARowVertical = GameBoard()
-        XCTAssert(threeInARowVertical.vertical() == false )
-//        XCTAssert(threeInARowVertical.vertical() == true )
+        XCTAssert(threeInARowVertical.vertical() == true )
+        //        XCTAssert(threeInARowVertical.vertical() == false )
     }
     func testThreeInARowDiagonal() {
         let threeInARowDiagonal = GameBoard()
-        XCTAssert(threeInARowDiagonal.diagonal() == false)
-//        XCTAssert(threeInARowDiagonal.diagonal() == true)
+        XCTAssert(threeInARowDiagonal.diagonal() == true)
+        //        XCTAssert(threeInARowDiagonal.diagonal() == false)
     }
     
     func testThreeInARowReset() {
