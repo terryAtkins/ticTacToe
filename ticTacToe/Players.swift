@@ -25,6 +25,18 @@ public struct Players {
         }
     }
     
+    public func whoIsPlayingWhom(players: Int) -> Int {
+        let players = players
+        var result:Bool!
+        if players == 1 {
+            return 1
+        } else if players == 2 {
+            return 2
+        } else {
+            return 3
+        }
+    }
+    
     public func playerToPlayNext(playerId: Int) -> Int {
         var currentPlayer = playerId
         if currentPlayer == 1 {
