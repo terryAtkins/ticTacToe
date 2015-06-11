@@ -27,7 +27,7 @@ public struct Players {
     
     public func whoIsPlayingWhom(players: Int) -> Int {
         let players = players
-        var result:Bool!
+        var result:()
         if players == 1 {
             return 1
         } else if players == 2 {
@@ -35,6 +35,31 @@ public struct Players {
         } else {
             return 3
         }
+    }
+    
+
+    
+//    public func gameMethod(gameType :Int) -> () {
+//        let gameType = gameType
+//        if gameType == 1 {
+//           return humanVsHuman()
+//        } else if gameType == 2 {
+//            return humanVsMachine()
+//        } else if gameType == 3 {
+//           return  machineVsMachine()
+//        }
+//    }
+    
+    func humanVsHuman() {
+        
+    }
+    
+    func humanVsMachine() {
+        
+    }
+    
+    func machineVsMachine() {
+        
     }
     
     public func playerToPlayNext(playerId: Int) -> Int {

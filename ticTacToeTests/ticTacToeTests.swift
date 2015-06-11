@@ -43,6 +43,29 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(players.whoIsPlayingWhom(3) == 3)
     }
     
+    func testUpdateGameBoard() {
+        let board = GameBoard()
+        board.updateGameBoard(playerId: 1,rowId: 0,columnId: 0)
+        board.updateGameBoard(playerId: 2,rowId: 1,columnId: 1)
+        board.updateGameBoard(playerId: 1,rowId: 2,columnId: 2)
+        let frstSquare = board.gameSquares[0][0]
+        let secondSquare = board.gameSquares[1][1]
+        let thridSquare = board.gameSquares[2][2]
+        XCTAssert(frstSquare == 1)
+        XCTAssert(secondSquare == 2)
+        XCTAssert(thridSquare == 1)
+    }
+    
+    func testHumanVsHuman() {
+        
+    }
+    
+//    func testGameMethod () {
+//        let gameType = Players()
+//        XCTAssert(gameType.gameMethod(1) == gameType.gameMethod.humanVsHuman)
+//        
+//    }
+//    
     func testWhichPlayerGoesFirst() {
         let firstPlayer = Players()
         XCTAssert(firstPlayer.chooseWhoGoesFirst(1) == 1)

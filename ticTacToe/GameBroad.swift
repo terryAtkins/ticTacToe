@@ -35,6 +35,13 @@ public class GameBoard: NSObject {
         topRightSquare = gameSquares[2][2]
     }
     
+    public func updateGameBoard(playerId player: Int, rowId row :Int, columnId column :Int ) {
+        let player = player
+        let row = row
+        let column = column
+        gameSquares[row][column] = player
+    }
+    
     public func resetBoard() {
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
     }
