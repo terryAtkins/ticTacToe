@@ -49,48 +49,24 @@ public class GameBoard: NSObject {
         return result
     }
     
+
+    
     public func horizontal() -> Bool {
         
-        var playerDidSelectThreeInARow = false
-        var i = 0
-        var j = 0
-        var l = gameSquares.count - 1
-        while i < l {
-                if gameSquares[i][j] == gameSquares[i][j + 1] && gameSquares[i][j] == gameSquares[i][j + 1] {
-                    playerDidSelectThreeInARow = true
-                }
-        ++i
+        var playerDidSelectThreeInARow:Bool?
+        
+        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
+            playerDidSelectThreeInARow = true
+        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
+            playerDidSelectThreeInARow = true
+        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
+            playerDidSelectThreeInARow = true
+        } else {
+            playerDidSelectThreeInARow = false
         }
         
-//        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
-//            playerDidSelectThreeInARow = true
-//        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
-//            playerDidSelectThreeInARow = true
-//        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
-//            playerDidSelectThreeInARow = true
-//        } else {
-//            playerDidSelectThreeInARow = false
-//        }
-//        
-        return playerDidSelectThreeInARow
+        return playerDidSelectThreeInARow!
     }
-    
-//    public func horizontal() -> Bool {
-//        
-//        var playerDidSelectThreeInARow:Bool?
-//        
-//        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
-//            playerDidSelectThreeInARow = true
-//        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
-//            playerDidSelectThreeInARow = true
-//        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
-//            playerDidSelectThreeInARow = true
-//        } else {
-//            playerDidSelectThreeInARow = false
-//        }
-//        
-//        return playerDidSelectThreeInARow!
-//    }
     
     
     public func vertical() -> Bool {
