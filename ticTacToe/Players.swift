@@ -51,15 +51,17 @@ public class Players :NSObject{
     
 
     
-    public func gameMethod(gameType :Int) {
+    public func gameMethod(gameType :Int) -> Bool {
         let gameType = gameType
+        var result = false
         if gameType == 1 {
-           humanVsHuman()
+           result = humanVsHuman()
         } else if gameType == 2 {
-             humanVsMachine()
+              result = humanVsMachine()
         } else if gameType == 3 {
-             machineVsMachine()
+             result = machineVsMachine()
         }
+        return result
     }
     
     func humanVsHuman() -> Bool{

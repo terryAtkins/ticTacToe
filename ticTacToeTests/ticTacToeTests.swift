@@ -77,7 +77,9 @@ class ticTacToeTests: XCTestCase {
     
     func testGameMethod () {
         let gameType = Players()
-        XCTAssert(gameType.gameMethod(1) == gameType.gameMethod.humanVsHuman)
+        XCTAssertTrue(gameType.gameMethod(1))
+        XCTAssertTrue(gameType.gameMethod(2))
+        XCTAssertTrue(gameType.gameMethod(3))
         
     }
     
