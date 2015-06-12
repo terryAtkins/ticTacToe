@@ -77,9 +77,9 @@ class ticTacToeTests: XCTestCase {
     
     func testGameMethod () {
         let gameType = Players()
-        XCTAssertTrue(gameType.gameMethod(1))
-        XCTAssertTrue(gameType.gameMethod(2))
-        XCTAssertTrue(gameType.gameMethod(3))
+        XCTAssertTrue(gameType.chooseGameMethod(1))
+        XCTAssertTrue(gameType.chooseGameMethod(2))
+        XCTAssertTrue(gameType.chooseGameMethod(3))
         
     }
     
@@ -90,10 +90,10 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(firstPlayer.chooseWhoGoesFirst(0) == 2)
     }
     
-    func testPlayersTakeTurns() {
+    func testNextPlayerTurn() {
         let player = Players()
-        XCTAssert(player.playerToPlayNext(1) == 2 )
-        XCTAssert(player.playerToPlayNext(2) == 1 )
+        XCTAssert(player.nextPlayersTurn(1) == 2 )
+        XCTAssert(player.nextPlayersTurn(2) == 1 )
         
     }
     
@@ -134,7 +134,10 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(j == 0)
         XCTAssert(k == 0)
     }
-
+    func testCheckForThreeInARowToWin() {
+        let check = GameBoard()
+        XCTAssertTrue(check.checkForThreeInARowToWin())
+    }
     
 }
 

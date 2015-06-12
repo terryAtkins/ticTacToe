@@ -9,9 +9,9 @@
 import UIKit
 
 public class Players :NSObject{
-    let playerOne:Int!
-    let playerTwo:Int!
-    var turnsLeftToPlay:Int!
+    let playerOne:Int
+    let playerTwo:Int
+    var turnsLeftToPlay:Int
 
    public override init() {
         self.playerOne = 1
@@ -22,7 +22,7 @@ public class Players :NSObject{
     public  func numberOfTurnsLeftToPlay() -> Bool{
 
         while turnsLeftToPlay != 0 {
-            turnsLeftToPlay = turnsLeftToPlay - 1
+            turnsLeftToPlay -= 1
             return true
             
         }
@@ -31,9 +31,9 @@ public class Players :NSObject{
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
         if playerIdNumer == 1 {
-            return playerOne!
+            return playerOne
         } else {
-            return playerTwo!
+            return playerTwo
         }
     }
     
@@ -51,7 +51,7 @@ public class Players :NSObject{
     
 
     
-    public func gameMethod(gameType :Int) -> Bool {
+    public func chooseGameMethod(gameType :Int) -> Bool  {
         let gameType = gameType
         var result = false
         if gameType == 1 {
@@ -64,7 +64,8 @@ public class Players :NSObject{
         return result
     }
     
-    func humanVsHuman() -> Bool{
+    func humanVsHuman() -> Bool {
+
         return true
     }
     
@@ -76,7 +77,7 @@ public class Players :NSObject{
         return true
     }
     
-    public func playerToPlayNext(playerId: Int) -> Int {
+    public func nextPlayersTurn(playerId: Int) -> Int {
         var currentPlayer = playerId
         if currentPlayer == 1 {
             currentPlayer = 2

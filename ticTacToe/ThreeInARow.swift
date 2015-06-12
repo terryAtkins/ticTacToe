@@ -4,36 +4,55 @@
 //
 //  Created by terry atkins on 10/06/2015.
 //  Copyright (c) 2015 terry atkins. All rights reserved.
-//
 
-//import UIKit
-//
-//public struct ThreeInARows {
+
+import UIKit
+
+public struct ThreeInARows {
 //    
-//        let bottomLeftSquare:Int?
-//        let bottomCenterSqaure:Int?
-//        let bottomRightSquare:Int?
-//        let middleLeftSquare:Int?
-//        let middleCenterSquare:Int?
-//        let middleRightSquare:Int?
-//        let topLeftSquare:Int?
-//        let topCenterSquare:Int?
-//        let topRightSquare:Int?
-//    
-//
-//    
-//    public init() {
-//
-//        let board = GameBroad()
-//        bottomLeftSquare = board.gameBroadSquares()[0][0]
-//        bottomCenterSqaure = board.gameBroadSquares()[0][1]
-//        bottomRightSquare = board.gameBroadSquares()[0][2]
-//        middleLeftSquare = board.gameBroadSquares()[1][0]
-//        middleCenterSquare = board.gameBroadSquares()[1][1]
-//        middleRightSquare = board.gameBroadSquares()[1][2]
-//        topLeftSquare = board.gameBroadSquares()[2][0]
-//        topCenterSquare = board.gameBroadSquares()[2][1]
-//        topRightSquare = board.gameBroadSquares()[2][2]
+//    public func horizontal() -> Bool {
+//        
+//        var playerDidSelectThreeInARow = false
+//        
+//        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
+//            playerDidSelectThreeInARow = true
+//        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
+//            playerDidSelectThreeInARow = true
+//        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
+//            playerDidSelectThreeInARow = true
+//        }
+//        
+//        return playerDidSelectThreeInARow
 //    }
 //    
-//}
+//    
+//    public func vertical() -> Bool {
+//        
+//        var playerDidSelectThreeInARow = false
+//        
+//        if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
+//            playerDidSelectThreeInARow = true
+//        } else if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
+//            playerDidSelectThreeInARow = true
+//        } else if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
+//            playerDidSelectThreeInARow = true
+//        }
+//        
+//        return playerDidSelectThreeInARow
+//    }
+//    
+//    
+//    public func diagonal() -> Bool {
+//        var playerDidSelectThreeInARow = false
+//        
+//        if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
+//            playerDidSelectThreeInARow = true
+//        } else if topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
+//            playerDidSelectThreeInARow = true
+//        }
+//        
+//        return playerDidSelectThreeInARow
+//    }
+
+    
+}

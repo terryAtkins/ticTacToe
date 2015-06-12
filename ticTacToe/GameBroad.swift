@@ -102,6 +102,15 @@ public class GameBoard: NSObject {
         return playerDidSelectThreeInARow
     }
     
+    public func checkForThreeInARowToWin() -> Bool{
+        var result = false
+        if vertical() || horizontal() || diagonal() {
+            result = true
+        }
+        
+        return result
+    }
+    
 }
 
 
