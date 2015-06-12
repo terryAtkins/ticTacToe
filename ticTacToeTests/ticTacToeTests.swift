@@ -36,6 +36,21 @@ class ticTacToeTests: XCTestCase {
         
     }
     
+    func testNumberOfTurnsLeftToPlay() {
+        let turnsLeft = Players()
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
+
+        XCTAssertFalse(turnsLeft.numberOfTurnsLeftToPlay())
+    }
+    
     func testWhoIsPlayingWhom() {
         let players = Players()
         XCTAssert(players.whoIsPlayingWhom(1) == 1)
@@ -45,9 +60,9 @@ class ticTacToeTests: XCTestCase {
     
     func testUpdateGameBoard() {
         let board = GameBoard()
-        board.updateGameBoard(playerId: 1,rowId: 0,columnId: 0)
-        board.updateGameBoard(playerId: 2,rowId: 1,columnId: 1)
-        board.updateGameBoard(playerId: 1,rowId: 2,columnId: 2)
+        board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 0,columnId: 0)
+        board.updateGameBoardWhenSquareSelected(playerId: 2,rowId: 1,columnId: 1)
+        board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 2,columnId: 2)
         let frstSquare = board.gameSquares[0][0]
         let secondSquare = board.gameSquares[1][1]
         let thridSquare = board.gameSquares[2][2]
@@ -60,12 +75,12 @@ class ticTacToeTests: XCTestCase {
         
     }
     
-//    func testGameMethod () {
-//        let gameType = Players()
-//        XCTAssert(gameType.gameMethod(1) == gameType.gameMethod.humanVsHuman)
-//        
-//    }
-//    
+    func testGameMethod () {
+        let gameType = Players()
+        XCTAssert(gameType.gameMethod(1) == gameType.gameMethod.humanVsHuman)
+        
+    }
+    
     func testWhichPlayerGoesFirst() {
         let firstPlayer = Players()
         XCTAssert(firstPlayer.chooseWhoGoesFirst(1) == 1)
@@ -97,8 +112,9 @@ class ticTacToeTests: XCTestCase {
     func testThreeInARowVertical() {
         let threeInARowVertical = GameBoard()
         XCTAssert(threeInARowVertical.vertical() == true )
-        //        XCTAssert(threeInARowVertical.vertical() == false )
+//                XCTAssert(threeInARowVertical.vertical() == false )
     }
+    
     func testThreeInARowDiagonal() {
         let threeInARowDiagonal = GameBoard()
         XCTAssert(threeInARowDiagonal.diagonal() == true)
@@ -119,3 +135,4 @@ class ticTacToeTests: XCTestCase {
 
     
 }
+

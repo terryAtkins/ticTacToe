@@ -8,13 +8,25 @@
 
 import UIKit
 
-public struct Players {
-    let playerOne:Int?
-    let playerTwo:Int?
+public class Players :NSObject{
+    let playerOne:Int!
+    let playerTwo:Int!
+    var turnsLeftToPlay:Int!
+
+   public override init() {
+        self.playerOne = 1
+        self.playerTwo = 2
+        self.turnsLeftToPlay = 9
+    }
     
-   public init() {
-        playerOne = 1
-        playerTwo = 2
+    public  func numberOfTurnsLeftToPlay() -> Bool{
+
+        while turnsLeftToPlay != 0 {
+            turnsLeftToPlay = turnsLeftToPlay - 1
+            return true
+            
+        }
+        return false
     }
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
@@ -39,27 +51,27 @@ public struct Players {
     
 
     
-//    public func gameMethod(gameType :Int) -> () {
-//        let gameType = gameType
-//        if gameType == 1 {
-//           return humanVsHuman()
-//        } else if gameType == 2 {
-//            return humanVsMachine()
-//        } else if gameType == 3 {
-//           return  machineVsMachine()
-//        }
-//    }
-    
-    func humanVsHuman() {
-        
+    public func gameMethod(gameType :Int) {
+        let gameType = gameType
+        if gameType == 1 {
+           humanVsHuman()
+        } else if gameType == 2 {
+             humanVsMachine()
+        } else if gameType == 3 {
+             machineVsMachine()
+        }
     }
     
-    func humanVsMachine() {
-        
+    func humanVsHuman() -> Bool{
+        return true
     }
     
-    func machineVsMachine() {
-        
+    func humanVsMachine() -> Bool{
+        return true
+    }
+    
+    func machineVsMachine() -> Bool{
+        return true
     }
     
     public func playerToPlayNext(playerId: Int) -> Int {

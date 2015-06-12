@@ -35,7 +35,7 @@ public class GameBoard: NSObject {
         topRightSquare = gameSquares[2][2]
     }
     
-    public func updateGameBoard(playerId player: Int, rowId row :Int, columnId column :Int ) {
+    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
         let player = player
         let row = row
         let column = column
@@ -60,7 +60,7 @@ public class GameBoard: NSObject {
     
     public func horizontal() -> Bool {
         
-        var playerDidSelectThreeInARow:Bool?
+        var playerDidSelectThreeInARow = false
         
         if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
             playerDidSelectThreeInARow = true
@@ -68,17 +68,15 @@ public class GameBoard: NSObject {
             playerDidSelectThreeInARow = true
         } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
             playerDidSelectThreeInARow = true
-        } else {
-            playerDidSelectThreeInARow = false
         }
         
-        return playerDidSelectThreeInARow!
+        return playerDidSelectThreeInARow
     }
     
     
     public func vertical() -> Bool {
         
-        var playerDidSelectThreeInARow:Bool?
+        var playerDidSelectThreeInARow = false
         
         if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
             playerDidSelectThreeInARow = true
@@ -86,24 +84,22 @@ public class GameBoard: NSObject {
             playerDidSelectThreeInARow = true
         } else if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
             playerDidSelectThreeInARow = true
-        } else {
-            playerDidSelectThreeInARow = false
         }
         
-        return playerDidSelectThreeInARow!
+        return playerDidSelectThreeInARow
     }
     
     
     public func diagonal() -> Bool {
-        var playerDidSelectThreeInARow:Bool?
+        var playerDidSelectThreeInARow = false
         
         if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
-            return true
+            playerDidSelectThreeInARow = true
         } else if topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
-            return true
-        } else {
-            return false
+            playerDidSelectThreeInARow = true
         }
+        
+        return playerDidSelectThreeInARow
     }
     
 }
