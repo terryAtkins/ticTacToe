@@ -46,12 +46,12 @@ public class GameBoard: NSObject {
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
     }
     
-    public func hasSquareBeenSelectedDuringPlay(rowId row:Int, columnId column :Int) -> Bool {
+    public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
 //        let row = row
 //        let column  = column
         
         var result = false
-        if gameSquares[row][column] != 0 {
+        if gameSquares[row][column] == 0 {
         result = true
             return result
         }
@@ -112,6 +112,7 @@ public class GameBoard: NSObject {
         
         return result
     }
+    
     
 }
 

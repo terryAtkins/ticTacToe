@@ -11,24 +11,29 @@ import UIKit
 public class Players :NSObject{
     let playerX:Int
     let playerO:Int
-    var turnsLeftToPlay:Int
+    var numberOfTurnsInAGame:Int
 
    public override init() {
         playerX = 1
         playerO = 2
-        turnsLeftToPlay = 9
+        numberOfTurnsInAGame = 9
     }
     
-    public  func numberOfTurnsLeftToPlay() -> Int {
-
-        if turnsLeftToPlay != 0 {
-            turnsLeftToPlay -= 1
-        }
-        return turnsLeftToPlay
+    public func turnsLeftInGame() -> Int {
+        return numberOfTurnsInAGame
     }
+    
+    public  func reduceNumberOfTurnsLeftToPlayByOne() -> Int {
+
+        if numberOfTurnsInAGame != 0 {
+            numberOfTurnsInAGame -= 1
+        }
+        return numberOfTurnsInAGame
+    }
+    
     public func resetNumberOfTurnsLeftToPlay() -> Int {
-        turnsLeftToPlay = 9
-        return turnsLeftToPlay
+        numberOfTurnsInAGame = 9
+        return numberOfTurnsInAGame
     }
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
@@ -90,5 +95,7 @@ public class Players :NSObject{
             return currentPlayer
         }
     }
+    
+    
     
 }

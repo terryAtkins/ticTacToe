@@ -8,28 +8,48 @@
 
 import Foundation
 
-public class AIController :NSObject {
+public class AIController :GameBoard {
     
-    let gameBoard :GameBoard
     let players :Players
+    let randomNumber: Int
     
-     public override init() {
-        gameBoard = GameBoard()
+    
+    
+    public  override init() {
+        
         players = Players()
+        randomNumber = Int(arc4random_uniform(UInt32(5)))
+        
     }
     
-    public func cpuToPlay(playerId player : Int) -> Bool {
-        let numberOfTurns = players.turnsLeftToPlay
-//        let player = player
-        var result = false
-        if numberOfTurns >= 9 {
-            gameBoard.updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
-            result = true
+    public func cpuToPlay(playerId player :Int) {
+        
+        let centerSquareStillInPlay = isSquareStillInPlay(rowId: 1, columnId: 1)
+        
+        if centerSquareStillInPlay {
+            updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        } else {
+            selectACornerSquare(playerId: player, ranNum: randomNumber)
         }
-        return result
+        
     }
     
-    public func miniMax() -> Bool {
-        return true
+    
+    public func selectACornerSquare(playerId player:Int, ranNum num: Int) {
+        let num = num
+//        var randomNumber = Int(arc4random_uniform(UInt32(5)))
+        switch num {
+        case 1:
+            updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
+        case 2:
+            updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 2)
+        case 3:
+            updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 0)
+        case 4:
+            updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 2)
+        default:
+            updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
+        }
     }
+    
 }

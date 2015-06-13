@@ -17,10 +17,10 @@ public class GameController {
         
         newPlayers.chooseGameMethod(1)
         newPlayers.chooseWhoGoesFirst(1)
-        newGame.hasSquareBeenSelectedDuringPlay(rowId: 0, columnId: 0)
+        newGame.isSquareStillInPlay(rowId: 0, columnId: 0)
         newGame.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 3)
         newGame.checkForThreeInARowToWin()
-        newPlayers.numberOfTurnsLeftToPlay()
+        newPlayers.reduceNumberOfTurnsLeftToPlayByOne()
         newPlayers.nextPlayersTurn(1)
         
         
