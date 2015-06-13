@@ -29,16 +29,16 @@ public class AIController :GameBoard {
         if centerSquareStillInPlay {
             updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
         } else {
-            selectACornerSquare(playerId: player, ranNum: randomNumber)
+            selectACornerSquare(playerId: player)
         }
         
     }
     
     
-    public func selectACornerSquare(playerId player:Int, ranNum num: Int) {
-        let num = num
-//        var randomNumber = Int(arc4random_uniform(UInt32(5)))
-        switch num {
+    public func selectACornerSquare(playerId player:Int) {
+        
+        var randomNumber = Int(arc4random_uniform(UInt32(5)))
+        switch randomNumber {
         case 1:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
         case 2:

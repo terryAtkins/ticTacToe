@@ -151,27 +151,29 @@ class ticTacToeTests: XCTestCase {
         XCTAssertTrue(check.checkForThreeInARowToWin())
     }
     
-    func testAIController() {
-
-        let board = GameBoard()
-        let players = Players()
-        let computer = AIController()
-    
-        computer.selectACornerSquare(playerId: 1, ranNum: 1)
-        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
-        
-        computer.selectACornerSquare(playerId: 1, ranNum: 2)
-        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 2))
-
-        computer.selectACornerSquare(playerId: 1, ranNum: 3)
-        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 0))
-        
-        computer.selectACornerSquare(playerId: 1, ranNum: 3)
-        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 2))
-        
-        computer.selectACornerSquare(playerId: 1, ranNum: 0)
-        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
-
-    }
+//     can only be tested if selectACornerSquare is manually passed numbers
+//     via a paramater and removing randomNumber from the function
+//    func testAIController() {
+//
+//        let board = GameBoard()
+//        let players = Players()
+//        let computer = AIController()
+//    
+//        computer.selectACornerSquare(playerId: 1, ranNum: 1)
+//        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
+//        
+//        computer.selectACornerSquare(playerId: 1, ranNum: 2)
+//        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 2))
+//
+//        computer.selectACornerSquare(playerId: 1, ranNum: 3)
+//        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 0))
+//        
+//        computer.selectACornerSquare(playerId: 1, ranNum: 3)
+//        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 2))
+//        
+//        computer.selectACornerSquare(playerId: 1, ranNum: 0)
+//        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
+//
+//    }
 }
 
