@@ -36,9 +36,9 @@ public class GameBoard: NSObject {
     }
     
     public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
-        let player = player
-        let row = row
-        let column = column
+//        let player = player
+//        let row = row
+//        let column = column
         gameSquares[row][column] = player
     }
     
@@ -46,10 +46,12 @@ public class GameBoard: NSObject {
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
     }
     
-    public func hasSquareBeenSelectedDuringPlay(squareId :Int) -> Bool {
-        let squareId = squareId
+    public func hasSquareBeenSelectedDuringPlay(rowId row:Int, columnId column :Int) -> Bool {
+//        let row = row
+//        let column  = column
+        
         var result = false
-        while squareId != 0 {
+        if gameSquares[row][column] != 0 {
         result = true
             return result
         }

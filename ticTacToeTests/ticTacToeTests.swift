@@ -38,17 +38,31 @@ class ticTacToeTests: XCTestCase {
     
     func testNumberOfTurnsLeftToPlay() {
         let turnsLeft = Players()
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-        XCTAssertTrue(turnsLeft.numberOfTurnsLeftToPlay())
-
-        XCTAssertFalse(turnsLeft.numberOfTurnsLeftToPlay())
+        XCTAssertEqual(turnsLeft.resetNumberOfTurnsLeftToPlay(), 9, "Should start with 9 turns")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 8, "Should return 8")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 7, "Should return 7")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 6, "Should return 6")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 5, "Should return 5")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 4, "Should return 4")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 3, "Should return 3")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 2, "Should return 2")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 1, "Should return 1")
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 0, "Should return 0")
+        XCTAssertNotEqual(turnsLeft.numberOfTurnsLeftToPlay(), -1, "should not be lower then 0")
+    }
+    
+    func testResetNumberOfTurnsLeftToPlay() {
+        let turnsLeft = Players()
+        XCTAssertEqual(turnsLeft.resetNumberOfTurnsLeftToPlay(), 9, "Should start with 9 turns")
+        
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 8, "Should return 8")
+        turnsLeft.numberOfTurnsLeftToPlay()
+        turnsLeft.numberOfTurnsLeftToPlay()
+        turnsLeft.numberOfTurnsLeftToPlay()
+        turnsLeft.numberOfTurnsLeftToPlay()
+        turnsLeft.numberOfTurnsLeftToPlay()
+        XCTAssertEqual(turnsLeft.numberOfTurnsLeftToPlay(), 2, "Should return 2")
+        XCTAssertEqual(turnsLeft.resetNumberOfTurnsLeftToPlay(), 9, "Should start with 9 turns")
     }
     
     func testWhoIsPlayingWhom() {
@@ -63,12 +77,9 @@ class ticTacToeTests: XCTestCase {
         board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 0,columnId: 0)
         board.updateGameBoardWhenSquareSelected(playerId: 2,rowId: 1,columnId: 1)
         board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 2,columnId: 2)
-        let frstSquare = board.gameSquares[0][0]
-        let secondSquare = board.gameSquares[1][1]
-        let thridSquare = board.gameSquares[2][2]
-        XCTAssert(frstSquare == 1)
-        XCTAssert(secondSquare == 2)
-        XCTAssert(thridSquare == 1)
+        XCTAssertEqual(board.gameSquares[0][0], 1)
+        XCTAssertEqual(board.gameSquares[1][1], 2)
+        XCTAssertEqual(board.gameSquares[2][2], 1)
     }
     
     func testHumanVsHuman() {
@@ -99,8 +110,8 @@ class ticTacToeTests: XCTestCase {
     
     func testHasSquareBeenSelectedDuringPlay() {
         let squareSelected = GameBoard()
-        XCTAssert(squareSelected.hasSquareBeenSelectedDuringPlay(0) == false, "squareSelected test failed")
-        XCTAssert(squareSelected.hasSquareBeenSelectedDuringPlay(1) == true, "squareSelected test failed")
+        XCTAssert(squareSelected.hasSquareBeenSelectedDuringPlay(rowId: 0, columnId: 0) == false, "squareSelected test failed")
+        XCTAssertFalse(squareSelected.hasSquareBeenSelectedDuringPlay(rowId: 1, columnId: 1), "squareSelected test failed")
     }
     
     func testThreeInARowHorizontal() {
@@ -139,5 +150,23 @@ class ticTacToeTests: XCTestCase {
         XCTAssertTrue(check.checkForThreeInARowToWin())
     }
     
+    func testAIController() {
+        let computer = AIController()
+        let board = GameBoard()
+        let player = 1
+        computer.cpuToPlay(playerId: player)
+        let squareSelected = board.gameSquares[0][0]
+
+        
+//        XCTAssertEqual(squareSelected, player, "should be equal to player")
+//        XCTAssertTrue(board.hasSquareBeenSelectedDuringPlay(rowId: 0, columnId: 0))
+        
+        
+    }
+    
+    func testMiniMax() {
+        let ai = AIController()
+        XCTAssertTrue(ai.miniMax())
+    }
 }
 

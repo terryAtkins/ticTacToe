@@ -9,31 +9,33 @@
 import UIKit
 
 public class Players :NSObject{
-    let playerOne:Int
-    let playerTwo:Int
+    let playerX:Int
+    let playerO:Int
     var turnsLeftToPlay:Int
 
    public override init() {
-        self.playerOne = 1
-        self.playerTwo = 2
-        self.turnsLeftToPlay = 9
+        playerX = 1
+        playerO = 2
+        turnsLeftToPlay = 9
     }
     
-    public  func numberOfTurnsLeftToPlay() -> Bool{
+    public  func numberOfTurnsLeftToPlay() -> Int {
 
-        while turnsLeftToPlay != 0 {
+        if turnsLeftToPlay != 0 {
             turnsLeftToPlay -= 1
-            return true
-            
         }
-        return false
+        return turnsLeftToPlay
+    }
+    public func resetNumberOfTurnsLeftToPlay() -> Int {
+        turnsLeftToPlay = 9
+        return turnsLeftToPlay
     }
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
         if playerIdNumer == 1 {
-            return playerOne
+            return playerX
         } else {
-            return playerTwo
+            return playerO
         }
     }
     
