@@ -12,30 +12,35 @@ public class AIController :GameBoard {
     
     let players :Players
     let randomNumber: Int
-    
-    
+    var howManyTurnsHaveYouHad :Int
     
     public  override init() {
         
         players = Players()
         randomNumber = Int(arc4random_uniform(UInt32(5)))
-        
+        howManyTurnsHaveYouHad = 0
     }
     
-    public func cpuToPlay(playerId player :Int) {
+    public func computersTurnToPlay(playerId player :Int) -> Bool {
         
-        let centerSquareStillInPlay = isSquareStillInPlay(rowId: 1, columnId: 1)
+        let player = player
+        var computerTakenHisTurn = false
         
-        if centerSquareStillInPlay {
-            updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        if howManyTurnsHaveYouHad == 0 {
+            selectACornerOrMiddleSquare(playerId: player)
+            computerTakenHisTurn = true
+            howManyTurnsHaveYouHad += 1
         } else {
-            selectACornerSquare(playerId: player)
+            if miniMax() {
+                howManyTurnsHaveYouHad += 1
+                return true
+            }
+            
         }
-        
+        return computerTakenHisTurn
     }
     
-    
-    public func selectACornerSquare(playerId player:Int) {
+    public func selectACornerOrMiddleSquare(playerId player:Int) {
         
         var randomNumber = Int(arc4random_uniform(UInt32(5)))
         switch randomNumber {
@@ -50,6 +55,12 @@ public class AIController :GameBoard {
         default:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
         }
+    }
+    
+    public func miniMax() -> Bool {
+        var max = 0
+        var min = 0
+        return true
     }
     
 }

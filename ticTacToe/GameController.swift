@@ -20,7 +20,7 @@ public class GameController {
         newGame.isSquareStillInPlay(rowId: 0, columnId: 0)
         newGame.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 3)
         newGame.checkForThreeInARowToWin()
-        newPlayers.reduceNumberOfTurnsLeftToPlayByOne()
+//        newPlayers.reduceNumberOfTurnsLeftToPlayByOne()
         newPlayers.nextPlayersTurn(1)
         
         

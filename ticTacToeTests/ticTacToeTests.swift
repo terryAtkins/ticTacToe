@@ -36,6 +36,11 @@ class ticTacToeTests: XCTestCase {
         
     }
     
+    func testIsThisTheFirstSquareOfTheGameSelected() {
+        let firstPlay = AIController()
+//        XCTAssertTrue(firstPlay.isThisTheFirstSquareOfTheGameSelected)
+    }
+    
     func testNumberOfTurnsLeftToPlay() {
         let turnsLeft = Players()
         XCTAssertEqual(turnsLeft.resetNumberOfTurnsLeftToPlay(), 9, "Should start with 9 turns")
@@ -82,9 +87,6 @@ class ticTacToeTests: XCTestCase {
         XCTAssertEqual(board.gameSquares[2][2], 1)
     }
     
-    func testHumanVsHuman() {
-        
-    }
     
     func testGameMethod () {
         let gameType = Players()
@@ -115,24 +117,44 @@ class ticTacToeTests: XCTestCase {
         XCTAssertFalse(squareSelected.isSquareStillInPlay(rowId: 0, columnId: 0), "squareSelected test failed")
     }
     
-    func testThreeInARowHorizontal() {
-        let threeInARowHorizontal = GameBoard()
-        XCTAssert(threeInARowHorizontal.horizontal() == true )
-        //        XCTAssert(threeInARowHorizontal.horizontal() == false )
-        
+    func testTwoInARowHorizontal() {
+        let twoInARowHorizontal = GameBoard()
+        XCTAssert(twoInARowHorizontal.twoInARowHorizontal() == true )
     }
     
+    func testTwoInARowVertical() {
+        let twoInARowVertical = GameBoard()
+        XCTAssert(twoInARowVertical.twoInARowVertical() == true )
+    }
+    
+    func testTwoInARowDiagonal() {
+        let twoInARowDiagonal = GameBoard()
+        XCTAssert(twoInARowDiagonal.twoInARowDiagonal() == true)
+    }
+    
+    func testCheckForTwoInARowToBlock() {
+        let check = GameBoard()
+        XCTAssertTrue(check.checkForTwoInARowToBlock())
+    }
+    
+    func testThreeInARowHorizontal() {
+        let threeInARowHorizontal = GameBoard()
+        XCTAssert(threeInARowHorizontal.threeInARowHorizontal() == true )
+    }
     
     func testThreeInARowVertical() {
         let threeInARowVertical = GameBoard()
-        XCTAssert(threeInARowVertical.vertical() == true )
-//                XCTAssert(threeInARowVertical.vertical() == false )
+        XCTAssert(threeInARowVertical.threeInARowVertical() == true )
     }
     
     func testThreeInARowDiagonal() {
         let threeInARowDiagonal = GameBoard()
-        XCTAssert(threeInARowDiagonal.diagonal() == true)
-        //        XCTAssert(threeInARowDiagonal.diagonal() == false)
+        XCTAssert(threeInARowDiagonal.threeInARowDiagonal() == true)
+    }
+    
+    func testCheckForThreeInARowToWin() {
+        let check = GameBoard()
+        XCTAssertTrue(check.checkForThreeInARowToWin())
     }
     
     func testThreeInARowReset() {
@@ -146,9 +168,11 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(j == 0)
         XCTAssert(k == 0)
     }
-    func testCheckForThreeInARowToWin() {
-        let check = GameBoard()
-        XCTAssertTrue(check.checkForThreeInARowToWin())
+    
+    func testComputerHasTakenATurn() {
+        let turnTaken = AIController()
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking first turn")
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking turns after the first")
     }
     
 //     can only be tested if selectACornerSquare is manually passed numbers
@@ -159,19 +183,19 @@ class ticTacToeTests: XCTestCase {
 //        let players = Players()
 //        let computer = AIController()
 //    
-//        computer.selectACornerSquare(playerId: 1, ranNum: 1)
+//        computer.selectACornerOrMiddleSquare(playerId: 1, ranNum: 1)
 //        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
 //        
-//        computer.selectACornerSquare(playerId: 1, ranNum: 2)
+//        computer.selectACornerOrMiddleSquare(playerId: 1, ranNum: 2)
 //        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 2))
 //
-//        computer.selectACornerSquare(playerId: 1, ranNum: 3)
+//        computer.selectACornerOrMiddleSquare(playerId: 1, ranNum: 3)
 //        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 0))
 //        
-//        computer.selectACornerSquare(playerId: 1, ranNum: 3)
+//        computer.selectACornerOrMiddleSquare(playerId: 1, ranNum: 3)
 //        XCTAssertTrue(board.isSquareStillInPlay(rowId: 2, columnId: 2))
 //        
-//        computer.selectACornerSquare(playerId: 1, ranNum: 0)
+//        computer.selectACornerOrMiddleSquare(playerId: 1, ranNum: 0)
 //        XCTAssertTrue(board.isSquareStillInPlay(rowId: 0, columnId: 0))
 //
 //    }
