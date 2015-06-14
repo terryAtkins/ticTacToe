@@ -10,8 +10,8 @@ import UIKit
 
 public class GameBoard {
     
-     public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
-//    var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    
     var bottomLeftSquare :Int?
     var bottomCenterSquare :Int?
     var bottomRightSquare :Int?
@@ -44,11 +44,6 @@ public class GameBoard {
         
     }
     
-    public func resetBoard() {
-        
-        gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
-    }
-    
     public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
         
         if gameSquares[row][column] == 0 {
@@ -59,15 +54,10 @@ public class GameBoard {
         return false
     }
     
-   
-    
-
-    
-
-    
-   
-    
-
+    public func resetBoard() {
+        
+        gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    }
 
 }
 

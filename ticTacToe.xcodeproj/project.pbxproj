@@ -19,6 +19,11 @@
 		DE8F2B781B276D4C00356AE7 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B771B276D4C00356AE7 /* Players.swift */; };
 		DEBB5B771B28D1E3007D6A0F /* ThreeInARow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBB5B761B28D1E3007D6A0F /* ThreeInARow.swift */; };
 		DEDE045D1B2E029200798D08 /* TwoInARow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE045C1B2E029200798D08 /* TwoInARow.swift */; };
+		DEDE045F1B2E048A00798D08 /* TestGameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE045E1B2E048A00798D08 /* TestGameBoard.swift */; };
+		DEDE04611B2E059200798D08 /* TestThreeInARow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE04601B2E059200798D08 /* TestThreeInARow.swift */; };
+		DEDE04631B2E05FD00798D08 /* TestTwoInARow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE04621B2E05FD00798D08 /* TestTwoInARow.swift */; };
+		DEDE04651B2E066400798D08 /* TestPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE04641B2E066400798D08 /* TestPlayers.swift */; };
+		DEDE04671B2E076400798D08 /* TestAIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE04661B2E076400798D08 /* TestAIController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,11 @@
 		DE8F2B771B276D4C00356AE7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		DEBB5B761B28D1E3007D6A0F /* ThreeInARow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeInARow.swift; sourceTree = "<group>"; };
 		DEDE045C1B2E029200798D08 /* TwoInARow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoInARow.swift; sourceTree = "<group>"; };
+		DEDE045E1B2E048A00798D08 /* TestGameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGameBoard.swift; sourceTree = "<group>"; };
+		DEDE04601B2E059200798D08 /* TestThreeInARow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestThreeInARow.swift; sourceTree = "<group>"; };
+		DEDE04621B2E05FD00798D08 /* TestTwoInARow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTwoInARow.swift; sourceTree = "<group>"; };
+		DEDE04641B2E066400798D08 /* TestPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlayers.swift; sourceTree = "<group>"; };
+		DEDE04661B2E076400798D08 /* TestAIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAIController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,11 @@
 			children = (
 				DE8F2B651B2759B400356AE7 /* ticTacToeTests.swift */,
 				DE8F2B631B2759B400356AE7 /* Supporting Files */,
+				DEDE045E1B2E048A00798D08 /* TestGameBoard.swift */,
+				DEDE04601B2E059200798D08 /* TestThreeInARow.swift */,
+				DEDE04621B2E05FD00798D08 /* TestTwoInARow.swift */,
+				DEDE04641B2E066400798D08 /* TestPlayers.swift */,
+				DEDE04661B2E076400798D08 /* TestAIController.swift */,
 			);
 			path = ticTacToeTests;
 			sourceTree = "<group>";
@@ -245,7 +260,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDE04631B2E05FD00798D08 /* TestTwoInARow.swift in Sources */,
+				DEDE04611B2E059200798D08 /* TestThreeInARow.swift in Sources */,
+				DEDE04651B2E066400798D08 /* TestPlayers.swift in Sources */,
+				DEDE045F1B2E048A00798D08 /* TestGameBoard.swift in Sources */,
 				DE8F2B661B2759B400356AE7 /* ticTacToeTests.swift in Sources */,
+				DEDE04671B2E076400798D08 /* TestAIController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
