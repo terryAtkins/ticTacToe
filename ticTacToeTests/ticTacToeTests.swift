@@ -117,16 +117,61 @@ class ticTacToeTests: XCTestCase {
         XCTAssertFalse(squareSelected.isSquareStillInPlay(rowId: 0, columnId: 0), "squareSelected test failed")
     }
     
-//    func testTwoInARowHorizontal() {
-//        let twoInARowHorizontal = GameBoard()
-//        XCTAssert(twoInARowHorizontal.twoInARowHorizontal() == true )
-//    }
-//    
-//    func testTwoInARowVertical() {
-//        let twoInARowVertical = GameBoard()
-//        XCTAssert(twoInARowVertical.twoInARowVertical() == true )
-//    }
-//    
+    func testIsThereTwoInARow_Horizontal() {
+        let twoInARowHorizontal = GameBoard()
+        
+        XCTAssertFalse(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
+        XCTAssertTrue(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+        twoInARowHorizontal.resetBoard()
+        XCTAssertFalse(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 0)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 2)
+        XCTAssertTrue(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+        twoInARowHorizontal.resetBoard()
+        XCTAssertFalse(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 0, rowId: 2, columnId: 1)
+        twoInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        XCTAssertFalse(twoInARowHorizontal.isThereTwoInARow_Horizontal())
+        
+    }
+
+    func testisThereTwoInARow_Vertical() {
+        let twoInARowVertical = GameBoard()
+        
+        XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
+        
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 0)
+        XCTAssertTrue(twoInARowVertical.isThereTwoInARow_Vertical())
+        
+        twoInARowVertical.resetBoard()
+        XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
+        
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 1)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 1)
+        XCTAssertTrue(twoInARowVertical.isThereTwoInARow_Vertical())
+        
+        twoInARowVertical.resetBoard()
+        XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
+        
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 0, rowId: 0, columnId: 2)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 2)
+        twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
+    }
+//
 //    func testTwoInARowDiagonal() {
 //        let twoInARowDiagonal = GameBoard()
 //        XCTAssertGreaterThan(twoInARowDiagonal.twoInARowDiagonal(), 0)
@@ -143,67 +188,100 @@ class ticTacToeTests: XCTestCase {
 //        XCTAssert(threeInARowHorizontal.threeInARowHorizontal() == true )
 //    }
     
-    func testThreeInARowVertical() {
+    func testIsThereThreeInARowVertical() {
         var threeInARowVertical = GameBoard()
        
-        XCTAssertFalse(threeInARowVertical.threeInARowVertical())
+        XCTAssertFalse(threeInARowVertical.isThereThreeInARow_Vertical())
         
         threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
         threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 2)
         threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 1)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        XCTAssertTrue(threeInARowVertical.isThereThreeInARow_Vertical())
         
-        XCTAssertEqual(threeInARowVertical.gameSquares[0][0], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[1][0], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[2][0], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
-        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
-        XCTAssertTrue(threeInARowVertical.threeInARowVertical())
+        threeInARowVertical.resetBoard()
+        XCTAssertFalse(threeInARowVertical.isThereThreeInARow_Vertical())
+        
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 2)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        XCTAssertTrue(threeInARowVertical.isThereThreeInARow_Vertical())
+        
+        threeInARowVertical.resetBoard()
+        XCTAssertFalse(threeInARowVertical.isThereThreeInARow_Vertical())
 
     }
     
-    func testThreeInARowDiagonal() {
+    func testIsThereThreeInARow_Diagonal() {
         let threeInARowDiagonal = GameBoard()
-        XCTAssertFalse(threeInARowDiagonal.threeInARowVertical())
+        XCTAssertFalse(threeInARowDiagonal.isThereThreeInARow_Diagonal())
         
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
-       
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[0][0], 1)
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[1][1], 1)
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[2][2], 1)
-        XCTAssertTrue(threeInARowDiagonal.threeInARowDiagonal())
+        XCTAssertTrue(threeInARowDiagonal.isThereThreeInARow_Diagonal())
+        
+        threeInARowDiagonal.resetBoard()
+        XCTAssertFalse(threeInARowDiagonal.isThereThreeInARow_Diagonal())
         
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 0)
-
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[0][2], 2)
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[1][1], 2)
-        XCTAssertEqual(threeInARowDiagonal.gameSquares[2][0], 2)
-        XCTAssertTrue(threeInARowDiagonal.threeInARowDiagonal())
+        XCTAssertTrue(threeInARowDiagonal.isThereThreeInARow_Diagonal())
+        
+        threeInARowDiagonal.resetBoard()
+        XCTAssertFalse(threeInARowDiagonal.isThereThreeInARow_Diagonal())
 
 
         
     }
     
-//    func testCheckForThreeInARowToWin() {
-//        let check = GameBoard()
-//        XCTAssertTrue(check.checkForThreeInARowToWin())
-//    }
+    func testIsThereThreeInARow_Horizontal() {
+        var threeInARowHorizontal = GameBoard()
+        
+        XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
+        XCTAssertTrue(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.resetBoard()
+        XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 2)
+        XCTAssertTrue(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.resetBoard()
+        XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        XCTAssertTrue(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+        
+        threeInARowHorizontal.resetBoard()
+        XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
+    }
+    
+    func testCheckForThreeInARowToWin() {
+        let check = GameBoard()
+        
+        XCTAssertFalse(check.checkForThreeInARow_ToWin())
+        
+        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        XCTAssertTrue(check.checkForThreeInARow_ToWin())
+        
+        check.resetBoard()
+        XCTAssertFalse(check.isThereThreeInARow_Diagonal())
+    }
     
     func testThreeInARowReset() {
         let threeReset = GameBoard()
+        
         threeReset.resetBoard()
         threeReset.upDateNames()
         var i = threeReset.gameSquares[0][2]
