@@ -171,25 +171,41 @@ class ticTacToeTests: XCTestCase {
         twoInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
         XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
     }
-//
-//    func testTwoInARowDiagonal() {
-//        let twoInARowDiagonal = GameBoard()
-//        XCTAssertGreaterThan(twoInARowDiagonal.twoInARowDiagonal(), 0)
-////        XCTAssert(twoInARowDiagonal.twoInARowDiagonal() == true)
-//    }
+
+    func testisThereTwoInARow_Diagonal() {
+        let twoInARowDiagonal = GameBoard()
+            twoInARowDiagonal.resetBoard()
+        XCTAssertFalse(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+        
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        XCTAssertTrue(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+        
+        twoInARowDiagonal.resetBoard()
+        XCTAssertFalse(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+        
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
+        XCTAssertTrue(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+        
+        twoInARowDiagonal.resetBoard()
+        XCTAssertFalse(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+        
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 0, rowId: 0, columnId: 0)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        twoInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 0, rowId: 2, columnId: 2)
+        XCTAssertFalse(twoInARowDiagonal.isThereTwoInARow_Diagonal())
+    }
     
 //    func testCheckForTwoInARowToBlock() {
 //        let check = GameBoard()
 //        XCTAssertTrue(check.checkForTwoInARowToBlock())
 //    }
     
-//    func testThreeInARowHorizontal() {
-//        let threeInARowHorizontal = GameBoard()
-//        XCTAssert(threeInARowHorizontal.threeInARowHorizontal() == true )
-//    }
-    
     func testIsThereThreeInARowVertical() {
-        var threeInARowVertical = GameBoard()
+        var threeInARowVertical = ThreeInARows()
        
         XCTAssertFalse(threeInARowVertical.isThereThreeInARow_Vertical())
         
@@ -212,7 +228,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testIsThereThreeInARow_Diagonal() {
-        let threeInARowDiagonal = GameBoard()
+        let threeInARowDiagonal = ThreeInARows()
         XCTAssertFalse(threeInARowDiagonal.isThereThreeInARow_Diagonal())
         
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
@@ -236,7 +252,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testIsThereThreeInARow_Horizontal() {
-        var threeInARowHorizontal = GameBoard()
+        var threeInARowHorizontal = ThreeInARows()
         
         XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
         
@@ -266,7 +282,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testCheckForThreeInARowToWin() {
-        let check = GameBoard()
+        let check = ThreeInARows()
         
         XCTAssertFalse(check.checkForThreeInARow_ToWin())
         
@@ -279,19 +295,7 @@ class ticTacToeTests: XCTestCase {
         XCTAssertFalse(check.isThereThreeInARow_Diagonal())
     }
     
-    func testThreeInARowReset() {
-        let threeReset = GameBoard()
-        
-        threeReset.resetBoard()
-        threeReset.upDateNames()
-        var i = threeReset.gameSquares[0][2]
-        var j = threeReset.gameSquares[1][0]
-        var k = threeReset.gameSquares[2][1]
-        
-        XCTAssert(i == 0)
-        XCTAssert(j == 0)
-        XCTAssert(k == 0)
-    }
+
     
     func testComputerHasTakenATurn() {
         let turnTaken = AIController()
