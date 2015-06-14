@@ -118,7 +118,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testIsThereTwoInARow_Horizontal() {
-        let twoInARowHorizontal = GameBoard()
+        let twoInARowHorizontal = TwoInARow()
         
         XCTAssertFalse(twoInARowHorizontal.isThereTwoInARow_Horizontal())
         
@@ -146,7 +146,7 @@ class ticTacToeTests: XCTestCase {
     }
 
     func testisThereTwoInARow_Vertical() {
-        let twoInARowVertical = GameBoard()
+        let twoInARowVertical = TwoInARow()
         
         XCTAssertFalse(twoInARowVertical.isThereTwoInARow_Vertical())
         
@@ -173,7 +173,7 @@ class ticTacToeTests: XCTestCase {
     }
 
     func testisThereTwoInARow_Diagonal() {
-        let twoInARowDiagonal = GameBoard()
+        let twoInARowDiagonal = TwoInARow()
             twoInARowDiagonal.resetBoard()
         XCTAssertFalse(twoInARowDiagonal.isThereTwoInARow_Diagonal())
         
@@ -205,7 +205,7 @@ class ticTacToeTests: XCTestCase {
 //    }
     
     func testIsThereThreeInARowVertical() {
-        var threeInARowVertical = ThreeInARows()
+        var threeInARowVertical = ThreeInARow()
        
         XCTAssertFalse(threeInARowVertical.isThereThreeInARow_Vertical())
         
@@ -228,7 +228,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testIsThereThreeInARow_Diagonal() {
-        let threeInARowDiagonal = ThreeInARows()
+        let threeInARowDiagonal = ThreeInARow()
         XCTAssertFalse(threeInARowDiagonal.isThereThreeInARow_Diagonal())
         
         threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
@@ -252,7 +252,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testIsThereThreeInARow_Horizontal() {
-        var threeInARowHorizontal = ThreeInARows()
+        var threeInARowHorizontal = ThreeInARow()
         
         XCTAssertFalse(threeInARowHorizontal.isThereThreeInARow_Horizontal())
         
@@ -282,7 +282,7 @@ class ticTacToeTests: XCTestCase {
     }
     
     func testCheckForThreeInARowToWin() {
-        let check = ThreeInARows()
+        let check = ThreeInARow()
         
         XCTAssertFalse(check.checkForThreeInARow_ToWin())
         

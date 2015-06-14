@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ThreeInARows : GameBoard {
+public class ThreeInARow : GameBoard {
     
     public func checkForThreeInARow_ToWin() -> Bool {
         
