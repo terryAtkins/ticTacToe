@@ -117,34 +117,58 @@ class ticTacToeTests: XCTestCase {
         XCTAssertFalse(squareSelected.isSquareStillInPlay(rowId: 0, columnId: 0), "squareSelected test failed")
     }
     
-    func testTwoInARowHorizontal() {
-        let twoInARowHorizontal = GameBoard()
-        XCTAssert(twoInARowHorizontal.twoInARowHorizontal() == true )
-    }
+//    func testTwoInARowHorizontal() {
+//        let twoInARowHorizontal = GameBoard()
+//        XCTAssert(twoInARowHorizontal.twoInARowHorizontal() == true )
+//    }
+//    
+//    func testTwoInARowVertical() {
+//        let twoInARowVertical = GameBoard()
+//        XCTAssert(twoInARowVertical.twoInARowVertical() == true )
+//    }
+//    
+//    func testTwoInARowDiagonal() {
+//        let twoInARowDiagonal = GameBoard()
+//        XCTAssertGreaterThan(twoInARowDiagonal.twoInARowDiagonal(), 0)
+////        XCTAssert(twoInARowDiagonal.twoInARowDiagonal() == true)
+//    }
     
-    func testTwoInARowVertical() {
-        let twoInARowVertical = GameBoard()
-        XCTAssert(twoInARowVertical.twoInARowVertical() == true )
-    }
+//    func testCheckForTwoInARowToBlock() {
+//        let check = GameBoard()
+//        XCTAssertTrue(check.checkForTwoInARowToBlock())
+//    }
     
-    func testTwoInARowDiagonal() {
-        let twoInARowDiagonal = GameBoard()
-        XCTAssert(twoInARowDiagonal.twoInARowDiagonal() == true)
-    }
-    
-    func testCheckForTwoInARowToBlock() {
-        let check = GameBoard()
-        XCTAssertTrue(check.checkForTwoInARowToBlock())
-    }
-    
-    func testThreeInARowHorizontal() {
-        let threeInARowHorizontal = GameBoard()
-        XCTAssert(threeInARowHorizontal.threeInARowHorizontal() == true )
-    }
+//    func testThreeInARowHorizontal() {
+//        let threeInARowHorizontal = GameBoard()
+//        XCTAssert(threeInARowHorizontal.threeInARowHorizontal() == true )
+//    }
     
     func testThreeInARowVertical() {
-        let threeInARowVertical = GameBoard()
-        XCTAssert(threeInARowVertical.threeInARowVertical() == true )
+        var threeInARowVertical = GameBoard()
+       
+        XCTAssertFalse(threeInARowVertical.threeInARowVertical())
+        
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 2)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 1)
+        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        
+        XCTAssertEqual(threeInARowVertical.gameSquares[0][0], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[1][0], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[2][0], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[1][1], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
+        XCTAssertEqual(threeInARowVertical.gameSquares[2][2], 1)
+        XCTAssertTrue(threeInARowVertical.threeInARowVertical())
+
     }
     
     func testThreeInARowDiagonal() {
@@ -152,10 +176,10 @@ class ticTacToeTests: XCTestCase {
         XCTAssert(threeInARowDiagonal.threeInARowDiagonal() == true)
     }
     
-    func testCheckForThreeInARowToWin() {
-        let check = GameBoard()
-        XCTAssertTrue(check.checkForThreeInARowToWin())
-    }
+//    func testCheckForThreeInARowToWin() {
+//        let check = GameBoard()
+//        XCTAssertTrue(check.checkForThreeInARowToWin())
+//    }
     
     func testThreeInARowReset() {
         let threeReset = GameBoard()

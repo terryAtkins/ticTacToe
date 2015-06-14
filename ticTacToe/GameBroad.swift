@@ -8,30 +8,33 @@
 
 import UIKit
 
-public class GameBoard: NSObject {
+public class GameBoard {
     
-    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
-    private let bottomLeftSquare :Int
-    private let bottomCenterSquare :Int
-    private let bottomRightSquare :Int
-    private let middleLeftSquare :Int
-    private let middleCenterSquare :Int
-    private let middleRightSquare :Int
-    private let topLeftSquare :Int
-    private let topCenterSquare :Int
-    private let topRightSquare :Int
+     public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+//    var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    var bottomLeftSquare :Int?
+    var bottomCenterSquare :Int?
+    var bottomRightSquare :Int?
+    var middleLeftSquare :Int?
+    var middleCenterSquare :Int?
+    var middleRightSquare :Int?
+    var topLeftSquare :Int?
+    var topCenterSquare :Int?
+    var topRightSquare :Int?
     
-    public override init() {
-                
-        bottomLeftSquare = gameSquares[0][0]
-        bottomCenterSquare = gameSquares[0][1]
-        bottomRightSquare = gameSquares[0][2]
+    public init() {
+    }
+    
+    func upDateNames() {
+        bottomLeftSquare = gameSquares[2][0]
+        bottomCenterSquare = gameSquares[2][1]
+        bottomRightSquare = gameSquares[2][2]
         middleLeftSquare = gameSquares[1][0]
         middleCenterSquare = gameSquares[1][1]
         middleRightSquare = gameSquares[1][2]
-        topLeftSquare = gameSquares[2][0]
-        topCenterSquare = gameSquares[2][1]
-        topRightSquare = gameSquares[2][2]
+        topLeftSquare = gameSquares[1][0]
+        topCenterSquare = gameSquares[1][1]
+        topRightSquare = gameSquares[1][2]
     }
     
     public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
@@ -57,92 +60,108 @@ public class GameBoard: NSObject {
         return result
     }
     
-    public func twoInARowHorizontal() -> Bool {
-        
-        var playerDidSelectTwoInARow = false
-        
-        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
-            playerDidSelectTwoInARow = true
-        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
-            playerDidSelectTwoInARow = true
-        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
-            playerDidSelectTwoInARow = true
-        }
-        
-        return playerDidSelectTwoInARow
-    }
-    
-    
-    public func twoInARowVertical() -> Bool {
-        
-        var playerDidSelectTwoInARow = false
-        
-        if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
-            playerDidSelectTwoInARow = true
-        } else if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
-            playerDidSelectTwoInARow = true
-        } else if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
-            playerDidSelectTwoInARow = true
-        }
-        
-        return playerDidSelectTwoInARow
-    }
-    
-    
-    public func twoInARowDiagonal() -> Bool {
-        var playerDidSelectTwoInARow = false
-        
-        if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
-            playerDidSelectTwoInARow = true
-        } else if topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
-            playerDidSelectTwoInARow = true
-        }
-        
-        return playerDidSelectTwoInARow
-    }
+//    public func twoInARowHorizontal() -> Bool {
+//        
+//        var playerDidSelectTwoInARow = false
+//        
+//        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
+//            playerDidSelectTwoInARow = true
+//        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
+//            playerDidSelectTwoInARow = true
+//        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
+//            playerDidSelectTwoInARow = true
+//        }
+//        
+//        return playerDidSelectTwoInARow
+//    }
+//    
+//    
+//    public func twoInARowVertical() -> Bool {
+//        
+//        var playerDidSelectTwoInARow = false
+//        
+//        if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
+//            playerDidSelectTwoInARow = true
+//        } else if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
+//            playerDidSelectTwoInARow = true
+//        } else if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
+//            playerDidSelectTwoInARow = true
+//        }
+//        
+//        return playerDidSelectTwoInARow
+//    }
+//    
+//    
+//    public func twoInARowDiagonal() -> Int {
+//        var playerDidSelectTwoInARow = 0
+//        
+//        if bottomLeftSquare != 0 && middleCenterSquare != 0 {
+//            if bottomLeftSquare == middleCenterSquare {
+//            playerDidSelectTwoInARow += 1
+//            }
+//        }
+//        
+//        if bottomLeftSquare != 0 && topRightSquare != 0 {
+//            if bottomLeftSquare == topRightSquare {
+//            playerDidSelectTwoInARow += 1
+//            }
+//        }
+//        
+//        if topLeftSquare == middleCenterSquare {
+//            playerDidSelectTwoInARow += 1
+//        }
+//        
+//        if topLeftSquare == bottomRightSquare {
+//            playerDidSelectTwoInARow += 1
+//        }
+//        
+//        return playerDidSelectTwoInARow
+//    }
 
-    public func checkForTwoInARowToBlock() -> Bool {
-        var result = false
-        if twoInARowVertical() || twoInARowHorizontal() || twoInARowDiagonal() {
-            result = true
-        }
-        
-        return result
-    }
-    
-    public func threeInARowHorizontal() -> Bool {
-        
-        var playerDidSelectThreeInARow = false
-        
-        if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
-            playerDidSelectThreeInARow = true
-        } else if middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare  {
-            playerDidSelectThreeInARow = true
-        } else if topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
-            playerDidSelectThreeInARow = true
-        }
-        
-        return playerDidSelectThreeInARow
-    }
-    
+//    public func checkForTwoInARowToBlock() -> Bool {
+//        var result = false
+//        if twoInARowVertical() > 0 || twoInARowHorizontal() > 0 || twoInARowDiagonal() > 0 {
+//            result = true
+//        }
+//        
+//        return result
+//    }
     
     public func threeInARowVertical() -> Bool {
         
-        var playerDidSelectThreeInARow = false
+        upDateNames()
+        var playerDidSelectThreeInARow :Bool?
         
-        if bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
-            playerDidSelectThreeInARow = true
-        } else if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
-            playerDidSelectThreeInARow = true
-        } else if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
-            playerDidSelectThreeInARow = true
+        if bottomLeftSquare != 0 {
+            if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topLeftSquare {
+                playerDidSelectThreeInARow = true
+                
+            }
         }
-        
-        return playerDidSelectThreeInARow
+            
+        else if bottomCenterSquare != 0 {
+            if bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare  {
+                playerDidSelectThreeInARow = true
+                
+            }
+        }
+            
+        else if bottomRightSquare != 0 {
+            if bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
+                playerDidSelectThreeInARow = true
+                
+            }
+        } else {
+            playerDidSelectThreeInARow = false
+            
+            
+        }
+        return playerDidSelectThreeInARow!
     }
     
     
     public func threeInARowDiagonal() -> Bool {
+        upDateNames()
         var playerDidSelectThreeInARow = false
         
         if bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
@@ -154,14 +173,14 @@ public class GameBoard: NSObject {
         return playerDidSelectThreeInARow
     }
     
-    public func checkForThreeInARowToWin() -> Bool {
-        var result = false
-        if threeInARowVertical() || threeInARowHorizontal() || threeInARowDiagonal() {
-            result = true
-        }
-        
-        return result
-    }
+//    public func checkForThreeInARowToWin() -> Bool {
+//        var result = false
+//        if threeInARowVertical() || threeInARowHorizontal() || threeInARowDiagonal() {
+//            result = true
+//        }
+//        
+//        return result
+//    }
 }
 
 
