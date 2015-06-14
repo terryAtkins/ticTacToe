@@ -173,7 +173,28 @@ class ticTacToeTests: XCTestCase {
     
     func testThreeInARowDiagonal() {
         let threeInARowDiagonal = GameBoard()
-        XCTAssert(threeInARowDiagonal.threeInARowDiagonal() == true)
+        XCTAssertFalse(threeInARowDiagonal.threeInARowVertical())
+        
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+       
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[0][0], 1)
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[1][1], 1)
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[2][2], 1)
+        XCTAssertTrue(threeInARowDiagonal.threeInARowDiagonal())
+        
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 0)
+
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[0][2], 2)
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[1][1], 2)
+        XCTAssertEqual(threeInARowDiagonal.gameSquares[2][0], 2)
+        XCTAssertTrue(threeInARowDiagonal.threeInARowDiagonal())
+
+
+        
     }
     
 //    func testCheckForThreeInARowToWin() {
@@ -184,6 +205,7 @@ class ticTacToeTests: XCTestCase {
     func testThreeInARowReset() {
         let threeReset = GameBoard()
         threeReset.resetBoard()
+        threeReset.upDateNames()
         var i = threeReset.gameSquares[0][2]
         var j = threeReset.gameSquares[1][0]
         var k = threeReset.gameSquares[2][1]
