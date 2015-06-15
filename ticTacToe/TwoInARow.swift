@@ -20,11 +20,11 @@ public class TwoInARow :GameBoard {
     //    }
     
     
-    public func isThereTwoInARow_Vertical() -> Bool {
+    public func isThereMatchingPairs_Vertical() -> Bool {
         
         upDateNames()
         
-        if isThereTwoMatchesInThe_LeftColumn() || isThereTwoMatchesInThe_CenterColumn() || isThereTwoMatchesInThe_RightColumn() {
+        if isThereTwoMatching_LeftColumn() || isThereTwoMatching_CenterColumn() || isThereTwoMatching_RightColumn() {
             
             return true
         }
@@ -32,7 +32,7 @@ public class TwoInARow :GameBoard {
         return false
     }
     
-    func isThereTwoMatchesInThe_LeftColumn() -> Bool {
+    func isThereTwoMatching_LeftColumn() -> Bool {
         
         if bottomLeftSquare == middleLeftSquare && bottomLeftSquare != 0 || bottomLeftSquare == topLeftSquare && bottomLeftSquare != 0 || middleLeftSquare == topLeftSquare && middleLeftSquare != 0 {
             
@@ -44,7 +44,7 @@ public class TwoInARow :GameBoard {
         }
     }
     
-    func isThereTwoMatchesInThe_CenterColumn() -> Bool {
+    func isThereTwoMatching_CenterColumn() -> Bool {
         
         if bottomCenterSquare == middleCenterSquare && bottomCenterSquare != 0 || bottomCenterSquare == topCenterSquare && bottomCenterSquare != 0 || middleCenterSquare == topCenterSquare && middleCenterSquare != 0 {
             
@@ -56,7 +56,7 @@ public class TwoInARow :GameBoard {
         }
     }
     
-    func isThereTwoMatchesInThe_RightColumn() -> Bool {
+    func isThereTwoMatching_RightColumn() -> Bool {
         
         if bottomRightSquare == middleRightSquare && bottomRightSquare != 0 || bottomRightSquare == topRightSquare && bottomRightSquare != 0 || bottomRightSquare == middleRightSquare && middleRightSquare != 0 {
             
@@ -69,11 +69,11 @@ public class TwoInARow :GameBoard {
     }
     
     
-    public func isThereTwoInARow_Horizontal() -> Bool {
+    public func isThereMatchingPairs_Horizontal() -> Bool {
         
         upDateNames()
         
-        if isThereTwoMathesInThe_TopRow() || isThereTwoMathesInThe_CenterRow() || isThereTwoMathesInThe_BottomRow()  {
+        if isThereTwoMatching_TopRow() || isThereTwoMatching_CenterRow() || isThereTwoMatching_BottomRow()  {
             
             return true
         }
@@ -81,7 +81,7 @@ public class TwoInARow :GameBoard {
         return false
     }
     
-    func isThereTwoMathesInThe_TopRow() -> Bool {
+    func isThereTwoMatching_TopRow() -> Bool {
         
         if bottomLeftSquare == bottomCenterSquare && bottomLeftSquare != 0 || bottomLeftSquare == bottomRightSquare && bottomLeftSquare != 0 || bottomCenterSquare == bottomRightSquare && bottomCenterSquare != 0 {
             
@@ -94,7 +94,7 @@ public class TwoInARow :GameBoard {
         
     }
     
-    func isThereTwoMathesInThe_CenterRow() -> Bool {
+    func isThereTwoMatching_CenterRow() -> Bool {
         
         if middleLeftSquare == middleCenterSquare && middleLeftSquare != 0 || middleLeftSquare == middleRightSquare && middleLeftSquare != 0 || middleCenterSquare == middleRightSquare && middleCenterSquare != 0  {
             
@@ -106,7 +106,7 @@ public class TwoInARow :GameBoard {
         }
     }
     
-    func isThereTwoMathesInThe_BottomRow() -> Bool {
+    func isThereTwoMatching_BottomRow() -> Bool {
         
         if topLeftSquare == topCenterSquare && topLeftSquare != 0 || topLeftSquare == topRightSquare && topLeftSquare != 0 || topCenterSquare == topRightSquare && topCenterSquare != 0  {
             
@@ -119,11 +119,11 @@ public class TwoInARow :GameBoard {
     }
     
     
-    public func isThereTwoInARow_Diagonal() -> Bool {
+    public func isThereMatchingPairs_Diagonal() -> Bool {
         
         upDateNames()
         
-        if isThereTwoMathesFromTopLeftToBottomRight_Diagonal() || isThereTwoMathesFromBottomLeftToTopRight_Diagonal() {
+        if isThereTwoMatchingFromTopLeft_Diagonal() || isThereTwoMatchingFromBottomLeft_Diagonal() {
             
             return true
             
@@ -133,7 +133,7 @@ public class TwoInARow :GameBoard {
         }
     }
     
-    func isThereTwoMathesFromTopLeftToBottomRight_Diagonal() -> Bool {
+    func isThereTwoMatchingFromTopLeft_Diagonal() -> Bool {
         
         if topLeftSquare == middleCenterSquare && topLeftSquare != 0 || topLeftSquare == bottomRightSquare && topLeftSquare != 0  || topLeftSquare == middleCenterSquare && topLeftSquare != 0 {
             
@@ -145,7 +145,7 @@ public class TwoInARow :GameBoard {
         }
     }
     
-    func isThereTwoMathesFromBottomLeftToTopRight_Diagonal() -> Bool {
+    func isThereTwoMatchingFromBottomLeft_Diagonal() -> Bool {
         
         if bottomLeftSquare == middleCenterSquare && bottomLeftSquare != 0 || bottomLeftSquare == topRightSquare && bottomLeftSquare != 0 || middleCenterSquare == topRightSquare && middleCenterSquare != 0 {
             

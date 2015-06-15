@@ -24,7 +24,7 @@ public class ThreeInARow : GameBoard {
         
         upDateNames()
         
-        if isThereThreeMatchesInThe_LeftColumn() || isThereThreeMatchesInThe_CenterColumn() || isThereThreeMatchesInThe_RightColumn() {
+        if isThereThreeInARow_LeftColumn() || isThereThreeInARow_CenterColumn() || isThereThreeInARow_RightColumn() {
             
             return true
             
@@ -35,7 +35,7 @@ public class ThreeInARow : GameBoard {
         
     }
     
-    func isThereThreeMatchesInThe_LeftColumn() -> Bool {
+    func isThereThreeInARow_LeftColumn() -> Bool {
         
         if bottomLeftSquare != 0  && bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
             
@@ -47,7 +47,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatchesInThe_CenterColumn() -> Bool {
+    func isThereThreeInARow_CenterColumn() -> Bool {
         
         if bottomCenterSquare != 0 && bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare {
             
@@ -59,7 +59,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatchesInThe_RightColumn() -> Bool {
+    func isThereThreeInARow_RightColumn() -> Bool {
         
         if bottomRightSquare != 0 && bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
             
@@ -77,7 +77,7 @@ public class ThreeInARow : GameBoard {
         upDateNames()
         
         
-        if isThereThreeMatcesInThe_BottomRow() || isThereThreeMatcesInThe_MiddleRow() || isThereThreeMatcesInThe_TopRow() {
+        if isThereThreeInARow_BottomRow() || isThereThreeInARow_MiddleRow() || isThereThreeInARow_TopRow() {
             
             return true
             
@@ -88,7 +88,7 @@ public class ThreeInARow : GameBoard {
         
     }
     
-    func isThereThreeMatcesInThe_BottomRow() -> Bool {
+    func isThereThreeInARow_BottomRow() -> Bool {
         
         if bottomLeftSquare != 0 && bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
             
@@ -100,7 +100,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatcesInThe_MiddleRow() -> Bool {
+    func isThereThreeInARow_MiddleRow() -> Bool {
         
         if middleLeftSquare != 0 && middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare {
             
@@ -112,7 +112,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatcesInThe_TopRow() -> Bool {
+    func isThereThreeInARow_TopRow() -> Bool {
         
         if  topLeftSquare != 0 && topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
             
@@ -129,7 +129,7 @@ public class ThreeInARow : GameBoard {
         
         upDateNames()
         
-        if isThereThreeMatchesFromBottomLeftToTopRight_Diagonal() || isThereThreeMatchesFromTopLeftToBottomRight_Diagonal() {
+        if isThereThreeInARowFromBottomLeftToTopRight_Diagonal() || isThereThreeInARowFromTopLeftToBottomRight_Diagonal() {
             
             return true
             
@@ -139,7 +139,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatchesFromBottomLeftToTopRight_Diagonal() -> Bool {
+    func isThereThreeInARowFromBottomLeftToTopRight_Diagonal() -> Bool {
         
         if bottomLeftSquare != 0 && bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
             
@@ -151,7 +151,7 @@ public class ThreeInARow : GameBoard {
         }
     }
     
-    func isThereThreeMatchesFromTopLeftToBottomRight_Diagonal() -> Bool {
+    func isThereThreeInARowFromTopLeftToBottomRight_Diagonal() -> Bool {
         
         if topLeftSquare != 0 && topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
             

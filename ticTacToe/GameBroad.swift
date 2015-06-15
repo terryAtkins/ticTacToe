@@ -41,7 +41,7 @@ public class GameBoard {
     public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
         
         gameSquares[row][column] = player
-        
+
     }
     
     public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
