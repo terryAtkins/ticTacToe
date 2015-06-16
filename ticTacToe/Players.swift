@@ -11,7 +11,7 @@ import UIKit
 public class Players :NSObject{
     let playerX:Int
     let playerO:Int
-    var numberOfTurnsInAGame:Int
+  var numberOfTurnsInAGame:Int
 
    public override init() {
         playerX = 1

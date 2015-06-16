@@ -10,7 +10,7 @@ import Foundation
 
 public class AIController :GameBoard {
     
-    let players :Players
+    public let players :Players // needs to be public for testing in XCTest
     var howManyTurnsHaveYouHad :Int
     
     public override init() {
@@ -21,98 +21,88 @@ public class AIController :GameBoard {
     
     public func computersTurnToPlay(playerId player :Int) -> Bool {
         
-        let player = player
-        var computerTakenHisTurn = false
-        
+        if isFirstPlayer_selectACornerOrMiddleSqaure(playerId: player) || isSecondPlayerAndFirstGo_playTheMiddleOrACorner(playerId: player) ||
+            isClosingStagesOfTheGame_playMiniMax(playerId: player) {
+                
+                players.reduceNumberOfTurnsLeftToPlayByOne()
+                howManyTurnsHaveYouHad -= 1
+                return true
+        }
+        return false
+    }
+    
+    func isFirstPlayer_selectACornerOrMiddleSqaure(playerId player :Int) -> Bool {
         if howManyTurnsHaveYouHad == 0 && players.turnsLeftInGame() == 9 {
-            selectACornerOrMiddleSquare(playerId: player)
-            howManyTurnsHaveYouHad += 1
-            computerTakenHisTurn = true
-        
-        } else if howManyTurnsHaveYouHad == 1 && players.turnsLeftInGame() == 7 {
-            selectACornerOrMiddleSquare(playerId: player, num: 1)
-            howManyTurnsHaveYouHad += 1
-            computerTakenHisTurn = true
-            
-        } else if players.turnsLeftInGame() >= 1{
-            if miniMax() {
-                howManyTurnsHaveYouHad += 1
+            if selectACornerOrMiddleSquare(playerId: player) {
                 return true
             }
-            
         }
-        return computerTakenHisTurn
+        return false
     }
     
-    enum WhichSquare :Int {
-        case topLeft = 1
-        case topRight = 2
-        case bottomLeft = 3
-        case bottomRight = 4
-        case center = 5
-    }
-    
-    var cornerOrMiddleSquare = [0, 1, 2, 3, 4, 5]
-    
-    func randomSquareGen() -> Int {
-        var i = Int(arc4random_uniform(UInt32(5)))
-        if i >= 0 && i <= 4 {
-            return i
-        } else {
-        randomSquareGen()
-        }
-        return i
-    }
-
-    public func selectACornerOrMiddleSquare(playerId player :Int, num :Int = -1) -> Bool  {
-
-        var number = Int(arc4random_uniform(UInt32(5)))
-        var checkCase = num >= 0 ? num : number
+    public func selectACornerOrMiddleSquare(playerId player :Int) -> Bool  {
         
-        switch checkCase {
+        switch Int(arc4random_uniform(UInt32(5))) {
         case 0:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
-            howManyTurnsHaveYouHad += 1
             return true
         case 1:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 2)
-            howManyTurnsHaveYouHad += 1
             return true
         case 2:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 0)
-            howManyTurnsHaveYouHad += 1
             return true
         case 3:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 2)
-            howManyTurnsHaveYouHad += 1
             return true
         case 4:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 1, columnId: 1)
-            howManyTurnsHaveYouHad += 1
             return true
         default:
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 1, columnId: 1)
-            howManyTurnsHaveYouHad += 1
             return true
         }
     }
     
-    public func playTheMiddleSquareOrFindACornerToPlay(playerId player :Int) {
+    func isSecondPlayerAndFirstGo_playTheMiddleOrACorner(playerId player :Int) -> Bool {
+        if howManyTurnsHaveYouHad == 1 && players.turnsLeftInGame() >= 7 {
+            if playTheMiddleSquareOrFindACornerToPlay(playerId: player) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    public func playTheMiddleSquareOrFindACornerToPlay(playerId player :Int) -> Bool {
         
         upDateNames()
         
         if isSquareStillInPlay(rowId: 1, columnId: 1) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 1, columnId: 1)
+            return true
         } else if isSquareStillInPlay(rowId: 0, columnId: 0) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 0)
+            return true
         } else if isSquareStillInPlay(rowId: 0, columnId: 2) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 0, columnId: 2)
+            return true
         } else if isSquareStillInPlay(rowId: 2, columnId: 0) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 0)
+            return true
         } else if isSquareStillInPlay(rowId: 2, columnId: 2) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 2, columnId: 2)
+            return true
         }
-
+        return false
+    }
+    
+    func isClosingStagesOfTheGame_playMiniMax(playerId player :Int) -> Bool {
+        if players.turnsLeftInGame() >= 1{
+            if miniMax() {
+                return true
+            }
+        }
+        return false
     }
     
     public func miniMax() -> Bool {
@@ -120,5 +110,4 @@ public class AIController :GameBoard {
         var min = 0
         return true
     }
-    
 }

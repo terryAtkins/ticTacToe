@@ -10,7 +10,7 @@ import UIKit
 
 public class GameBoard {
     
-    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]] // needs to be public for testing in XCTest
     
     var bottomLeftSquare :Int?
     var bottomCenterSquare :Int?
