@@ -23,6 +23,7 @@ public class GameBoard {
     var topRightSquare :Int?
     
     public init() {
+        
     }
     
     public func upDateNames() {

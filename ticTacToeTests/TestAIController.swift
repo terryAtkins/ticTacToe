@@ -46,4 +46,63 @@ class TestAIController: XCTestCase {
         
     }
 
+    func testPlayTheMiddleSquareOrFindACornerToPlay() {
+        let computer = AIController()
+        
+        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 1, columnId: 1))
+        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
+        XCTAssertEqual(computer.gameSquares[1][1], 1, "Test middle square")
+        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 1, columnId: 1))
+        
+        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 0, columnId: 0))
+        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 2)
+        XCTAssertEqual(computer.gameSquares[0][0], 2, "Test topLeft square")
+        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 0))
+        
+        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 0, columnId: 2))
+        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
+        XCTAssertEqual(computer.gameSquares[0][2], 1, "Test topRight square")
+        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 2))
+        
+        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 2, columnId: 0))
+        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 2)
+        XCTAssertEqual(computer.gameSquares[2][0], 2, "Test bottomLeft square")
+        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 0))
+        
+        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 2, columnId: 2))
+        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
+        XCTAssertEqual(computer.gameSquares[2][2], 1, "Test bottomRight square")
+        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 2))
+        
+        
+//        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 2)
+//        XCTAssertEqual(computer.gameSquares[1][1], 1, "Test middle square has not been updated to player 2")
+        
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
