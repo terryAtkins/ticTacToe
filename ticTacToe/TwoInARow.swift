@@ -10,14 +10,14 @@ import UIKit
 
 public class TwoInARow :GameBoard {
    
-    //    public func checkForTwoInARowToBlock() -> Bool {
-    //
-    //        if isThereTwoInARow_Vertical() || isThereTwoInARow_Horizontal() || isThereTwoInARow_Diagonal() {
-    //            return true
-    //        }
-    //
-    //        return false
-    //    }
+        public func checkForTwoInARow() -> Bool {
+    
+            if isThereMatchingPairs_Vertical() || isThereMatchingPairs_Horizontal() || isThereMatchingPairs_Diagonal() {
+                return true
+            }
+    
+            return false
+        }
     
     
     public func isThereMatchingPairs_Vertical() -> Bool {

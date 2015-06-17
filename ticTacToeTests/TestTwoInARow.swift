@@ -94,9 +94,15 @@ class TestTwoInARow: XCTestCase {
         XCTAssertFalse(twoInARowDiagonal.isThereMatchingPairs_Diagonal())
     }
     
-    //    func testCheckForTwoInARowToBlock() {
-    //        let check = GameBoard()
-    //        XCTAssertTrue(check.checkForTwoInARowToBlock())
-    //    }
+        func testCheckForTwoInARowToBlock() {
+            let check = TwoInARow()
+            
+            XCTAssertFalse(check.checkForTwoInARow())
+            
+            check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+            check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
+            
+            XCTAssertTrue(check.checkForTwoInARow())
+        }
 
 }

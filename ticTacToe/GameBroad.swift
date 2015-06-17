@@ -39,10 +39,10 @@ public class GameBoard {
         topRightSquare = gameSquares[0][2]
     }
     
-    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
+    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) -> Bool {
         
         gameSquares[row][column] = player
-
+        return true
     }
     
     public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
@@ -58,6 +58,10 @@ public class GameBoard {
     public func resetBoard() {
         
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+    }
+    
+    func resetSquare(rowId row:Int, columnId column :Int) {
+        gameSquares[row][column] == 0
     }
 
 }
