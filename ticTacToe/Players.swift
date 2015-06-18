@@ -19,8 +19,6 @@ public class Players :NSObject{
         numberOfTurnsInAGame = 9
     }
     
-
-    
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
         if playerIdNumer == 1 {
             return playerX
@@ -40,8 +38,6 @@ public class Players :NSObject{
             return 3
         }
     }
-    
-
     
     public func chooseGameMethod(gameType :Int) -> Bool  {
         let gameType = gameType
@@ -80,7 +76,5 @@ public class Players :NSObject{
             return currentPlayer
         }
     }
-    
-    
     
 }

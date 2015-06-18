@@ -16,66 +16,54 @@ class TestAIController: XCTestCase {
         super.setUp()
     }
     
-    func testComputerHasTakenATurn() {
-        let turnTaken = AIController()
-        
-        XCTAssertEqual(turnTaken.squaresLeftInGame(), 9, "should be 9 plays left")
-        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking computer takes first turn")
-        XCTAssertEqual(turnTaken.reduceNumberOfSquaresLeftToPlayByOne(), 7, "Other players takes a turn")
-        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking computer plays next")
-        XCTAssertEqual(turnTaken.reduceNumberOfSquaresLeftToPlayByOne(), 5, "Other players takes a turn")
-        
-        // >>>>>>>>>>>> issue with mimiMax
-//        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking computer takes first turn")
-//        XCTAssertEqual(turnTaken.reduceNumberOfSquaresLeftToPlayByOne(), 3, "Other players takes a turn")
-//        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking computer plays next")
-//        XCTAssertEqual(turnTaken.reduceNumberOfSquaresLeftToPlayByOne(), 1, "Other players takes a turn")
-//        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 1), "checking computer takes first turn")
-//        
-//        // shouldn't play game over
-//        XCTAssertFalse(turnTaken.computersTurnToPlay(playerId: 1), "checking computer takes first turn")
 
-    }
-
-    func testSelectACornerOrMiddleSquare() {
+    func testIsCornersFree_playOne() {
         
         let computer = AIController()
 
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 1))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 2))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 2))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 1))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 2))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 1))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 2))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 2))
-        XCTAssertTrue(computer.selectACornerOrMiddleSquare(playerId: 1))
+        XCTAssertTrue(computer.isCornersFree_playOne(playerId: 1))
+        XCTAssertTrue(computer.isCornersFree_playOne(playerId: 2))
+        XCTAssertTrue(computer.isCornersFree_playOne(playerId: 2))
+        XCTAssertTrue(computer.isCornersFree_playOne(playerId: 1))
+        XCTAssertFalse(computer.isCornersFree_playOne(playerId: 2))
+        XCTAssertFalse(computer.isCornersFree_playOne(playerId: 1))
         
     }
 
-    func testPlayTheMiddleSquareOrFindACornerToPlay() {
+    func testIsMiddleSquareFree_playIt() {
         let computer = AIController()
         
         XCTAssertTrue(computer.isSquareStillInPlay(rowId: 1, columnId: 1))
-        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
+        computer.isMiddleSquareFree_playIt(playerId:1 )
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 1, columnId: 1))
         
-        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 0, columnId: 0))
-        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 2)
-        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 0))
+    }
+    
+    func testIsSecondPlayerAndSecondGo_chooseAnySquareExceptACorner() {
+        let square = AIController()
         
-        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 0, columnId: 2))
-        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
-        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 2))
+        // Top row
+        square.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 0)
+        square.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
+        XCTAssertTrue(square.isSecondPlayerAndSecondGo_chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertEqual(square.gameSquares[0][1], 1)
         
-        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 2, columnId: 0))
-        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 2)
-        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 0))
+        // middle row
+        square.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        XCTAssertTrue(square.isSecondPlayerAndSecondGo_chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertEqual(square.gameSquares[1][0], 1)
+        XCTAssertTrue(square.isSecondPlayerAndSecondGo_chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertEqual(square.gameSquares[1][2], 1)
         
-        XCTAssertTrue(computer.isSquareStillInPlay(rowId: 2, columnId: 2))
-        computer.playTheMiddleSquareOrFindACornerToPlay(playerId: 1)
-        XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 2))
+        // middle row
+        square.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 0)
+        square.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        XCTAssertTrue(square.isSecondPlayerAndSecondGo_chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertEqual(square.gameSquares[2][1], 1)
         
+        
+        
+//        square.
     }
     
     func testMiniMaxForWinOrBlock() {
@@ -87,7 +75,7 @@ class TestAIController: XCTestCase {
         computer.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0) // leftMiddle
         computer.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2) // topRight
       
-        computer.miniMax(playerId: 1)
+        computer.isWinDrawOrBlock(playerId: 1)
         XCTAssertEqual(computer.gameSquares[2][0], 1)
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 0), "AI sould select bottomLeft")
 
@@ -98,7 +86,7 @@ class TestAIController: XCTestCase {
         computer.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1) // middle
         computer.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 2) // topRight
         
-        computer.miniMax(playerId: 1)
+        computer.isWinDrawOrBlock(playerId: 1)
         XCTAssertEqual(computer.gameSquares[0][2], 1)
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 2), "AI sould select topRight")
         
@@ -110,7 +98,7 @@ class TestAIController: XCTestCase {
         computer.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1) // middleTop
         computer.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1) // topRight
         
-        computer.miniMax(playerId: 1)
+        computer.isWinDrawOrBlock(playerId: 1)
         XCTAssertEqual(computer.gameSquares[0][2], 1)
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 2), "AI sould select topRight")
         
@@ -121,7 +109,7 @@ class TestAIController: XCTestCase {
         computer.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1) // middleTop
         computer.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2) // bottomLeft
         
-        computer.miniMax(playerId: 2)
+        computer.isWinDrawOrBlock(playerId: 2)
         XCTAssertEqual(computer.gameSquares[0][2], 2)
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 0, columnId: 2), "AI sould select topRight")
         
@@ -132,12 +120,13 @@ class TestAIController: XCTestCase {
         computer.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1) // bottomMiddle
         computer.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1) // middle
         
-        computer.miniMax(playerId: 2)
+        computer.isWinDrawOrBlock(playerId: 2)
         XCTAssertEqual(computer.gameSquares[2][2], 2)
         XCTAssertFalse(computer.isSquareStillInPlay(rowId: 2, columnId: 2), "AI sould select bottomRight to win")
         
 
 }
+    
     func testSearchForEmptySquares() {
         let computer = AIController()
         var board = computer.gameSquares
@@ -161,7 +150,7 @@ class TestAIController: XCTestCase {
         XCTAssertEqual(secondSquare, [1,2])
         XCTAssertEqual(thirdSquare, [2,1])
     }
-    
+ 
     func testSwitchPlayer() {
         var players  = AIController()
         var player1 = 1
@@ -170,7 +159,30 @@ class TestAIController: XCTestCase {
         XCTAssertEqual(players.switchPlayersId(playerId: player1), 2, "should switch to 2")
         XCTAssertEqual(players.switchPlayersId(playerId: player2), 1, "should switch to 1")
     }
-
+  
+    func testComputerHasTakenATurn() {
+        let turnTaken = AIController()
+        
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 9, "should be 9 plays left")
+        turnTaken.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 8, "should be 8 plays left")
+        turnTaken.reduceNumberOfSquaresLeftToPlayByOne() // other players turn
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 7, "should be 7 plays left")
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 2), "checking computer plays next")
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 6, "should be 6 plays left")
+        turnTaken.reduceNumberOfSquaresLeftToPlayByOne() // other players turn
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 5, "should be 5 plays left")
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 2), "checking computer plays next")
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 4, "should be 4 plays left")
+        turnTaken.reduceNumberOfSquaresLeftToPlayByOne() // other players turn
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 3, "should be 3 plays left")
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 2), "checking computer plays next")
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 2, "should be 2 plays left")
+        turnTaken.reduceNumberOfSquaresLeftToPlayByOne() // other players turn
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 1, "should be 1 plays left")
+        XCTAssertTrue(turnTaken.computersTurnToPlay(playerId: 2), "checking computer plays next")
+        XCTAssertEqual(turnTaken.squaresLeftInGame(), 0, "should be 1 plays left")
+    }
 
 }
 
