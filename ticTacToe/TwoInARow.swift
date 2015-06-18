@@ -157,4 +157,11 @@ public class TwoInARow :GameBoard {
         }
     }
     
+//   public func playerHasForkBlock() -> Bool {
+//        if checkForTwoInARow() {
+//        return true
+//    }
+//    return false
+//    }
+    
 }

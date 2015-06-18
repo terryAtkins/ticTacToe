@@ -11,16 +11,10 @@ import Foundation
 
 public class AIController :GameBoard {
     
-    public let players :Players // needs to be public for testing in XCTest
-//    var howManyTurnsHaveYouHad :Int
     public var twoInARow :TwoInARow
     public var thereInARow :ThreeInARow
-//    var squaresToPlay = [[Int]]() // or use Array<Array<Int>>()
     
     public override init() {
-        
-        players = Players()
-//        howManyTurnsHaveYouHad = 0
         twoInARow = TwoInARow()
         thereInARow = ThreeInARow()
     }
@@ -30,17 +24,14 @@ public class AIController :GameBoard {
         if isFirstPlayerAndFirstGo_selectACornerOrMiddleSqaure(playerId: player) ||
             isSecondPlayerAndFirstGo_playTheMiddleOrACorner(playerId: player) ||
             isClosingStagesOfTheGame_playMiniMax(playerId: player) {
-                
-                players.reduceNumberOfTurnsLeftToPlayByOne()
-//                howManyTurnsHaveYouHad -= 1
+        
                 return true
         }
         return false
     }
     
     func isFirstPlayerAndFirstGo_selectACornerOrMiddleSqaure(playerId player :Int) -> Bool {
-//        howManyTurnsHaveYouHad == 0 && players.turnsLeftInGame() == 9
-        if players.turnsLeftInGame() == 9 {
+        if squaresLeftInGame() > 8 { // move back to 9 after testing
             if selectACornerOrMiddleSquare(playerId: player) {
                 return true
             }
@@ -73,8 +64,7 @@ public class AIController :GameBoard {
     }
     
     func isSecondPlayerAndFirstGo_playTheMiddleOrACorner(playerId player :Int) -> Bool {
-//        if howManyTurnsHaveYouHad == 1 && players.turnsLeftInGame() >= 7 
-        if players.turnsLeftInGame() >= 7 {
+        if squaresLeftInGame() > 6 {
             if playTheMiddleSquareOrFindACornerToPlay(playerId: player) {
                 return true
             }
@@ -83,8 +73,6 @@ public class AIController :GameBoard {
     }
     
     public func playTheMiddleSquareOrFindACornerToPlay(playerId player :Int) -> Bool {
-        
-        upDateNames()
         
         if isSquareStillInPlay(rowId: 1, columnId: 1) {
             updateGameBoardWhenSquareSelected(playerId: player, rowId: 1, columnId: 1)
@@ -106,8 +94,9 @@ public class AIController :GameBoard {
     }
     
     func isClosingStagesOfTheGame_playMiniMax(playerId player :Int) -> Bool {
-        if players.turnsLeftInGame() > 0 {
-            if miniMax(playerId: player) { // do I need this if statment?
+        if squaresLeftInGame() > 0 {
+            if miniMax(playerId: player) {
+                // do I need this if statment?
                 return true
             }
         }
@@ -127,59 +116,53 @@ public class AIController :GameBoard {
         var board = gameSquares
         var otherPlayer = switchPlayersId(playerId: player)
         var squaresToPlay = searchForEmptySquares()
+        //            var tempBoard = gameSquares
+        //            var firstRowToPlay :Int
+        //            var secondRowToPlay :Int
+        //            var thridRowToPlay :Int
+        //            var firstColumnToPlay :Int
+        //            var secondColumnToPlay :Int
+        //            var thridColumnToPlay :Int
         
-        
-        
-
-        
-
-//            var tempBoard = gameSquares
-//            var firstRowToPlay :Int
-//            var secondRowToPlay :Int
-//            var thridRowToPlay :Int
-//            var firstColumnToPlay :Int
-//            var secondColumnToPlay :Int
-//            var thridColumnToPlay :Int
+        for item in squaresToPlay {
+            row = squaresToPlay[i][0]
+            column = squaresToPlay[i][1]
             
-            
-            for item in squaresToPlay {
-                row = squaresToPlay[i][0]
-                column = squaresToPlay[i][1]
+            if isABlock(playerId: otherPlayer, rowId: row, columnId: column) && thereInARow.checkForThreeInARow_ToWin() {
                 
-                if isABlock(playerId: otherPlayer, rowId: row, columnId: column) && thereInARow.checkForThreeInARow_ToWin() {
-                    updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
+                return true
+                
+            } else if isWinningMove(playerId: player, rowId: row, columnId: column) &&
+                thereInARow.checkForThreeInARow_ToWin() {
                     return true
-                    
-                } else if isWinningMove(playerId: player, rowId: row, columnId: column) &&
-                    thereInARow.checkForThreeInARow_ToWin() {
-                        return true
-                } else {
-//                   resetSquare(rowId: row, columnId: column)
-                }
-                i += 1
-                }
-
-                return false
+            } else {
+//                if twoInARow.playerHasForkBlock() {
+//                
+//                 return true
+//                }
             }
-            
-    
-
-    
+                i += 1
+            }
+        
+            return false
+        }
 
     func isWinningMove(playerId player :Int, rowId row :Int, columnId column: Int) -> Bool {
         if updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column) && thereInARow.checkForThreeInARow_ToWin() {
             return true
         } else {
+            resetSquare(rowId: row, columnId: column)
             return false
         }
     }
+    
     func isABlock(playerId player:Int, rowId row :Int, columnId column :Int) -> Bool {
         if updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column) && thereInARow.checkForThreeInARow_ToWin() {
-            updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
-            
             return true
+        } else {
+            resetSquare(rowId: row, columnId: column)
+            return false
         }
-        return false
     }
 
 
@@ -190,27 +173,7 @@ public class AIController :GameBoard {
 //        return true
 //    }
     
-    public func searchForEmptySquares() -> [[Int]] { // or use Array<Array<Int>>
-        var rowNumber = 0
-        var columnNumber = 0
-        var emptySquares = [[Int]]() // or use Array<Array<Int>>() [[0,0],[0,0]......]
-        
-        for row in gameSquares {
-            for column in row {
-                if isSquareStillInPlay(rowId: rowNumber, columnId: columnNumber) {
-                    emptySquares.append([rowNumber, columnNumber])
-                    columnNumber += 1
-                   
-                } else {
-                    columnNumber += 1
-                }
-            }
-            columnNumber = 0
-            rowNumber += 1
-        }
-        
-        return emptySquares
-    }
+
     
     public func switchPlayersId(playerId player: Int) -> Int {
        

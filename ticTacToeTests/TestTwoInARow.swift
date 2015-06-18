@@ -104,5 +104,11 @@ class TestTwoInARow: XCTestCase {
             
             XCTAssertTrue(check.checkForTwoInARow())
         }
+//    func testPlayerHasForkBlock() {
+//        let checkForBlock = TwoInARow()
+//        
+//            XCTAssertTrue(checkForBlock.playerHasForkBlock())
+//    }
+
 
 }

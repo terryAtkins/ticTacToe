@@ -19,22 +19,7 @@ public class Players :NSObject{
         numberOfTurnsInAGame = 9
     }
     
-    public func turnsLeftInGame() -> Int {
-        return numberOfTurnsInAGame
-    }
-    
-    public  func reduceNumberOfTurnsLeftToPlayByOne() -> Int {
 
-        if numberOfTurnsInAGame != 0 {
-            numberOfTurnsInAGame -= 1
-        }
-        return numberOfTurnsInAGame
-    }
-    
-    public func resetNumberOfTurnsLeftToPlay() -> Int {
-        numberOfTurnsInAGame = 9
-        return numberOfTurnsInAGame
-    }
     
     public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
         if playerIdNumer == 1 {

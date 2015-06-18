@@ -22,6 +22,35 @@ class TestGameBoard: XCTestCase {
         XCTAssertEqual(board.gameSquares[2][2], 1)
     }
     
+    func testNumberOfTurnsLeftToPlay() {
+        let turnsLeft = GameBoard()
+        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 8, "Should return 8")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 7, "Should return 7")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 6, "Should return 6")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 5, "Should return 5")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 4, "Should return 4")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 3, "Should return 3")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 2, "Should return 2")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 1, "Should return 1")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 0, "Should return 0")
+        XCTAssertNotEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), -1, "should not be lower then 0")
+    }
+    
+    func testResetNumberOfTurnsLeftToPlay() {
+        let turnsLeft =  GameBoard()
+        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
+        
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 8, "Should return 8")
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 2, "Should return 2")
+        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
+    }
+    
     func testResetBoard() {
         let reset = GameBoard()
         reset.resetBoard()
