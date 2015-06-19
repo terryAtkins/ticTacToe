@@ -23,37 +23,38 @@ public class GameBoard {
     var topRightSquare :Int?
     var numberOfSquaresInAGames :Int
     
+    
     public init() {
         numberOfSquaresInAGames = 9
     }
     
     public func upDateNames() {
-        
-        bottomLeftSquare = gameSquares[2][0]
-        bottomCenterSquare = gameSquares[2][1]
-        bottomRightSquare = gameSquares[2][2]
-        middleLeftSquare = gameSquares[1][0]
-        middleCenterSquare = gameSquares[1][1]
-        middleRightSquare = gameSquares[1][2]
         topLeftSquare = gameSquares[0][0]
         topCenterSquare = gameSquares[0][1]
         topRightSquare = gameSquares[0][2]
-        
-        numberOfSquaresInAGames = 9
+        middleLeftSquare = gameSquares[1][0]
+        middleCenterSquare = gameSquares[1][1]
+        middleRightSquare = gameSquares[1][2]
+        bottomLeftSquare = gameSquares[2][0]
+        bottomCenterSquare = gameSquares[2][1]
+        bottomRightSquare = gameSquares[2][2]
     }
     
-    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) -> Bool {
-        
+    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
         gameSquares[row][column] = player
         reduceNumberOfSquaresLeftToPlayByOne()
-        return true
+       
     }
     
     public  func reduceNumberOfSquaresLeftToPlayByOne() -> Int {
-        
         if numberOfSquaresInAGames != 0 {
             numberOfSquaresInAGames -= 1
         }
+        return numberOfSquaresInAGames
+    }
+    
+    public func increaseNumberOfSquaresLeftToPlayByOne()  -> Int {
+        numberOfSquaresInAGames += 1
         return numberOfSquaresInAGames
     }
     
@@ -67,12 +68,9 @@ public class GameBoard {
     }
 
     public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
-        
         if gameSquares[row][column] == 0 {
-            
             return true
         }
-        
         return false
     }
     
@@ -86,7 +84,6 @@ public class GameBoard {
                 if isSquareStillInPlay(rowId: rowNumber, columnId: columnNumber) {
                     emptySquares.append([rowNumber, columnNumber])
                     columnNumber += 1
-                    
                 } else {
                     columnNumber += 1
                 }
@@ -94,17 +91,16 @@ public class GameBoard {
             columnNumber = 0
             rowNumber += 1
         }
-        
         return emptySquares
     }
     
     public func resetBoard() {
-        
         gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
     }
     
     func resetSquare(rowId row:Int, columnId column :Int) {
-        gameSquares[row][column] == 0
+        gameSquares[row][column] = 0
+        increaseNumberOfSquaresLeftToPlayByOne()
     }
 
 }

@@ -9,14 +9,15 @@
 import Foundation
 
 public class GameController {
+   
     public func startNewGame() {
         let newGame = GameBoard()
         let newPlayers = Players()
+        let cpu = AIController()
         
         
         
         newPlayers.chooseGameMethod(1)
-        newPlayers.chooseWhoGoesFirst(1)
         newGame.isSquareStillInPlay(rowId: 0, columnId: 0)
         newGame.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 3)
 //        newGame.checkForThreeInARowToWin()

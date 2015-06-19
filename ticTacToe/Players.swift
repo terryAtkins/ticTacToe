@@ -8,40 +8,29 @@
 
 import UIKit
 
-public class Players :NSObject{
-    let playerX:Int
-    let playerO:Int
-  var numberOfTurnsInAGame:Int
+public struct Players {
+    let playerX :Int
+    let playerO  :Int
+//    var numberOfTurnsInAGame:Int
 
-   public override init() {
+   public init() {
         playerX = 1
         playerO = 2
-        numberOfTurnsInAGame = 9
+//        numberOfTurnsInAGame = 9
     }
     
-    public func chooseWhoGoesFirst(playerIdNumer : Int) -> Int {
-        if playerIdNumer == 1 {
+    public func chooseWhoPlaysFirst(playersShape : Int) -> Int {
+        if playersShape == 1 {
             return playerX
         } else {
             return playerO
         }
     }
-    
-    public func whoIsPlayingWhom(players: Int) -> Int {
-        let players = players
-        var result:()
-        if players == 1 {
-            return 1
-        } else if players == 2 {
-            return 2
-        } else {
-            return 3
-        }
-    }
-    
+        
     public func chooseGameMethod(gameType :Int) -> Bool  {
         let gameType = gameType
         var result = false
+        
         if gameType == 1 {
            result = humanVsHuman()
         } else if gameType == 2 {
@@ -53,7 +42,6 @@ public class Players :NSObject{
     }
     
     func humanVsHuman() -> Bool {
-
         return true
     }
     
@@ -70,7 +58,6 @@ public class Players :NSObject{
         if currentPlayer == 1 {
             currentPlayer = 2
             return currentPlayer
-
         } else {
             currentPlayer = 1
             return currentPlayer

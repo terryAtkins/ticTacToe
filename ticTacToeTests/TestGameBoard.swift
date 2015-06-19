@@ -14,9 +14,11 @@ class TestGameBoard: XCTestCase {
 
     func testUpdateGameBoard() {
         let board = GameBoard()
+        
         board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 0,columnId: 0)
         board.updateGameBoardWhenSquareSelected(playerId: 2,rowId: 1,columnId: 1)
         board.updateGameBoardWhenSquareSelected(playerId: 1,rowId: 2,columnId: 2)
+        
         XCTAssertEqual(board.gameSquares[0][0], 1)
         XCTAssertEqual(board.gameSquares[1][1], 2)
         XCTAssertEqual(board.gameSquares[2][2], 1)
@@ -24,6 +26,7 @@ class TestGameBoard: XCTestCase {
     
     func testNumberOfTurnsLeftToPlay() {
         let turnsLeft = GameBoard()
+        
         XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
         XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 8, "Should return 8")
         XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 7, "Should return 7")
@@ -39,16 +42,31 @@ class TestGameBoard: XCTestCase {
     
     func testResetNumberOfTurnsLeftToPlay() {
         let turnsLeft =  GameBoard()
-        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
         
+        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
         XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 8, "Should return 8")
+        
         turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
         turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
         turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
         turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
         turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()
+        
         XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 2, "Should return 2")
         XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
+    }
+    
+    func testIncreaseNumberOfSquaresLeftToPlayByOne() {
+        let turnsLeft =  GameBoard()
+        
+        XCTAssertEqual(turnsLeft.resetNumberOfSquaresLeftToPlay(), 9, "Should start with 9 turns")
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 8, "Should return 8")
+        
+        turnsLeft.reduceNumberOfSquaresLeftToPlayByOne()//7
+        
+        XCTAssertEqual(turnsLeft.reduceNumberOfSquaresLeftToPlayByOne(), 6, "Should return 6")
+        XCTAssertEqual(turnsLeft.increaseNumberOfSquaresLeftToPlayByOne(), 7, "Should start with 7 turns")
+        XCTAssertEqual(turnsLeft.increaseNumberOfSquaresLeftToPlayByOne(), 8, "Should start with 8 turns")
     }
     
     func testResetBoard() {
@@ -66,8 +84,11 @@ class TestGameBoard: XCTestCase {
     
     func testIsSquareStillInPlay() {
         let squareSelected = GameBoard()
+        
         XCTAssertTrue(squareSelected.isSquareStillInPlay(rowId: 0, columnId: 0), "squareSelected test failed")
+        
         squareSelected.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
+        
         XCTAssertFalse(squareSelected.isSquareStillInPlay(rowId: 0, columnId: 0), "squareSelected test failed")
     }
 

@@ -9,156 +9,122 @@
 import UIKit
 
 public class ThreeInARow : GameBoard {
-    
-    public func checkForThreeInARow_ToWin() -> Bool {
         
-        if isThereThreeInARow_Vertical() || isThereThreeInARow_Horizontal() || isThereThreeInARow_Diagonal() {
-            
+    public func checkForThreeInARow() -> Bool {
+        upDateNames()
+        
+        if thereIsThreeInARow_Vertical() || thereIsThreeInARow_Horizontal() || thereIsThreeInARow_Diagonal() {
             return true
         }
-        
         return false
     }
     
-    public func isThereThreeInARow_Vertical() -> Bool {
-        
-        upDateNames()
-        
-        if isThereThreeInARow_LeftColumn() || isThereThreeInARow_CenterColumn() || isThereThreeInARow_RightColumn() {
-            
+    public func thereIsThreeInARow_Vertical() -> Bool {
+        if thereIsThreeInARow_LeftColumn() || thereIsThreeInARow_CenterColumn() || thereIsThreeInARow_RightColumn() {
             return true
-            
-        }  else {
-            
+        } else {
             return false
         }
-        
     }
     
-    func isThereThreeInARow_LeftColumn() -> Bool {
+   public func thereIsThreeInARow_LeftColumn() -> Bool {
+        upDateNames()
         
         if bottomLeftSquare != 0  && bottomLeftSquare == middleLeftSquare && bottomLeftSquare == topLeftSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
     
-    func isThereThreeInARow_CenterColumn() -> Bool {
+    func thereIsThreeInARow_CenterColumn() -> Bool {
+        upDateNames()
         
         if bottomCenterSquare != 0 && bottomCenterSquare == middleCenterSquare && bottomCenterSquare == topCenterSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
     
-    func isThereThreeInARow_RightColumn() -> Bool {
+    func thereIsThreeInARow_RightColumn() -> Bool {
+        upDateNames()
         
         if bottomRightSquare != 0 && bottomRightSquare == middleRightSquare && bottomRightSquare == topRightSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
     
     
-    public func isThereThreeInARow_Horizontal() -> Bool {
-        
+    public func thereIsThreeInARow_Horizontal() -> Bool {
         upDateNames()
         
-        
-        if isThereThreeInARow_BottomRow() || isThereThreeInARow_MiddleRow() || isThereThreeInARow_TopRow() {
-            
+        if thereIsThreeInARow_BottomRow() || thereIsThreeInARow_MiddleRow() || thereIsThreeInARow_TopRow() {
             return true
-            
         } else {
-            
             return false
         }
-        
     }
     
-    func isThereThreeInARow_BottomRow() -> Bool {
+    func thereIsThreeInARow_BottomRow() -> Bool {
+        upDateNames()
         
         if bottomLeftSquare != 0 && bottomLeftSquare == bottomCenterSquare && bottomLeftSquare == bottomRightSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
     
-    func isThereThreeInARow_MiddleRow() -> Bool {
-        
-        if middleLeftSquare != 0 && middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare {
-            
-            return true
-            
-        } else {
-            
-            return false
-        }
-    }
-    
-    func isThereThreeInARow_TopRow() -> Bool {
-        
-        if  topLeftSquare != 0 && topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
-            
-            return true
-            
-        } else {
-            
-            return false
-        }
-    }
-    
-    
-    public func isThereThreeInARow_Diagonal() -> Bool {
-        
+    func thereIsThreeInARow_MiddleRow() -> Bool {
         upDateNames()
         
-        if isThereThreeInARowFromBottomLeftToTopRight_Diagonal() || isThereThreeInARowFromTopLeftToBottomRight_Diagonal() {
-            
+        if middleLeftSquare != 0 && middleLeftSquare == middleCenterSquare && middleLeftSquare == middleRightSquare {
             return true
-            
-        }  else {
-            
+        } else {
             return false
         }
     }
     
-    func isThereThreeInARowFromBottomLeftToTopRight_Diagonal() -> Bool {
+    func thereIsThreeInARow_TopRow() -> Bool {
+        upDateNames()
+        
+        if  topLeftSquare != 0 && topLeftSquare == topCenterSquare && topLeftSquare == topRightSquare {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    public func thereIsThreeInARow_Diagonal() -> Bool {
+        upDateNames()
+        
+        if thereIsThreeInARowFromBottomLeftToTopRight_Diagonal() || thereIsThreeInARowFromTopLeftToBottomRight_Diagonal() {
+            return true
+        }  else {
+            return false
+        }
+    }
+    
+    func thereIsThreeInARowFromBottomLeftToTopRight_Diagonal() -> Bool {
+        upDateNames()
         
         if bottomLeftSquare != 0 && bottomLeftSquare == middleCenterSquare && bottomLeftSquare == topRightSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
     
-    func isThereThreeInARowFromTopLeftToBottomRight_Diagonal() -> Bool {
+    func thereIsThreeInARowFromTopLeftToBottomRight_Diagonal() -> Bool {
+        upDateNames()
         
         if topLeftSquare != 0 && topLeftSquare == middleCenterSquare && topLeftSquare == bottomRightSquare {
-            
             return true
-            
         } else {
-            
             return false
         }
     }
