@@ -17,26 +17,26 @@ class TestThreeInARow: XCTestCase {
         
         XCTAssertFalse(threeInARowVertical.thereIsThreeInARow_Vertical())
         
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 3)
         XCTAssertFalse(threeInARowVertical.thereIsThreeInARow_Vertical())
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 6)
         XCTAssertTrue(threeInARowVertical.thereIsThreeInARow_Vertical())
         
         threeInARowVertical.resetBoard()
         XCTAssertFalse(threeInARowVertical.thereIsThreeInARow_Vertical())
         
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 2)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 2)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 5)
         XCTAssertFalse(threeInARowVertical.thereIsThreeInARow_Vertical())
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 2)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 8)
         XCTAssertTrue(threeInARowVertical.thereIsThreeInARow_Vertical())
         
         threeInARowVertical.resetBoard()
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 1)
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 1)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 4)
         XCTAssertFalse(threeInARowVertical.thereIsThreeInARow_Vertical())
-        threeInARowVertical.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 1)
+        threeInARowVertical.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 7)
         XCTAssertTrue(threeInARowVertical.thereIsThreeInARow_Vertical())
         
         threeInARowVertical.resetBoard()
@@ -49,19 +49,19 @@ class TestThreeInARow: XCTestCase {
         
         XCTAssertFalse(threeInARowDiagonal.thereIsThreeInARow_Diagonal())
         
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 4)
         XCTAssertFalse(threeInARowDiagonal.checkForThreeInARow())
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 8)
         XCTAssertTrue(threeInARowDiagonal.thereIsThreeInARow_Diagonal())
         
         threeInARowDiagonal.resetBoard()
         XCTAssertFalse(threeInARowDiagonal.thereIsThreeInARow_Vertical())
         
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 0, columnId: 2)
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 1, columnId: 1)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 2)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 4)
         XCTAssertFalse(threeInARowDiagonal.checkForThreeInARow())
-        threeInARowDiagonal.updateGameBoardWhenSquareSelected(playerId: 2, rowId: 2, columnId: 0)
+        threeInARowDiagonal.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 6)
         XCTAssertTrue(threeInARowDiagonal.thereIsThreeInARow_Diagonal())
         
         threeInARowDiagonal.resetBoard()
@@ -73,28 +73,28 @@ class TestThreeInARow: XCTestCase {
         
         XCTAssertFalse(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 1)
         XCTAssertFalse(threeInARowHorizontal.checkForThreeInARow())
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 2)
         XCTAssertTrue(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
         threeInARowHorizontal.resetBoard()
         XCTAssertFalse(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 0)
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 3)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 4)
         XCTAssertFalse(threeInARowHorizontal.checkForThreeInARow())
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 2)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 5)
         XCTAssertTrue(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
         threeInARowHorizontal.resetBoard()
         XCTAssertFalse(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 0)
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 1)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 6)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 7)
         XCTAssertFalse(threeInARowHorizontal.checkForThreeInARow())
-        threeInARowHorizontal.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        threeInARowHorizontal.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 8)
         XCTAssertTrue(threeInARowHorizontal.thereIsThreeInARow_Horizontal())
         
         threeInARowHorizontal.resetBoard()
@@ -106,24 +106,24 @@ class TestThreeInARow: XCTestCase {
         
         XCTAssertFalse(check.checkForThreeInARow())
         
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 1)
         XCTAssertFalse(check.checkForThreeInARow())
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 2)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 2)
         XCTAssertTrue(check.checkForThreeInARow())
         
         check.resetBoard()
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 0)
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 3)
         XCTAssertFalse(check.checkForThreeInARow())
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 2)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 6)
         XCTAssertTrue(check.checkForThreeInARow())
         
         check.resetBoard()
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 0, columnId: 1)
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 1, columnId: 1)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 2)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 4)
         XCTAssertFalse(check.checkForThreeInARow())
-        check.updateGameBoardWhenSquareSelected(playerId: 1, rowId: 2, columnId: 1)
+        check.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 6)
         XCTAssertTrue(check.checkForThreeInARow())
         
         check.resetBoard()

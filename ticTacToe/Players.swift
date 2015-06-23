@@ -8,60 +8,27 @@
 
 import UIKit
 
-public struct Players {
-    let playerX :Int
-    let playerO  :Int
-//    var numberOfTurnsInAGame:Int
+public class Players {
+   public var playerX :Int!
+   public var playerO  :Int!
 
-   public init() {
+    public init() {
         playerX = 1
         playerO = 2
-//        numberOfTurnsInAGame = 9
     }
     
-    public func chooseWhoPlaysFirst(playersShape : Int) -> Int {
-        if playersShape == 1 {
-            return playerX
+    public func chooseWhoPlaysFirst(playerXorO : String) {
+        if playerXorO == "x" {
+            playerX = 1
+            playerO = 2
         } else {
-            return playerO
+            playerX = 2
+            playerO = 1
         }
     }
         
-    public func chooseGameMethod(gameType :Int) -> Bool  {
-        let gameType = gameType
-        var result = false
-        
-        if gameType == 1 {
-           result = humanVsHuman()
-        } else if gameType == 2 {
-              result = humanVsMachine()
-        } else if gameType == 3 {
-             result = machineVsMachine()
-        }
-        return result
-    }
-    
-    func humanVsHuman() -> Bool {
-        return true
-    }
-    
-    func humanVsMachine() -> Bool{
-        return true
-    }
-    
-    func machineVsMachine() -> Bool{
-        return true
-    }
-    
     public func nextPlayersTurn(playerId: Int) -> Int {
-        var currentPlayer = playerId
-        if currentPlayer == 1 {
-            currentPlayer = 2
-            return currentPlayer
-        } else {
-            currentPlayer = 1
-            return currentPlayer
-        }
+        return playerId == 1 ? 2 : 1
     }
-    
+
 }

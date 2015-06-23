@@ -11,12 +11,14 @@ import Foundation
 
 public class AIController :ThreeInARow {
     
-    var squaresToPlay = [[Int]]()
+    var squaresToPlay = [Int]()
         
     public func computersTurnToPlay(playerId player :Int) -> Bool {
         if firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || secondPlayer_playForTheCenterOrCorner(playerId: player) {
             return true
-        } else if isClosingStagesOfTheGame_playForWinDrawOrBlock(playerId: player) {
+        } else if playForWinOrBlock(playerId: player) {
+            return true
+        } else if playAnyFreeSquare(playerId: player){
             return true
         }
         return false
@@ -31,7 +33,7 @@ public class AIController :ThreeInARow {
     }
     
     func secondPlayer_playForTheCenterOrCorner(playerId player :Int) -> Bool {
-        if  squaresLeftInGame() == 8  {
+        if squaresLeftInGame() == 8  {
             if isMiddleSquareFree_playIt(playerId: player) {
                 return true
             } else if isCornersFree_playOne(playerId: player) {
@@ -42,11 +44,11 @@ public class AIController :ThreeInARow {
     }
     
     public func isCornersFree_playOne(playerId player :Int) -> Bool {
-        let cornerSquares = [(row: 0, column: 0), (row: 0, column: 2), (row: 2, column: 0), (row: 2, column: 2)]
+        let cornerSquares = [0, 2, 6, 8]
         
         for corner in cornerSquares {
-            if isSquareStillInPlay(rowId: corner.row, columnId: corner.column) {
-                updateGameBoardWhenSquareSelected(playerId: player, rowId: corner.row, columnId: corner.column)
+            if isSquareStillInPlay(squareId: corner) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: corner)
                 return true
             }
         }
@@ -54,93 +56,84 @@ public class AIController :ThreeInARow {
     }
     
     public func isMiddleSquareFree_playIt(playerId player :Int) -> Bool {
-        if isSquareStillInPlay(rowId: 1, columnId: 1) {
-            updateGameBoardWhenSquareSelected(playerId: player, rowId: 1, columnId: 1)
+        if isSquareStillInPlay(squareId: 4) {
+            updateGameBoardWithSelectedSquare(playerId: player, squareId: 4)
             return true
         }
         return false
     }
     
     public func chooseAnySquareExceptACorner(playerId player: Int) -> Bool {
-        var notACornerOrTheMiddle = [(row: 0, column: 1),(row: 1, column: 0),(row: 1, column: 2),(row: 2, column: 1)]
-        
+        var notACornerOrTheMiddle = [1, 3, 5, 7]
+    
         for square in notACornerOrTheMiddle {
-            if isSquareStillInPlay(rowId: square.row, columnId: square.column) {
-                updateGameBoardWhenSquareSelected(playerId: player, rowId: square.row, columnId: square.column)
+            if isSquareStillInPlay(squareId: square) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
             }
         }
         return false
     }
     
-    func isClosingStagesOfTheGame_playForWinDrawOrBlock(playerId player :Int) -> Bool {
-        if squaresLeftInGame() > 0 {
-            if isWinDrawOrBlock(playerId: player) {
+    public func playAnyFreeSquare(playerId player :Int) -> Bool {
+        squaresToPlay = searchForEmptySquares()
+        for square in squaresToPlay {
+            if isSquareStillInPlay(squareId: square) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
             }
         }
         return false
     }
     
-    public func isWinDrawOrBlock(playerId player :Int) -> Bool {
+    public func playForWinOrBlock(playerId player :Int) -> Bool {
         
-        var index = 0
-        var j = 0
-        var row :Int
-        var column :Int
         squaresToPlay = searchForEmptySquares()
         
-        for item in squaresToPlay {
-            row = squaresToPlay[index][0]
-            column = squaresToPlay[index][1]
-            
-            if winningMove(playerId: player, rowId: row, columnId: column) {
-                updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
+        for square in squaresToPlay {
+            if winningMove(playerId: player, squareId: square) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
-            } else if aBlockingMove(playerId: player, rowId: row, columnId: column) {
-                updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
-                return true
-            } else if squaresLeftInGame() == 6  {
-                chooseAnySquareExceptACorner(playerId: player)
-            } else if playAnySquare(loopIndex: index) {
-                updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
+            } else if aBlockingMove(playerId: player, squareId: square) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
             }
-            index += 1
         }
         return false
     }
 
-    public func winningMove(playerId player :Int, rowId row :Int, columnId column: Int) -> Bool {
-        updateGameBoardWhenSquareSelected(playerId: player, rowId: row, columnId: column)
+    public func winningMove(playerId player :Int, squareId square :Int) -> Bool {
+        updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
         
         if checkForThreeInARow() {
-            resetSquare(rowId: row, columnId: column)
+            resetSquare(squareId: square)
             return true
         } else {
-            resetSquare(rowId: row, columnId: column)
-            return false
-        }
-    }
-    
-    public func aBlockingMove(playerId player:Int, rowId row :Int, columnId column :Int) -> Bool {
-        updateGameBoardWhenSquareSelected(playerId: switchPlayersId(playerId: player), rowId: row, columnId: column)
-        
-        if checkForThreeInARow() {
-            resetSquare(rowId: row, columnId: column)
-            return true
-        } else {
-            resetSquare(rowId: row, columnId: column)
-            return false
-        }
-    }
-    
-    func playAnySquare(loopIndex index :Int) -> Bool {
-        if index == squaresToPlay.count - 1 {
-            return true
+            resetSquare(squareId: square)
         }
         return false
     }
+    
+    public func aBlockingMove(playerId player:Int, squareId square :Int) -> Bool {
+        var player2 = switchPlayersId(playerId: player)
+        updateGameBoardWithSelectedSquare(playerId: player2, squareId: square)
+        
+        if checkForThreeInARow() {
+            resetSquare(squareId: square)
+            return true
+        } else {
+            resetSquare(squareId: square)
+            return false
+        }
+    }
+    
+//    func playAnySquare(playerId player :Int, squareIndex index :Int) -> Bool {
+//        if index != squaresToPlay.count - 1 {
+//            
+//            return true
+//        }
+//        return false
+//    }
 
     public func switchPlayersId(playerId player: Int) -> Int {
        return player == 1 ? 2 : 1

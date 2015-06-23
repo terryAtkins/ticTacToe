@@ -10,38 +10,37 @@ import UIKit
 
 public class GameBoard {
     
-    public var gameSquares = [[0,0,0],[0,0,0],[0,0,0]] // needs to be public for testing in XCTest
+    public var gameSquares = [0,0,0,0,0,0,0,0,0] // needs to be public for testing in XCTest
     
-    var bottomLeftSquare :Int?
-    var bottomCenterSquare :Int? 
-    var bottomRightSquare :Int?
-    var middleLeftSquare :Int?
-    var middleCenterSquare :Int?
-    var middleRightSquare :Int?
-    var topLeftSquare :Int?
-    var topCenterSquare :Int?
-    var topRightSquare :Int?
-    var numberOfSquaresInAGames :Int
-    
+    var bottomLeftSquare :Int!
+    var bottomCenterSquare :Int!
+    var bottomRightSquare :Int!
+    var middleLeftSquare :Int!
+    var middleCenterSquare :Int!
+    var middleRightSquare :Int!
+    var topLeftSquare :Int!
+    var topCenterSquare :Int!
+    var topRightSquare :Int!
+    var numberOfSquaresInAGames = 9
     
     public init() {
-        numberOfSquaresInAGames = 9
+//        numberOfSquaresInAGames = 9
     }
     
     public func upDateNames() {
-        topLeftSquare = gameSquares[0][0]
-        topCenterSquare = gameSquares[0][1]
-        topRightSquare = gameSquares[0][2]
-        middleLeftSquare = gameSquares[1][0]
-        middleCenterSquare = gameSquares[1][1]
-        middleRightSquare = gameSquares[1][2]
-        bottomLeftSquare = gameSquares[2][0]
-        bottomCenterSquare = gameSquares[2][1]
-        bottomRightSquare = gameSquares[2][2]
+        topLeftSquare = gameSquares[0]
+        topCenterSquare = gameSquares[1]
+        topRightSquare = gameSquares[2]
+        middleLeftSquare = gameSquares[3]
+        middleCenterSquare = gameSquares[4]
+        middleRightSquare = gameSquares[5]
+        bottomLeftSquare = gameSquares[6]
+        bottomCenterSquare = gameSquares[7]
+        bottomRightSquare = gameSquares[8]
     }
     
-    public func updateGameBoardWhenSquareSelected(playerId player: Int, rowId row :Int, columnId column :Int ) {
-        gameSquares[row][column] = player
+    public func updateGameBoardWithSelectedSquare(playerId player: Int, squareId square :Int) {
+        gameSquares[square] = player
         reduceNumberOfSquaresLeftToPlayByOne()
        
     }
@@ -67,39 +66,43 @@ public class GameBoard {
         return numberOfSquaresInAGames
     }
 
-    public func isSquareStillInPlay(rowId row:Int, columnId column :Int) -> Bool {
-        if gameSquares[row][column] == 0 {
+    public func isSquareStillInPlay(squareId square :Int) -> Bool {
+        if gameSquares[square] == 0 {
             return true
         }
         return false
     }
     
-    public func searchForEmptySquares() -> [[Int]] { // or use Array<Array<Int>>
-        var rowNumber = 0
-        var columnNumber = 0
-        var emptySquares = [[Int]]() // or use Array<Array<Int>>() [[0,0],[0,0]......]
+    public func searchForEmptySquares() -> [Int] {
+        var i = 0
+        var emptySquares = [Int]()
         
-        for row in gameSquares {
-            for column in row {
-                if isSquareStillInPlay(rowId: rowNumber, columnId: columnNumber) {
-                    emptySquares.append([rowNumber, columnNumber])
-                    columnNumber += 1
-                } else {
-                    columnNumber += 1
-                }
+        while i < gameSquares.count {
+            if gameSquares[i] == 0 {
+                emptySquares.append(i)
             }
-            columnNumber = 0
-            rowNumber += 1
+            i += 1
         }
+        
         return emptySquares
+        
+//        for square in gameSquares {
+//
+//                if isSquareStillInPlay(squareId: square) {
+//                    emptySquares.append(square)
+//                }
+//            }
+//
+//        return emptySquares
     }
     
     public func resetBoard() {
-        gameSquares = [[0,0,0],[0,0,0],[0,0,0]]
+        gameSquares = [0,0,0,0,0,0,0,0,0]
+        numberOfSquaresInAGames = 9
     }
     
-    func resetSquare(rowId row:Int, columnId column :Int) {
-        gameSquares[row][column] = 0
+    func resetSquare(squareId square :Int) {
+        gameSquares[square] = 0
         increaseNumberOfSquaresLeftToPlayByOne()
     }
 
