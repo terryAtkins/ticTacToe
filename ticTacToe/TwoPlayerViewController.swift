@@ -69,6 +69,9 @@ class TwoPlayerViewController: UIViewController {
         resetButtonImages()
         resetButton.hidden = true
         board.resetBoard()
+        playingFirstLabel.hidden = false
+        playerXToGoFirst.hidden = false
+        playerOToGoFirst.hidden = false
     }
 
     func resetButtonImages() {
@@ -81,6 +84,7 @@ class TwoPlayerViewController: UIViewController {
         playingFirstLabel.hidden = true
         playerXToGoFirst.hidden = true
         playerOToGoFirst.hidden = true
+        board.playerId = 1
     
     }
     
@@ -88,6 +92,7 @@ class TwoPlayerViewController: UIViewController {
         playingFirstLabel.hidden = true
         playerXToGoFirst.hidden = true
         playerOToGoFirst.hidden = true
+        board.playerId = 2
     }
     
 }
