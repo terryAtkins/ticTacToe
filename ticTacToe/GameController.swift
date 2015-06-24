@@ -15,9 +15,9 @@ public class GameController :AIController {
     var playerId :Int
     var cpu :Int
     
-    public override init () {
-        cpu = 1
+    public override init() {
         playerId = 1
+        cpu = 2
     }
     
     //    public func NewGame(#gameType :Int, playersShape playingFirst :Int) {
@@ -68,6 +68,8 @@ public class GameController :AIController {
         } else if humanHasTakenTurn(squareId: square) {
             computersTurnToPlay(playerId: cpu)
             
+        } else {
+            computersTurnToPlay(playerId: cpu)
         }
     }
     

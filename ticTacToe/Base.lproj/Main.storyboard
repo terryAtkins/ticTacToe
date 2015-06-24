@@ -215,7 +215,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Two Player" id="due-Tz-mYq"/>
                     <navigationItem key="navigationItem" title="Two Player" id="8pP-xl-7Mr"/>
                     <connections>
                         <outlet property="playerOToGoFirst" destination="MAz-SU-bdx" id="rPV-gI-dtR"/>
@@ -299,6 +298,16 @@
                                     <action selector="squareHasBeenClicked:" destination="hij-sm-3po" eventType="touchUpInside" id="zdV-C7-C2K"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7HV-sE-9dm" userLabel="square3">
+                                <rect key="frame" x="28" y="214" width="78" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="hij-sm-3po" eventType="touchUpInside" id="yTx-Os-tZw"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bIy-Q6-YOz" userLabel="square4">
                                 <rect key="frame" x="121" y="214" width="78" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -356,6 +365,35 @@
                                 <color key="textColor" red="0.18160115539999999" green="1" blue="0.21132694599999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playing first?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NNm-DH-sEK">
+                                <rect key="frame" x="98" y="194" width="125" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="0.0" green="0.050397792599999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KdO-g5-JDS" userLabel="Human">
+                                <rect key="frame" x="30" y="223" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Human">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="humanSelectedToPlayFirst:" destination="hij-sm-3po" eventType="touchUpInside" id="Qeq-Qx-kom"/>
+                                    <action selector="playerXSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="b3O-A3-ee6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BrR-gK-Dfz" userLabel="Phone">
+                                <rect key="frame" x="218" y="223" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Phone">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="phoneSelectedToPlayFirst:" destination="hij-sm-3po" eventType="touchUpInside" id="Bbc-Od-GJd"/>
+                                    <action selector="playerOSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="b8W-Ci-7TU"/>
+                                </connections>
+                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YMu-5B-yTc">
                                 <rect key="frame" x="113" y="269" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -366,22 +404,14 @@
                                     <action selector="resetButtonClicked:" destination="hij-sm-3po" eventType="touchUpInside" id="YrS-3G-bdh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7HV-sE-9dm" userLabel="square3">
-                                <rect key="frame" x="28" y="214" width="78" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked:" destination="hij-sm-3po" eventType="touchUpInside" id="yTx-Os-tZw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Two Player" id="7LD-oq-Ol7"/>
                     <navigationItem key="navigationItem" title="One Player" id="UIs-R6-SSY"/>
                     <connections>
+                        <outlet property="humanFirstButton" destination="KdO-g5-JDS" id="sgV-rc-Svq"/>
+                        <outlet property="phoneFirstButton" destination="BrR-gK-Dfz" id="Rpe-gq-n85"/>
+                        <outlet property="playingFirstLabel" destination="NNm-DH-sEK" id="NTQ-t0-yky"/>
                         <outlet property="resetButton" destination="YMu-5B-yTc" id="LVI-ev-IMy"/>
                         <outlet property="square0" destination="1lK-33-Pfl" id="2nq-zL-OpE"/>
                         <outlet property="square1" destination="D8h-EA-WRs" id="26y-s7-uFC"/>

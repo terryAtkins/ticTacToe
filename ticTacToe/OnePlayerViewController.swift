@@ -23,9 +23,12 @@ class OnePlayerViewController: UIViewController {
     @IBOutlet weak var square6: UIButton!
     @IBOutlet weak var square7: UIButton!
     @IBOutlet weak var square8: UIButton!
-    
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var humanFirstButton: UIButton!
+    @IBOutlet weak var phoneFirstButton: UIButton!
+    
     @IBOutlet weak var winnersLabel: UILabel!
+    @IBOutlet weak var playingFirstLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +57,9 @@ class OnePlayerViewController: UIViewController {
             }
         }
     }
-    func newGame() {
-        board.playerId = 1
-    }
     
     func updateGameBoardSquares(squareId square_tag :Int, senderId sender :UIButton) {
-        var imageTodisplay = board.playerId == 2 ? playerX : playerO
+        var imageTodisplay = board.playerId == 1 ? playerO : playerX
         sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
     }
     
@@ -67,6 +67,9 @@ class OnePlayerViewController: UIViewController {
         winnersLabel.hidden = true
         resetButtonImages()
         resetButton.hidden = true
+        playingFirstLabel.hidden = false
+        humanFirstButton.hidden = false
+        phoneFirstButton.hidden = false
         board.resetBoard()
     }
     
@@ -81,11 +84,38 @@ class OnePlayerViewController: UIViewController {
         var imageTodisplay = board.cpu == 1 ? playerO : playerX
         var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
         for choice in board.squaresSelectedDuringPlay {
-            if board.gameSquares[choice] == 1 {
+            if board.gameSquares[choice] == board.cpu {
             buttons[choice].setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
             }
         }
     }
+    @IBAction func humanSelectedToPlayFirst(sender: AnyObject) {
+        playingFirstLabel.hidden = true
+        humanFirstButton.hidden = true
+        phoneFirstButton.hidden = true
 
+        
+    }
+    
+    @IBAction func phoneSelectedToPlayFirst(sender: AnyObject) {
+        playingFirstLabel.hidden = true
+        humanFirstButton.hidden = true
+        phoneFirstButton.hidden = true
+        board.playerId = 2
+        board.cpu = 1
+        board.computersTurnToPlay(playerId: 1)
+        displayTheComputersChoice()
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
