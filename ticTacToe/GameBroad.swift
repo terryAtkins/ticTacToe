@@ -11,6 +11,7 @@ import UIKit
 public class GameBoard {
     
     public var gameSquares = [0,0,0,0,0,0,0,0,0] // needs to be public for testing in XCTest
+    public var squaresSelectedDuringPlay = [Int]()
     
     var bottomLeftSquare :Int!
     var bottomCenterSquare :Int!
@@ -24,7 +25,6 @@ public class GameBoard {
     var numberOfSquaresInAGames = 9
     
     public init() {
-//        numberOfSquaresInAGames = 9
     }
     
     public func upDateNames() {
@@ -41,6 +41,7 @@ public class GameBoard {
     
     public func updateGameBoardWithSelectedSquare(playerId player: Int, squareId square :Int) {
         gameSquares[square] = player
+        squaresSelectedDuringPlay.append(square)
         reduceNumberOfSquaresLeftToPlayByOne()
        
     }
@@ -83,17 +84,7 @@ public class GameBoard {
             }
             i += 1
         }
-        
         return emptySquares
-        
-//        for square in gameSquares {
-//
-//                if isSquareStillInPlay(squareId: square) {
-//                    emptySquares.append(square)
-//                }
-//            }
-//
-//        return emptySquares
     }
     
     public func resetBoard() {
@@ -101,9 +92,14 @@ public class GameBoard {
         numberOfSquaresInAGames = 9
     }
     
+    func resetSquaresSelectedDuringPlay() {
+        squaresSelectedDuringPlay = [Int]()
+    }
+    
     func resetSquare(squareId square :Int) {
         gameSquares[square] = 0
         increaseNumberOfSquaresLeftToPlayByOne()
+        squaresSelectedDuringPlay.removeLast()
     }
 
 }

@@ -12,6 +12,7 @@ import Foundation
 public class AIController :ThreeInARow {
     
     var squaresToPlay = [Int]()
+
         
     public func computersTurnToPlay(playerId player :Int) -> Bool {
         if firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || secondPlayer_playForTheCenterOrCorner(playerId: player) {
@@ -126,14 +127,6 @@ public class AIController :ThreeInARow {
             return false
         }
     }
-    
-//    func playAnySquare(playerId player :Int, squareIndex index :Int) -> Bool {
-//        if index != squaresToPlay.count - 1 {
-//            
-//            return true
-//        }
-//        return false
-//    }
 
     public func switchPlayersId(playerId player: Int) -> Int {
        return player == 1 ? 2 : 1

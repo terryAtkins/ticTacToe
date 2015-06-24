@@ -25,6 +25,19 @@ class TestGameBoard: XCTestCase {
         XCTAssertEqual(board.gameSquares[8], 1)
     }
     
+    func testSquaresSelectedDuringPlay() {
+        let board = GameBoard()
+        
+        board.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 0)
+        XCTAssertEqual(board.squaresSelectedDuringPlay[0], 0)
+        
+        board.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 3)
+        XCTAssertEqual(board.squaresSelectedDuringPlay[1], 3)
+        
+        board.updateGameBoardWithSelectedSquare(playerId: 1, squareId: 8)
+        XCTAssertEqual(board.squaresSelectedDuringPlay[2], 8)
+    }
+    
     func testNumberOfTurnsLeftToPlay() {
         let turnsLeft = GameBoard()
         

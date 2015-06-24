@@ -64,8 +64,10 @@ public class GameController :AIController {
     public func humanVsMachine(squareId square :Int) {
         if cpu == 2 && squaresLeftInGame() % 2 == 0 {
             computersTurnToPlay(playerId: cpu)
+            
         } else if humanHasTakenTurn(squareId: square) {
             computersTurnToPlay(playerId: cpu)
+            
         }
     }
     
