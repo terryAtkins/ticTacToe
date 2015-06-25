@@ -11,8 +11,10 @@ import UIKit
 class OnePlayerViewController: UIViewController {
     
     let board = GameController()
+    var displaySquareSelectedByComputer = NSTimer()
     var playerX = "playerX"
     var playerO = "playerO"
+    var cpu  = Int()
     
     @IBOutlet weak var square0: UIButton!
     @IBOutlet weak var square1: UIButton!
@@ -30,6 +32,7 @@ class OnePlayerViewController: UIViewController {
     @IBOutlet weak var winnersLabel: UILabel!
     @IBOutlet weak var playingFirstLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,12 +44,13 @@ class OnePlayerViewController: UIViewController {
     
     
     @IBAction func squareHasBeenClicked(sender :UIButton) {
+
         if !board.checkForThreeInARow() {
-            board.humanVsMachine(squareId: sender.tag)
-            updateGameBoardSquares(squareId: sender.tag, senderId: sender)
-            displayTheComputersChoice()
+            updateImageForSquareSelectedByHuman(squareId: sender.tag, senderId: sender)
+            board.humanHasTakenTurn(squareId: sender.tag)
+            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
             if board.checkForThreeInARow() {
-                var winner = board.playerId == 1 ? "Player Two Wins" : " Player One Wins"
+                var winner = board.playerId == 1 ? "Player 1 Wins" : " Player 2 Wins"
                 winnersLabel.hidden = false
                 winnersLabel.text = winner
                 resetButton.hidden = false
@@ -58,7 +62,7 @@ class OnePlayerViewController: UIViewController {
         }
     }
     
-    func updateGameBoardSquares(squareId square_tag :Int, senderId sender :UIButton) {
+    func updateImageForSquareSelectedByHuman(squareId square_tag :Int, senderId sender :UIButton) {
         var imageTodisplay = board.playerId == 1 ? playerO : playerX
         sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
     }
@@ -93,6 +97,8 @@ class OnePlayerViewController: UIViewController {
         playingFirstLabel.hidden = true
         humanFirstButton.hidden = true
         phoneFirstButton.hidden = true
+        board.playerId = 1
+        board.cpu = 2
 
         
     }

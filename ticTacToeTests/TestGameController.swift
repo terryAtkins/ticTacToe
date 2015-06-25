@@ -30,15 +30,14 @@ class TestGameController: XCTestCase {
         
         XCTAssertEqual(cpu.squaresLeftInGame(), 0)
         
-        XCTAssertEqual(cpu.gameSquares[0], 1, "cpu1 should have selected the topLeft square on first go")
-        XCTAssertEqual(cpu.gameSquares[1], 2, "cpu2 should have selected the center square on first go")
+        XCTAssertEqual(cpu.gameSquares[4], 2, "cpuO should have selected the center square on first go")
     }
     
     func testHumanVsMachine() {
         let cpu = GameController()
-        typealias  player = GameController.PlayerGoingFirst
+//        typealias  player = GameController.PlayerGoingFirst
         
-        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.human)
+//        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.human)
             cpu.humanVsMachine(squareId: 0)
         XCTAssertEqual(cpu.squaresLeftInGame(), 7, "both players should have taken a turn ")
             cpu.humanVsMachine(squareId: 2)
@@ -47,7 +46,7 @@ class TestGameController: XCTestCase {
         XCTAssertEqual(cpu.gameSquares[1], 2, "cpu should have blocked")
         
         cpu.resetBoard()
-        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.computer)
+//        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.computer)
         XCTAssertEqual(cpu.squaresLeftInGame(), 9)
        
         cpu.humanVsMachine(squareId: 4)
@@ -64,18 +63,18 @@ class TestGameController: XCTestCase {
 
     }
     
-    func testWhichPlayerGoesFirstHumanOrMachine() {
-        let player = GameController()
-        typealias goingFirst = GameController.PlayerGoingFirst
-        
-        player.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: goingFirst.computer)
-        
-    }
+//    func testWhichPlayerGoesFirstHumanOrMachine() {
+//        let player = GameController()
+//        typealias goingFirst = GameController.PlayerGoingFirst
+//        
+//        player.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: goingFirst.computer)
+//        
+//    }
     
     func testHumanVsHuman() {
-    let human = GameController()
-        human.chooseGameMethod(gameType: GameController.GameType.humanVsHuman, playerId: 1, squareId: 0)
-
+        let human = GameController()
+        
+        XCTAssertTrue(human.humanVsHuman(squareId: 0))
         XCTAssertTrue(human.humanVsHuman(squareId: 1))
         XCTAssertTrue(human.humanVsHuman(squareId: 2))
         XCTAssertTrue(human.humanVsHuman(squareId: 3))
@@ -94,7 +93,7 @@ class TestGameController: XCTestCase {
         XCTAssertEqual(human.gameSquares[6], 1)
         XCTAssertEqual(human.gameSquares[7], 2)
         XCTAssertEqual(human.gameSquares[8], 1)
-
+        
     }
 
 }

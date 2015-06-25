@@ -51,6 +51,14 @@
                BlueprintName = "ticTacToeTests"
                ReferencedContainer = "container:ticTacToe.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "TestGameController/testHumanVsMachine()">
+               </Test>
+               <Test
+                  Identifier = "TestGameController/testWhichPlayerGoesFirstHumanOrMachine()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

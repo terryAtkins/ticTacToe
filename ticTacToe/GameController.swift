@@ -12,7 +12,7 @@ import Foundation
 public class GameController :AIController {
     let board = GameBoard()
     let players = Players()
-    var playerId :Int
+   public var playerId :Int // needs to be public for testing 
     var cpu :Int
     
     public override init() {
@@ -25,44 +25,45 @@ public class GameController :AIController {
 //            let player1 = playingFirst
     //    }
     
-    public enum GameType :Int {
-        case humanVsMachine = 1
-        case humanVsHuman   = 2
-        case machineVsMachine = 3
-    }
+//    public enum GameType :Int {
+//        case humanVsMachine = 1
+//        case humanVsHuman   = 2
+//        case machineVsMachine = 3
+//    }
     
-    public enum PlayerGoingFirst :Int {
-        case human = 1
-        case computer = 2
-    }
+//    public enum PlayerGoingFirst :Int {
+//        case human = 1
+//        case computer = 2
+//    }
     
-    public func whichPlayerGoesFirstHumanOrMachine(#playerToGoFirst :PlayerGoingFirst) {
-        if playerToGoFirst == PlayerGoingFirst.human {
-            cpu = 2
-            playerId = 1
-        } else {
-            cpu = 1
-            playerId = 2
-        }
-    }
+//    public func whichPlayerGoesFirstHumanOrMachine(#playerToGoFirst :PlayerGoingFirst) {
+//        if playerToGoFirst == PlayerGoingFirst.human {
+//            cpu = 2
+//            playerId = 1
+//        } else {
+//            cpu = 1
+//            playerId = 2
+//        }
+//    }
     
-    public func chooseGameMethod(#gameType :GameType, playerId player :Int, squareId square :Int) {
-        let gameType = gameType
-        
-        switch gameType {
-        case .humanVsMachine:
-            humanVsMachine(squareId: square)
-        case .humanVsHuman:
-            humanVsHuman(squareId: square)
-        case .machineVsMachine:
-            machineVsMachine()
-        default:
-            humanVsMachine(squareId: square)
-        }
-    }
+//    public func chooseGameMethod(#gameType :GameType, playerId player :Int, squareId square :Int) {
+//        let gameType = gameType
+//        
+//        switch gameType {
+//        case .humanVsMachine:
+//            humanVsMachine(squareId: square)
+//        case .humanVsHuman:
+//            humanVsHuman(squareId: square)
+//        case .machineVsMachine:
+//            machineVsMachine()
+//        default:
+//            humanVsMachine(squareId: square)
+//        }
+//    }
     
     public func humanVsMachine(squareId square :Int) {
-        if cpu == 2 && squaresLeftInGame() % 2 == 0 {
+//        cpu = playerId == 1 ? 2 : 1
+        if cpu == 1 && squaresLeftInGame() % 2 != 0 {
             computersTurnToPlay(playerId: cpu)
             
         } else if humanHasTakenTurn(squareId: square) {
@@ -86,12 +87,13 @@ public class GameController :AIController {
     }
     
     public func machineVsMachine() {
-        
+        var cpuX = 1
+        var cpuO = 2
         while squaresLeftInGame() > 0 {
             if squaresLeftInGame() % 2 != 0 {
-                computersTurnToPlay(playerId: 1)
-            } else if squaresLeftInGame() % 2 == 0 {
-                computersTurnToPlay(playerId: 2)
+                computersTurnToPlay(playerId: cpuX)
+            } else {
+                computersTurnToPlay(playerId: cpuO)
             }
         }
     }

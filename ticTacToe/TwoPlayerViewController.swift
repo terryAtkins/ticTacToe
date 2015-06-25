@@ -44,10 +44,10 @@ class TwoPlayerViewController: UIViewController {
     
     @IBAction func squareHasBeenClicked(sender :UIButton) {
         if !board.checkForThreeInARow() && board.humanVsHuman(squareId: sender.tag) {
-            updateGameBoardSquares(squareId: sender.tag, senderId: sender)
+            updateImageForSquareSelectedByHuman(squareId: sender.tag, senderId: sender)
             
             if board.checkForThreeInARow() {
-                var winner = board.playerId == 1 ? "Player Two Wins" : " Player One Wins"
+                var winner = board.playerId == 1 ? "Player O Wins" : " Player X Wins"
                 winnersLabel.hidden = false
                 winnersLabel.text = winner
                 resetButton.hidden = false
@@ -59,7 +59,7 @@ class TwoPlayerViewController: UIViewController {
         }
     }
     
-    func updateGameBoardSquares(squareId square_tag :Int, senderId sender :UIButton) {
+    func updateImageForSquareSelectedByHuman(squareId square_tag :Int, senderId sender :UIButton) {
         var imageTodisplay = board.playerId == 2 ? playerX : playerO
             sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
     }
@@ -84,8 +84,7 @@ class TwoPlayerViewController: UIViewController {
         playingFirstLabel.hidden = true
         playerXToGoFirst.hidden = true
         playerOToGoFirst.hidden = true
-        board.playerId = 1
-    
+        board.playerId = 1    
     }
     
     @IBAction func playerOSelectedToPlayFirst(sender: AnyObject) {

@@ -90,6 +90,7 @@ public class GameBoard {
     public func resetBoard() {
         gameSquares = [0,0,0,0,0,0,0,0,0]
         numberOfSquaresInAGames = 9
+        squaresSelectedDuringPlay = [Int]()
     }
     
     func resetSquaresSelectedDuringPlay() {
