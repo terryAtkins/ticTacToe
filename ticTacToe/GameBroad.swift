@@ -39,6 +39,13 @@ public class GameBoard {
         bottomRightSquare = gameSquares[8]
     }
     
+    public func isSquareStillInPlay(squareId square :Int) -> Bool {
+        if gameSquares[square] == 0 {
+            return true
+        }
+        return false
+    }
+    
     public func updateGameBoardWithSelectedSquare(playerId player: Int, squareId square :Int) {
         gameSquares[square] = player
         squaresSelectedDuringPlay.append(square)
@@ -65,13 +72,6 @@ public class GameBoard {
     public func resetNumberOfSquaresLeftToPlay() -> Int {
         numberOfSquaresInAGames = 9
         return numberOfSquaresInAGames
-    }
-
-    public func isSquareStillInPlay(squareId square :Int) -> Bool {
-        if gameSquares[square] == 0 {
-            return true
-        }
-        return false
     }
     
     public func searchForEmptySquares() -> [Int] {

@@ -94,6 +94,9 @@ public class AIController :ThreeInARow {
     public func playAnyFreeSquare(playerId player :Int) -> Bool {
         if  isMiddleSquareFree_playIt(playerId: player) {
             return true
+        } else if squaresSelectedDuringPlay.count == 3 {
+            chooseAnySquareExceptACorner(playerId: player)
+            return true
         } else {
             squaresToPlay = searchForEmptySquares()
             for square in squaresToPlay {

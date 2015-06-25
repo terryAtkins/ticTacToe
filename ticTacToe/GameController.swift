@@ -21,10 +21,10 @@ public class GameController :AIController {
         
     public func humanVsMachine(squareId square :Int) {
 
-        if cpu == 1 && squaresSelectedDuringPlay.count % 2 == 0 {
+        if cpu == 1 && squaresSelectedDuringPlay.count % 2 == 0 && !checkForThreeInARow() {
             computersTurnToPlay(playerId: cpu)
             
-        } else if humanHasTakenTurn(squareId: square)  {
+        } else if humanHasTakenTurn(squareId: square) && !checkForThreeInARow() {
             computersTurnToPlay(playerId: cpu)
         }
     }

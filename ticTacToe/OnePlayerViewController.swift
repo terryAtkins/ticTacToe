@@ -10,7 +10,7 @@ import UIKit
 
 class OnePlayerViewController: UIViewController {
     
-    let board = GameController()
+    let game = GameController()
     var displaySquareSelectedByComputer = NSTimer()
     var playerX = "playerX"
     var playerO = "playerO"
@@ -41,35 +41,60 @@ class OnePlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func humanSelectedToPlayFirst(sender: AnyObject) {
+        hideLabelsAndButtons()
+        game.playerId = 1
+        game.cpu = 2
+    }
+    
+    @IBAction func phoneSelectedToPlayFirst(sender: AnyObject) {
+        hideLabelsAndButtons()
+        game.playerId = 2
+        game.cpu = 1
+        game.computersTurnToPlay(playerId: 1)
+        displayTheComputersChoice()
+    }
     
     @IBAction func squareHasBeenClicked(button :UIButton) {
         hideLabelsAndButtons()
         
-        if !board.checkForThreeInARow() {
-            board.humanVsMachine(squareId: button.tag)
-            updateImageForSquareSelectedByHuman(squareId: button.tag, senderId: button)
-  
-
-            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.8, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
+        if !game.checkForThreeInARow() {
+            game.humanVsMachine(squareId: button.tag)
+            updateImageForSquareSelectedByHuman(squareId: button)
+            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
             
-            if board.checkForThreeInARow() {
-                winnersLabel.text = board.playerId == 1 ? "Human Wins" : "Computer Wins"
+            if game.checkForThreeInARow() {
+                if game.squaresSelectedDuringPlay.count % 2 != 0 {
+                    winnersLabel.text = "Player 1 Wins"
+                } else {
+                    winnersLabel.text = "Player 2 Wins"
+                }
                 showLabelsAndButtons()
-            } else if board.squaresLeftInGame() == 0 {
+            } else if game.squaresLeftInGame() == 0 {
                 winnersLabel.text = "It's a Draw"
                 showLabelsAndButtons()
             }
         }
     }
  
-    func updateImageForSquareSelectedByHuman(squareId square_tag :Int, senderId sender :UIButton) {
-        var imageTodisplay = board.playerId == 1 ? playerX : playerO
-        sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
+    func updateImageForSquareSelectedByHuman(squareId button :UIButton) {
+        var imageTodisplay = game.playerId == 1 ? playerX : playerO
+        button.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
+    }
+    
+    func displayTheComputersChoice() {
+        var imageTodisplay = game.cpu == 2 ? playerO : playerX
+        var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
+        for choice in game.squaresSelectedDuringPlay {
+            if game.gameSquares[choice] == game.cpu {
+                buttons[choice].setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
+            }
+        }
     }
     
     @IBAction func resetButtonClicked(sender: AnyObject) {
         resetButtonImages()
-        board.resetBoard()
+        game.resetBoard()
         resetButton.hidden = true
         playingFirstLabel.hidden = false
         humanFirstButton.hidden = false
@@ -96,29 +121,6 @@ class OnePlayerViewController: UIViewController {
         }
     }
     
-    func displayTheComputersChoice() {
-        var imageTodisplay = board.cpu == 2 ? playerO : playerX
-        var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
-        for choice in board.squaresSelectedDuringPlay {
-            if board.gameSquares[choice] == board.cpu {
-            buttons[choice].setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
-            }
-        }
-    }
-    @IBAction func humanSelectedToPlayFirst(sender: AnyObject) {
-        hideLabelsAndButtons()
-        board.playerId = 1
-        board.cpu = 2
-    }
-    
-    @IBAction func phoneSelectedToPlayFirst(sender: AnyObject) {
-        hideLabelsAndButtons()
-        board.playerId = 2
-        board.cpu = 1
-        board.computersTurnToPlay(playerId: 1)
-        displayTheComputersChoice()
-    }
-
 }
 
 

@@ -10,7 +10,7 @@ import UIKit
 
 class TwoPlayerViewController: UIViewController {
     
-    let board = GameController()
+    let game = GameController()
     var player1 = 1
     var player2 = 2
     var playerX = "playerX"
@@ -42,31 +42,41 @@ class TwoPlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func playerXSelectedToPlayFirst(sender: AnyObject) {
+        hideLabelsAndButtons()
+        game.playerId = 1
+    }
+    
+    @IBAction func playerOSelectedToPlayFirst(sender: AnyObject) {
+        hideLabelsAndButtons()
+        game.playerId = 2
+    }
+    
     @IBAction func squareHasBeenClicked(button :UIButton) {
         hideLabelsAndButtons()
-        if !board.checkForThreeInARow() && board.humanVsHuman(squareId: button.tag) {
-            updateImageForSquareSelectedByHuman(squareId: button.tag, senderId: button)
+        if !game.checkForThreeInARow() && game.humanVsHuman(squareId: button.tag) {
+            updateImageForSquareSelectedByHuman(squareId: button)
             
-            if board.checkForThreeInARow() {
-                winnersLabel.text = board.playerId == 1 ? "Player O Wins" : " Player X Wins"
+            if game.checkForThreeInARow() {
+                winnersLabel.text = game.playerId == 1 ? "Player O Wins" : " Player X Wins"
                 showLabelsAndButtons()
-            } else if board.squaresLeftInGame() == 0 {
+            } else if game.squaresLeftInGame() == 0 {
                 winnersLabel.text = "It's a Draw"
                 showLabelsAndButtons()
             }
         }
     }
     
-    func updateImageForSquareSelectedByHuman(squareId square_tag :Int, senderId sender :UIButton) {
-        var imageTodisplay = board.playerId == 2 ? playerX : playerO
-            sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
+    func updateImageForSquareSelectedByHuman(squareId button :UIButton) {
+        var imageTodisplay = game.playerId == 2 ? playerX : playerO
+            button.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
     }
     
     @IBAction func resetButtonClicked(sender: AnyObject) {
         winnersLabel.hidden = true
         resetButtonImages()
         resetButton.hidden = true
-        board.resetBoard()
+        game.resetBoard()
         playingFirstLabel.hidden = false
         playerXToGoFirst.hidden = false
         playerOToGoFirst.hidden = false
@@ -89,16 +99,6 @@ class TwoPlayerViewController: UIViewController {
     func showLabelsAndButtons() {
         winnersLabel.hidden = false
         resetButton.hidden = false
-    }
-    
-    @IBAction func playerXSelectedToPlayFirst(sender: AnyObject) {
-        hideLabelsAndButtons()
-        board.playerId = 1
-    }
-    
-    @IBAction func playerOSelectedToPlayFirst(sender: AnyObject) {
-        hideLabelsAndButtons()
-        board.playerId = 2
     }
     
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class PhoneVsPhoneViewController: UIViewController {
 
-    let board = GameController()
+    let game = GameController()
     var displaySquareSelectedByComputer = NSTimer()
     var playerX = "playerX"
     var playerO = "playerO"
@@ -40,7 +40,29 @@ class PhoneVsPhoneViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    @IBAction func startGame(sender: AnyObject) {
+        startGameButton.hidden = true
+        watchTheNextMoveButton.hidden = false
+        
+        if game.squaresLeftInGame() != 0  && !game.checkForThreeInARow(){
+            if game.squaresLeftInGame() % 2 != 0 {
+                game.computersTurnToPlay(playerId: 1)
+                displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("updateSquareImages"), userInfo: nil, repeats: true)
+            } else {
+                game.computersTurnToPlay(playerId: 2)
+                displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("updateSquareImages"), userInfo: nil, repeats: true)
+            }
+            
+            if game.squaresLeftInGame() == 0  && !game.checkForThreeInARow() {
+                winnersLabel.text = "It's a draw"
+                showLabelsAndButtons()
+                
+            } else if game.checkForThreeInARow() {
+                winnersLabel.text = "Something went wrong"
+                showLabelsAndButtons()
+            }
+        }
+    }
     
     @IBAction func resetButtonClicked(sender: AnyObject) {
         winnersLabel.hidden = true
@@ -48,38 +70,13 @@ class PhoneVsPhoneViewController: UIViewController {
         resetButton.hidden = true
         startGameButton.hidden = false
         watchTheNextMoveButton.hidden = true
-        board.resetBoard()
+        game.resetBoard()
     }
     
     func resetButtonImages() {
         var buttonImages = [square0, square1, square2,square3, square4, square5, square6, square7, square8]
         for image in buttonImages {
             image.setImage(UIImage(), forState: UIControlState.Normal)
-        }
-    }
-    
-    @IBAction func startGame(sender: AnyObject) {
-        startGameButton.hidden = true
-        watchTheNextMoveButton.hidden = false
-
-        if board.squaresLeftInGame() != 0  && !board.checkForThreeInARow(){
-            if board.squaresLeftInGame() % 2 != 0 {
-                board.computersTurnToPlay(playerId: 1)
-                displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("updateSquareImages"), userInfo: nil, repeats: true)
-            } else {
-                board.computersTurnToPlay(playerId: 2)
-                displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("updateSquareImages"), userInfo: nil, repeats: true)
-            }
-            
-        if board.squaresLeftInGame() == 0  && !board.checkForThreeInARow() {
-                winnersLabel.text = "It's a draw"
-                showLabelsAndButtons()
-            
-        } else if board.checkForThreeInARow() {
-            winnersLabel.text = "Something went wrong"
-            showLabelsAndButtons()
-            
-            }
         }
     }
     
@@ -91,8 +88,8 @@ class PhoneVsPhoneViewController: UIViewController {
     
     func updateSquareImages() {
         var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
-        for choice in board.squaresSelectedDuringPlay {
-            if board.gameSquares[choice] == 1 {
+        for choice in game.squaresSelectedDuringPlay {
+            if game.gameSquares[choice] == 1 {
                 buttons[choice].setImage(UIImage(named: playerX), forState: UIControlState.Normal)
             } else {
                 buttons[choice].setImage(UIImage(named: playerO), forState: UIControlState.Normal)
