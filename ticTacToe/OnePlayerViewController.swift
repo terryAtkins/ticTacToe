@@ -14,7 +14,6 @@ class OnePlayerViewController: UIViewController {
     var displaySquareSelectedByComputer = NSTimer()
     var playerX = "playerX"
     var playerO = "playerO"
-    var cpu  = Int()
     
     @IBOutlet weak var square0: UIButton!
     @IBOutlet weak var square1: UIButton!
@@ -43,38 +42,51 @@ class OnePlayerViewController: UIViewController {
     }
     
     
-    @IBAction func squareHasBeenClicked(sender :UIButton) {
-
+    @IBAction func squareHasBeenClicked(button :UIButton) {
+        hideLabelsAndButtons()
+        
         if !board.checkForThreeInARow() {
-            updateImageForSquareSelectedByHuman(squareId: sender.tag, senderId: sender)
-            board.humanHasTakenTurn(squareId: sender.tag)
-            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
+            board.humanVsMachine(squareId: button.tag)
+            updateImageForSquareSelectedByHuman(squareId: button.tag, senderId: button)
+  
+
+            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.8, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
+            
             if board.checkForThreeInARow() {
-                var winner = board.playerId == 1 ? "Player 1 Wins" : " Player 2 Wins"
-                winnersLabel.hidden = false
-                winnersLabel.text = winner
-                resetButton.hidden = false
+                winnersLabel.text = board.playerId == 1 ? "Human Wins" : "Computer Wins"
+                showLabelsAndButtons()
             } else if board.squaresLeftInGame() == 0 {
                 winnersLabel.text = "It's a Draw"
-                winnersLabel.hidden = false
-                resetButton.hidden = false
+                showLabelsAndButtons()
             }
         }
     }
-    
+ 
     func updateImageForSquareSelectedByHuman(squareId square_tag :Int, senderId sender :UIButton) {
-        var imageTodisplay = board.playerId == 1 ? playerO : playerX
+        var imageTodisplay = board.playerId == 1 ? playerX : playerO
         sender.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
     }
     
     @IBAction func resetButtonClicked(sender: AnyObject) {
-        winnersLabel.hidden = true
         resetButtonImages()
+        board.resetBoard()
         resetButton.hidden = true
         playingFirstLabel.hidden = false
         humanFirstButton.hidden = false
         phoneFirstButton.hidden = false
-        board.resetBoard()
+        winnersLabel.hidden = true
+    }
+    
+    func hideLabelsAndButtons() {
+        playingFirstLabel.hidden = true
+        humanFirstButton.hidden = true
+        phoneFirstButton.hidden = true
+        winnersLabel.hidden = true
+    }
+    
+    func showLabelsAndButtons() {
+        winnersLabel.hidden = false
+        resetButton.hidden = false
     }
     
     func resetButtonImages() {
@@ -85,7 +97,7 @@ class OnePlayerViewController: UIViewController {
     }
     
     func displayTheComputersChoice() {
-        var imageTodisplay = board.cpu == 1 ? playerO : playerX
+        var imageTodisplay = board.cpu == 2 ? playerO : playerX
         var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
         for choice in board.squaresSelectedDuringPlay {
             if board.gameSquares[choice] == board.cpu {
@@ -94,19 +106,13 @@ class OnePlayerViewController: UIViewController {
         }
     }
     @IBAction func humanSelectedToPlayFirst(sender: AnyObject) {
-        playingFirstLabel.hidden = true
-        humanFirstButton.hidden = true
-        phoneFirstButton.hidden = true
+        hideLabelsAndButtons()
         board.playerId = 1
         board.cpu = 2
-
-        
     }
     
     @IBAction func phoneSelectedToPlayFirst(sender: AnyObject) {
-        playingFirstLabel.hidden = true
-        humanFirstButton.hidden = true
-        phoneFirstButton.hidden = true
+        hideLabelsAndButtons()
         board.playerId = 2
         board.cpu = 1
         board.computersTurnToPlay(playerId: 1)

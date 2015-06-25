@@ -72,17 +72,21 @@ class PhoneVsPhoneViewController: UIViewController {
             }
             
         if board.squaresLeftInGame() == 0  && !board.checkForThreeInARow() {
-                winnersLabel.hidden = false
                 winnersLabel.text = "It's a draw"
-                resetButton.hidden = false
-                watchTheNextMoveButton.hidden = true
+                showLabelsAndButtons()
+            
         } else if board.checkForThreeInARow() {
-            winnersLabel.hidden = false
             winnersLabel.text = "Something went wrong"
-            resetButton.hidden = false
-            watchTheNextMoveButton.hidden = true
+            showLabelsAndButtons()
+            
             }
         }
+    }
+    
+    func showLabelsAndButtons() {
+        winnersLabel.hidden = false
+        resetButton.hidden = false
+        watchTheNextMoveButton.hidden = true
     }
     
     func updateSquareImages() {

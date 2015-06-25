@@ -11,34 +11,11 @@ import XCTest
 import ticTacToe
 
 class TestGameController: XCTestCase {
-
-
-    func testMachineVsMachine() {
-        let cpu = GameController()
-
-        cpu.machineVsMachine()
-
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 0))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 1))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 2))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 3))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 4))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 5))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 6))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 7))
-        XCTAssertFalse(cpu.isSquareStillInPlay(squareId: 8))
-        
-        XCTAssertEqual(cpu.squaresLeftInGame(), 0)
-        
-        XCTAssertEqual(cpu.gameSquares[4], 2, "cpuO should have selected the center square on first go")
-    }
     
     func testHumanVsMachine() {
         let cpu = GameController()
-//        typealias  player = GameController.PlayerGoingFirst
         
-//        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.human)
-            cpu.humanVsMachine(squareId: 0)
+        cpu.humanVsMachine(squareId: 0)
         XCTAssertEqual(cpu.squaresLeftInGame(), 7, "both players should have taken a turn ")
             cpu.humanVsMachine(squareId: 2)
         XCTAssertEqual(cpu.squaresLeftInGame(), 5, "both players should have taken a turn ")
@@ -46,7 +23,6 @@ class TestGameController: XCTestCase {
         XCTAssertEqual(cpu.gameSquares[1], 2, "cpu should have blocked")
         
         cpu.resetBoard()
-//        cpu.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: player.computer)
         XCTAssertEqual(cpu.squaresLeftInGame(), 9)
        
         cpu.humanVsMachine(squareId: 4)
@@ -62,15 +38,7 @@ class TestGameController: XCTestCase {
         XCTAssertTrue(cpu.checkForThreeInARow())
 
     }
-    
-//    func testWhichPlayerGoesFirstHumanOrMachine() {
-//        let player = GameController()
-//        typealias goingFirst = GameController.PlayerGoingFirst
-//        
-//        player.whichPlayerGoesFirstHumanOrMachine(playerToGoFirst: goingFirst.computer)
-//        
-//    }
-    
+        
     func testHumanVsHuman() {
         let human = GameController()
         

@@ -42,19 +42,17 @@ class TwoPlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func squareHasBeenClicked(sender :UIButton) {
-        if !board.checkForThreeInARow() && board.humanVsHuman(squareId: sender.tag) {
-            updateImageForSquareSelectedByHuman(squareId: sender.tag, senderId: sender)
+    @IBAction func squareHasBeenClicked(button :UIButton) {
+        hideLabelsAndButtons()
+        if !board.checkForThreeInARow() && board.humanVsHuman(squareId: button.tag) {
+            updateImageForSquareSelectedByHuman(squareId: button.tag, senderId: button)
             
             if board.checkForThreeInARow() {
-                var winner = board.playerId == 1 ? "Player O Wins" : " Player X Wins"
-                winnersLabel.hidden = false
-                winnersLabel.text = winner
-                resetButton.hidden = false
+                winnersLabel.text = board.playerId == 1 ? "Player O Wins" : " Player X Wins"
+                showLabelsAndButtons()
             } else if board.squaresLeftInGame() == 0 {
                 winnersLabel.text = "It's a Draw"
-                winnersLabel.hidden = false
-                resetButton.hidden = false
+                showLabelsAndButtons()
             }
         }
     }
@@ -80,17 +78,26 @@ class TwoPlayerViewController: UIViewController {
             image.setImage(UIImage(), forState: UIControlState.Normal)
         }
     }
-    @IBAction func playerXSelectedToPlayFirst(sender: AnyObject) {
+    
+    func hideLabelsAndButtons() {
         playingFirstLabel.hidden = true
         playerXToGoFirst.hidden = true
         playerOToGoFirst.hidden = true
-        board.playerId = 1    
+        winnersLabel.hidden = true
+    }
+    
+    func showLabelsAndButtons() {
+        winnersLabel.hidden = false
+        resetButton.hidden = false
+    }
+    
+    @IBAction func playerXSelectedToPlayFirst(sender: AnyObject) {
+        hideLabelsAndButtons()
+        board.playerId = 1
     }
     
     @IBAction func playerOSelectedToPlayFirst(sender: AnyObject) {
-        playingFirstLabel.hidden = true
-        playerXToGoFirst.hidden = true
-        playerOToGoFirst.hidden = true
+        hideLabelsAndButtons()
         board.playerId = 2
     }
     

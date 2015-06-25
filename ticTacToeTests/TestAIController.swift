@@ -41,24 +41,17 @@ class TestAIController: XCTestCase {
     func testChooseAnySquareExceptACorner() {
         let square = AIController()
         
-        // Top row
-        square.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 0)
-        square.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 2)
         XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
-        XCTAssertEqual(square.gameSquares[1], 1)
+        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
+        XCTAssertEqual(square.gameSquares[1], 1) // Top row
+        XCTAssertEqual(square.gameSquares[3], 1) // middle row
+        XCTAssertEqual(square.gameSquares[5], 1) // middle row
+        XCTAssertEqual(square.gameSquares[7], 1) // bottom row
         
-        // middle row
-        square.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 4)
-        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
-        XCTAssertEqual(square.gameSquares[3], 1)
-        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
-        XCTAssertEqual(square.gameSquares[5], 1)
+        XCTAssertFalse(square.chooseAnySquareExceptACorner(playerId: 1))
         
-        // bottom row
-        square.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 6)
-        square.updateGameBoardWithSelectedSquare(playerId: 2, squareId: 8)
-        XCTAssertTrue(square.chooseAnySquareExceptACorner(playerId: 1))
-        XCTAssertEqual(square.gameSquares[7], 1)
     }
     
     func testAWinningMove() {

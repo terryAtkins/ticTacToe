@@ -15,7 +15,7 @@ public class AIController :ThreeInARow {
 
         
     public func computersTurnToPlay(playerId player :Int) -> Bool {
-        if firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || secondPlayer_playForTheCenterOrCorner(playerId: player) {
+        if firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || secondPlayer_playForTheCenterOrAnyWhereButACorner(playerId: player) {
             return true
         } else if playForWinOrBlock(playerId: player) {
             return true
@@ -26,51 +26,24 @@ public class AIController :ThreeInARow {
     }
     
     func firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId player :Int) -> Bool  {
-        if squaresLeftInGame() == 9 || squaresLeftInGame() == 7 {
+        if squaresSelectedDuringPlay.count == 0 || squaresSelectedDuringPlay.count == 2 {
             isCornersFree_playOne(playerId: player)
             return true
         }
         return false
     }
     
-    func secondPlayer_playForTheCenterOrCorner(playerId player :Int) -> Bool {
-        if squaresLeftInGame() == 8  {
+    func secondPlayer_playForTheCenterOrAnyWhereButACorner(playerId player :Int) -> Bool {
+        if squaresSelectedDuringPlay.count == 1  {
             if isMiddleSquareFree_playIt(playerId: player) {
                 return true
-            } else { //if squaresLeftInGame() == 6 {
-                
+            } else {
                 chooseAnySquareExceptACorner(playerId: player)
                 return true
-//            } else if isCornersFree_playOne(playerId: player) {
-//           
-//                
-//                return true
             }
         }
         return false
     }
-    
-    func selectCorner() -> Int {
-        var cornerSquares = [0, 2, 6, 8]
-        var i = 0
-        var randonSquare = numGen()
-        while i >= 0 {
-            if isSquareStillInPlay(squareId: cornerSquares[randonSquare]) {
-                return randonSquare
-            } else {
-            randonSquare = numGen()
-            }
-            i += 1
-        }
-        return randonSquare
-    }
-    
-    func numGen() -> Int {
-        var randomNumber = Int(arc4random_uniform(UInt32(4)))
-        return randomNumber
-    }
-    
-
     
     public func isCornersFree_playOne(playerId player :Int) -> Bool {
         let cornerSquares = [0, 2, 6, 8]
@@ -82,29 +55,14 @@ public class AIController :ThreeInARow {
             }
         }
         
-            if !ramdonSquare.isEmpty {
-                var randomNumber = Int(arc4random_uniform(UInt32(ramdonSquare.count)))
-                var ramdonSquareId = ramdonSquare[randomNumber]
-                updateGameBoardWithSelectedSquare(playerId: player, squareId: ramdonSquareId)
-                return true
-            }
+        if !ramdonSquare.isEmpty {
+            var randomNumber = Int(arc4random_uniform(UInt32(ramdonSquare.count)))
+            var ramdonSquareId = ramdonSquare[randomNumber]
+            updateGameBoardWithSelectedSquare(playerId: player, squareId: ramdonSquareId)
+            return true
+        }
         return false
     }
-    
-
-
-//    public func isCornersFree_playOne(playerId player :Int) -> Bool {
-//        let cornerSquares = [0, 2, 6, 8]
-
-//            for corner in cornerSquares {
-//                if isSquareStillInPlay(squareId: corner) {
-//                    updateGameBoardWithSelectedSquare(playerId: player, squareId: corner)
-//                    return true
-//                }
-//            }
-//        }
-//        return false
-//    }
     
     public func isMiddleSquareFree_playIt(playerId player :Int) -> Bool {
         if isSquareStillInPlay(squareId: 4) {
@@ -116,12 +74,19 @@ public class AIController :ThreeInARow {
     
     public func chooseAnySquareExceptACorner(playerId player: Int) -> Bool {
         var notACornerOrTheMiddle = [1, 3, 5, 7]
-    
+        var ramdonSquare = [Int]()
+        
         for square in notACornerOrTheMiddle {
             if isSquareStillInPlay(squareId: square) {
-                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-                return true
+                ramdonSquare.append(square)
             }
+        }
+        
+        if !ramdonSquare.isEmpty {
+            var randomNumber = Int(arc4random_uniform(UInt32(ramdonSquare.count)))
+            var ramdonSquareId = ramdonSquare[randomNumber]
+            updateGameBoardWithSelectedSquare(playerId: player, squareId: ramdonSquareId)
+            return true
         }
         return false
     }
@@ -170,8 +135,8 @@ public class AIController :ThreeInARow {
     }
     
     public func aBlockingMove(playerId player:Int, squareId square :Int) -> Bool {
-        var player2 = switchPlayersId(playerId: player)
-        updateGameBoardWithSelectedSquare(playerId: player2, squareId: square)
+        var switchedId = switchPlayersId(playerId: player)
+        updateGameBoardWithSelectedSquare(playerId: switchedId, squareId: square)
         
         if checkForThreeInARow() {
             resetSquare(squareId: square)
