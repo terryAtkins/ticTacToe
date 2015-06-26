@@ -117,7 +117,12 @@ public class AIController :ThreeInARow {
             if winningMove(playerId: player, squareId: square) {
                 updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
-            } else if aBlockingMove(playerId: player, squareId: square) {
+            }
+        }
+        
+        for square in squaresToPlay {
+            
+            if aBlockingMove(playerId: player, squareId: square) {
                 updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
             }
