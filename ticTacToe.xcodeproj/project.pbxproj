@@ -10,6 +10,7 @@
 		DE06226A1B2C27B200FD88F6 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0622691B2C27B200FD88F6 /* GameController.swift */; };
 		DE0622721B2C4E1C00FD88F6 /* AIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0622711B2C4E1C00FD88F6 /* AIController.swift */; };
 		DE6360F51B38AAF5005EDFEB /* ticTacTow.png in Resources */ = {isa = PBXBuildFile; fileRef = DE6360F41B38AAF5005EDFEB /* ticTacTow.png */; };
+		DE8EF8551B3ED17A000AA2E9 /* BoardLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8EF8541B3ED17A000AA2E9 /* BoardLayoutViewController.swift */; };
 		DE8F2B501B2759B400356AE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B4F1B2759B400356AE7 /* AppDelegate.swift */; };
 		DE8F2B521B2759B400356AE7 /* TwoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F2B511B2759B400356AE7 /* TwoPlayerViewController.swift */; };
 		DE8F2B551B2759B400356AE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE8F2B531B2759B400356AE7 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		DE0622691B2C27B200FD88F6 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		DE0622711B2C4E1C00FD88F6 /* AIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIController.swift; sourceTree = "<group>"; };
 		DE6360F41B38AAF5005EDFEB /* ticTacTow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ticTacTow.png; sourceTree = "<group>"; };
+		DE8EF8541B3ED17A000AA2E9 /* BoardLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardLayoutViewController.swift; path = ../BoardLayoutViewController.swift; sourceTree = "<group>"; };
 		DE8F2B4A1B2759B400356AE7 /* ticTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ticTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8F2B4E1B2759B400356AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE8F2B4F1B2759B400356AE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				DE8F2B4F1B2759B400356AE7 /* AppDelegate.swift */,
 				DEAE91BD1B3B011D00F77459 /* HomeViewController.swift */,
+				DE8EF8541B3ED17A000AA2E9 /* BoardLayoutViewController.swift */,
 				DEAE91BB1B3AFC7C00F77459 /* OnePlayerViewController.swift */,
 				DE8F2B511B2759B400356AE7 /* TwoPlayerViewController.swift */,
 				DEAE91BF1B3B398600F77459 /* PhoneVsPhoneViewController.swift */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBB5B771B28D1E3007D6A0F /* ThreeInARow.swift in Sources */,
+				DE8EF8551B3ED17A000AA2E9 /* BoardLayoutViewController.swift in Sources */,
 				DE0622721B2C4E1C00FD88F6 /* AIController.swift in Sources */,
 				DE06226A1B2C27B200FD88F6 /* GameController.swift in Sources */,
 				DEAE91BC1B3AFC7C00F77459 /* OnePlayerViewController.swift in Sources */,

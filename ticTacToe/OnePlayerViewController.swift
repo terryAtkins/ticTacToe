@@ -8,43 +8,26 @@
 
 import UIKit
 
-class OnePlayerViewController: UIViewController {
+class OnePlayerViewController: BoardLayoutViewController {
     
-    let game = GameController()
-    var displaySquareSelectedByComputer = NSTimer()
-    var playerX = "playerX"
-    var playerO = "playerO"
-    
-    @IBOutlet weak var square0: UIButton!
-    @IBOutlet weak var square1: UIButton!
-    @IBOutlet weak var square2: UIButton!
-    @IBOutlet weak var square3: UIButton!
-    @IBOutlet weak var square4: UIButton!
-    @IBOutlet weak var square5: UIButton!
-    @IBOutlet weak var square6: UIButton!
-    @IBOutlet weak var square7: UIButton!
-    @IBOutlet weak var square8: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var humanFirstButton: UIButton!
     @IBOutlet weak var phoneFirstButton: UIButton!
     
-    @IBOutlet weak var winnersLabel: UILabel!
     @IBOutlet weak var playingFirstLabel: UILabel!
     
+    var humanFirst = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        preventHumanTabbingTheSquares()
     }
     
     @IBAction func humanSelectedToPlayFirst(sender: AnyObject) {
         hideLabelsAndButtons()
+        humanFirst = true
         game.playerId = 1
         game.cpu = 2
+        allowHumanTabbingTheSquares()
     }
     
     @IBAction func phoneSelectedToPlayFirst(sender: AnyObject) {
@@ -53,83 +36,40 @@ class OnePlayerViewController: UIViewController {
         game.cpu = 1
         game.computersTurnToPlay(playerId: 1)
         displayTheComputersChoice()
+        allowHumanTabbingTheSquares()
     }
     
-    @IBAction func squareHasBeenClicked(button :UIButton) {
-        hideLabelsAndButtons()
+    @IBAction func squareHasBeenClickedByHuman(sender :UIButton) {
         
         if !game.checkForThreeInARow() {
-            game.humanVsMachine(squareId: button.tag)
-            updateImageForSquareSelectedByHuman(squareId: button)
-            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.6, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
-            
-            if game.checkForThreeInARow() {
-                if game.squaresSelectedDuringPlay.count % 2 != 0 {
-                    winnersLabel.text = "Player 1 Wins"
-                } else {
-                    winnersLabel.text = "Player 2 Wins"
-                }
-                showLabelsAndButtons()
-            } else if game.squaresLeftInGame() == 0 {
-                winnersLabel.text = "It's a Draw"
-                showLabelsAndButtons()
-            }
+            game.humanVsMachine(squareId: sender.tag)
+            updateImageForSquareSelectedByHuman(squareId: sender)
+            displaySquareSelectedByComputer = NSTimer.scheduledTimerWithTimeInterval(0.5, target:self, selector: Selector("displayTheComputersChoice"), userInfo: nil, repeats: true)
         }
-    }
- 
-    func updateImageForSquareSelectedByHuman(squareId button :UIButton) {
-        var imageTodisplay = game.playerId == 1 ? playerX : playerO
-        button.setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
-    }
-    
-    func displayTheComputersChoice() {
-        var imageTodisplay = game.cpu == 2 ? playerO : playerX
-        var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
-        for choice in game.squaresSelectedDuringPlay {
-            if game.gameSquares[choice] == game.cpu {
-                buttons[choice].setImage(UIImage(named: imageTodisplay), forState: UIControlState.Normal)
-            }
+        
+        if game.checkForThreeInARow() {
+            winnersLabel.text = game.squaresSelectedDuringPlay.count % 2 != 0 && humanFirst ? "Human Wins" : "Phone Wins"
+            showLabelsAndButtons()
+        } else if game.squaresLeftInGame() == 0 {
+            winnersLabel.text = "It's a Draw"
+            showLabelsAndButtons()
         }
     }
     
-    @IBAction func resetButtonClicked(sender: AnyObject) {
-        resetButtonImages()
-        game.resetBoard()
-        resetButton.hidden = true
-        playingFirstLabel.hidden = false
+    override func resetButtonClicked(sender: AnyObject) {
+        super.resetButtonClicked(sender)
         humanFirstButton.hidden = false
         phoneFirstButton.hidden = false
-        winnersLabel.hidden = true
+        playingFirstLabel.hidden = false
+        humanFirst = false
+        preventHumanTabbingTheSquares()
     }
     
-    func hideLabelsAndButtons() {
-        playingFirstLabel.hidden = true
+    override func hideLabelsAndButtons() {
+        super.hideLabelsAndButtons()
         humanFirstButton.hidden = true
         phoneFirstButton.hidden = true
-        winnersLabel.hidden = true
-    }
-    
-    func showLabelsAndButtons() {
-        winnersLabel.hidden = false
-        resetButton.hidden = false
-    }
-    
-    func resetButtonImages() {
-        var buttonImages = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
-        for image in buttonImages {
-            image.setImage(UIImage(), forState: UIControlState.Normal)
-        }
+        playingFirstLabel.hidden = true
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
