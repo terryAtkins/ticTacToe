@@ -40,7 +40,7 @@ class BoardLayoutViewController: UIViewController {
     
     func preventHumanTabbingTheSquares() {
         var buttons = [square0, square1, square2, square3, square4, square5, square6, square7, square8]
-        //xcode won't let me make the buttons array a property,
+        //xcode won't let me make the buttons array a property, could create a function to pass them around
         
         for button in buttons {
             button.enabled = false

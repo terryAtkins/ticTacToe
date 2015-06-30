@@ -15,9 +15,11 @@ public class AIController :ThreeInARow {
 
         
     public func computersTurnToPlay(playerId player :Int) -> Bool {
-        if firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || secondPlayer_playForTheCenterOrAnyWhereButACorner(playerId: player) {
+        if isFirstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || isSecondPlayerAndFirstGo_PlayMiddleOrACorner(playerId: player) {
             return true
         } else if playForWinOrBlock(playerId: player) {
+            return true
+        } else if isSecondPlayerAndSecondGo_playACornerOrAnywhereNotACorner(playerId: player) {
             return true
         } else if playAnyFreeSquare(playerId: player){
             return true
@@ -25,7 +27,7 @@ public class AIController :ThreeInARow {
         return false
     }
     
-    func firstPlayer_forTheFirstTwoPlaysSelectACorner(playerId player :Int) -> Bool  {
+    func isFirstPlayer_forTheFirstTwoPlaysSelectACorner(playerId player :Int) -> Bool  {
         if squaresSelectedDuringPlay.count == 0 || squaresSelectedDuringPlay.count == 2 {
             isCornersFree_playOne(playerId: player)
             return true
@@ -33,17 +35,29 @@ public class AIController :ThreeInARow {
         return false
     }
     
-    func secondPlayer_playForTheCenterOrAnyWhereButACorner(playerId player :Int) -> Bool {
-        if squaresSelectedDuringPlay.count == 1  {
+    func isSecondPlayerAndFirstGo_PlayMiddleOrACorner(playerId player :Int) -> Bool {
+        if squaresSelectedDuringPlay.count == 1 {
             if isMiddleSquareFree_playIt(playerId: player) {
                 return true
-            } else {
-                chooseAnySquareExceptACorner(playerId: player)
+            } else  if squaresSelectedDuringPlay.count == 1 {
+                 isCornersFree_playOne(playerId: player)
                 return true
             }
         }
         return false
     }
+    
+    func isSecondPlayerAndSecondGo_playACornerOrAnywhereNotACorner(playerId player :Int) -> Bool {
+        if squaresSelectedDuringPlay.count == 3  && gameSquares[4] == player {
+            chooseAnySquareExceptACorner(playerId: player)
+            return true
+        } else if squaresSelectedDuringPlay.count == 3  && gameSquares[4] != player {
+            isCornersFree_playOne(playerId: player)
+            return true
+        }
+        return false
+    }
+    
     
     public func isCornersFree_playOne(playerId player :Int) -> Bool {
         let cornerSquares = [0, 2, 6, 8]
@@ -92,18 +106,11 @@ public class AIController :ThreeInARow {
     }
     
     public func playAnyFreeSquare(playerId player :Int) -> Bool {
-        if  isMiddleSquareFree_playIt(playerId: player) {
-            return true
-        } else if squaresSelectedDuringPlay.count == 3 {
-            chooseAnySquareExceptACorner(playerId: player)
-            return true
-        } else {
-            squaresToPlay = searchForEmptySquares()
-            for square in squaresToPlay {
-                if isSquareStillInPlay(squareId: square) {
-                    updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-                    return true
-                }
+        squaresToPlay = searchForEmptySquares()
+        for square in squaresToPlay {
+            if isSquareStillInPlay(squareId: square) {
+                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
+                return true
             }
         }
         return false
@@ -121,7 +128,6 @@ public class AIController :ThreeInARow {
         }
         
         for square in squaresToPlay {
-            
             if aBlockingMove(playerId: player, squareId: square) {
                 updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
                 return true
