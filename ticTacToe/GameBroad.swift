@@ -10,86 +10,35 @@ import UIKit
 
 public class GameBoard {
     
-    public var gameSquares = [0,0,0,0,0,0,0,0,0] // needs to be public for testing in XCTest
+    public var gameSquares = [0,0,0,0,0,0,0,0,0] // public for testing in XCTest
     public var squaresSelectedDuringPlay = [Int]()
-    
-    var bottomLeftSquare :Int!
-    var bottomCenterSquare :Int!
-    var bottomRightSquare :Int!
-    var middleLeftSquare :Int!
-    var middleCenterSquare :Int!
-    var middleRightSquare :Int!
-    var topLeftSquare :Int!
-    var topCenterSquare :Int!
-    var topRightSquare :Int!
-    var numberOfSquaresInAGames = 9
+    var player = 1 // put back in isWin
     
     public init() {
     }
     
-    public func upDateNames() {
-        topLeftSquare = gameSquares[0]
-        topCenterSquare = gameSquares[1]
-        topRightSquare = gameSquares[2]
-        middleLeftSquare = gameSquares[3]
-        middleCenterSquare = gameSquares[4]
-        middleRightSquare = gameSquares[5]
-        bottomLeftSquare = gameSquares[6]
-        bottomCenterSquare = gameSquares[7]
-        bottomRightSquare = gameSquares[8]
-    }
-    
     public func isSquareStillInPlay(squareId square :Int) -> Bool {
-        if gameSquares[square] == 0 {
-            return true
-        }
-        return false
+        return gameSquares[square] == 0
     }
     
-    public func updateGameBoardWithSelectedSquare(playerId player: Int, squareId square :Int) {
-        gameSquares[square] = player
+    public func updateGameBoardWithSelectedSquare(squareId square :Int) {
         squaresSelectedDuringPlay.append(square)
-        reduceNumberOfSquaresLeftToPlayByOne()
-       
+        gameSquares[square] = squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
     }
-    
-    public  func reduceNumberOfSquaresLeftToPlayByOne() -> Int {
-        if numberOfSquaresInAGames != 0 {
-            numberOfSquaresInAGames -= 1
-        }
-        return numberOfSquaresInAGames
-    }
-    
-    public func increaseNumberOfSquaresLeftToPlayByOne()  -> Int {
-        numberOfSquaresInAGames += 1
-        return numberOfSquaresInAGames
-    }
-    
-    public func squaresLeftInGame() -> Int {
-        return numberOfSquaresInAGames
-    }
-    
-    public func resetNumberOfSquaresLeftToPlay() -> Int {
-        numberOfSquaresInAGames = 9
-        return numberOfSquaresInAGames
-    }
-    
+
     public func searchForEmptySquares() -> [Int] {
-        var i = 0
         var emptySquares = [Int]()
         
-        while i < gameSquares.count {
+        for var i = 0; i < gameSquares.count; ++i {
             if gameSquares[i] == 0 {
                 emptySquares.append(i)
             }
-            i += 1
         }
         return emptySquares
     }
     
     public func resetBoard() {
         gameSquares = [0,0,0,0,0,0,0,0,0]
-        numberOfSquaresInAGames = 9
         squaresSelectedDuringPlay = [Int]()
     }
     
@@ -99,10 +48,36 @@ public class GameBoard {
     
     func resetSquare(squareId square :Int) {
         gameSquares[square] = 0
-        increaseNumberOfSquaresLeftToPlayByOne()
         squaresSelectedDuringPlay.removeLast()
     }
-
+    
+    public func isWin(#gameBoard: [Int]) -> Bool {
+        player = squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
+        return checkHorizontal(gameBoard: gameBoard, playerId: player) || checkVertical(gameBoard: gameBoard, playerId: player)  || checkDiagonal(gameBoard: gameBoard, playerId: player)
+    }
+    
+    func checkHorizontal(#gameBoard :[Int], playerId: Int) -> Bool {
+        for var i = 0; i < gameBoard.count - 1; i += 3 {
+            if gameBoard[i] == playerId && gameBoard[i] == gameBoard[i + 1] && gameBoard[i] == gameBoard[i + 2] {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkVertical(#gameBoard :[Int], playerId: Int) -> Bool {
+        for var i = 0; i < 3; ++i {
+            if gameBoard[i] == playerId && gameBoard[i] == gameBoard[i + 3] && gameBoard[i] == gameBoard[i + 6] {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkDiagonal(#gameBoard :[Int], playerId: Int) -> Bool {
+        return gameBoard[0] == playerId &&  gameBoard[0] == gameBoard[4] && gameBoard[0] == gameBoard[8] ||
+            gameBoard[2] == playerId && gameBoard[2] == gameBoard[4] && gameBoard[2] == gameBoard[6]
+    }
 }
 
 

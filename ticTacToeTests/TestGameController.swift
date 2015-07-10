@@ -12,88 +12,25 @@ import ticTacToe
 
 class TestGameController: XCTestCase {
     
-    func testHumanVsMachine() {
-        let cpu = GameController()
-        
-        cpu.humanVsMachine(squareId: 0)
-        XCTAssertEqual(cpu.squaresLeftInGame(), 7, "both players should have taken a turn ")
-            cpu.humanVsMachine(squareId: 2)
-        XCTAssertEqual(cpu.squaresLeftInGame(), 5, "both players should have taken a turn ")
-
-        XCTAssertEqual(cpu.gameSquares[1], 2, "cpu should have blocked")
-        
-        cpu.resetBoard()
-        XCTAssertEqual(cpu.squaresLeftInGame(), 9)
-       
-        cpu.humanVsMachine(squareId: 4)
-        XCTAssertEqual(cpu.squaresLeftInGame(), 7)
-        
-        cpu.humanVsMachine(squareId: 7)
-        XCTAssertEqual(cpu.squaresLeftInGame(), 5)
-        
-        cpu.humanVsMachine(squareId: 5)
-        XCTAssertEqual(cpu.squaresLeftInGame(), 3)
-        
-        cpu.humanVsMachine(squareId: 3)
-        XCTAssertTrue(cpu.checkForThreeInARow())
-
-    }
-        
-    func testHumanVsHuman() {
+    func testHumanAsTakenTurn() {
         let human = GameController()
-        
-        XCTAssertTrue(human.humanVsHuman(squareId: 0))
-        XCTAssertTrue(human.humanVsHuman(squareId: 1))
-        XCTAssertTrue(human.humanVsHuman(squareId: 2))
-        XCTAssertTrue(human.humanVsHuman(squareId: 3))
-        XCTAssertTrue(human.humanVsHuman(squareId: 4))
-        XCTAssertTrue(human.humanVsHuman(squareId: 5))
-        XCTAssertTrue(human.humanVsHuman(squareId: 6))
-        XCTAssertTrue(human.humanVsHuman(squareId: 7))
-        XCTAssertTrue(human.humanVsHuman(squareId: 8))
-        
-        XCTAssertEqual(human.gameSquares[0], 1, "should have playerId 1")
-        XCTAssertEqual(human.gameSquares[1], 2)
-        XCTAssertEqual(human.gameSquares[2], 1)
-        XCTAssertEqual(human.gameSquares[3], 2)
-        XCTAssertEqual(human.gameSquares[4], 1)
-        XCTAssertEqual(human.gameSquares[5], 2)
-        XCTAssertEqual(human.gameSquares[6], 1)
-        XCTAssertEqual(human.gameSquares[7], 2)
-        XCTAssertEqual(human.gameSquares[8], 1)
-        
+        let button  = UIButton()
+
+        XCTAssertEqual(human.controller.board.squaresSelectedDuringPlay.count, 0)
+
+        human.humanHasTakenTurn(squareId: button)
+        XCTAssertEqual(human.controller.board.squaresSelectedDuringPlay.count, 1)
+
     }
-
+    
+    func testComputersTurn() {
+        let computer = GameController()
+        let button  = UIButton()
+        var buttons: [UIButton] = [button]
+        
+        XCTAssertEqual(computer.controller.board.squaresSelectedDuringPlay.count, 0)
+        computer.computersTurn(buttons: buttons)
+        XCTAssertEqual(computer.controller.board.squaresSelectedDuringPlay.count, 1)
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

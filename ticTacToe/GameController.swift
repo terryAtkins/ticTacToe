@@ -6,45 +6,57 @@
 //  Created by terry atkins on 13/06/2015.
 //  Copyright (c) 2015 terry atkins. All rights reserved.
 //
-
+import UIKit
 import Foundation
 
-public class GameController :AIController {
-    let board = GameBoard()
-    var playerId :Int // needs to be public for testing
-    var cpu :Int
+public class GameController  {
     
-    public override init() {
-        playerId = 1
-        cpu = 2
+   public let controller = AIController() // public for testing
+    var displaySquareSelectedByComputer = NSTimer()
+    
+    public init() {
+    }
+    
+    func imageTodisplay() -> String {
+        var image = "playerO"
+        for square in controller.board.squaresSelectedDuringPlay {
+            image = controller.board.gameSquares[square] == 1 ? "playerO" : "playerX"
+        }
+        return image
+    }
+    
+    public func humanHasTakenTurn(squareId button :UIButton) -> Bool {
+        if controller.board.isSquareStillInPlay(squareId: button.tag) {
+            controller.board.updateGameBoardWithSelectedSquare(squareId: button.tag)
+            button.setImage(UIImage(named: imageTodisplay()), forState: UIControlState.Normal)
+            return true
+        }
+        return false
+    }
+    
+    func resetSquareImages(#buttons :[UIButton]) {
+        for image in buttons {
+            image.setImage(UIImage(), forState: UIControlState.Normal)
+        }
+    }
+    
+    func updateSquareImages(#buttons :[UIButton]) {
+        for choice in controller.board.squaresSelectedDuringPlay {
+            var image = controller.board.squaresSelectedDuringPlay.count % 2 == 1  ? "playerX" : "playerO"
+            buttons[choice].setImage(UIImage(named: image), forState: UIControlState.Normal)
+        }
     }
         
-    public func humanVsMachine(squareId square :Int) {
-
-        if cpu == 1 && squaresSelectedDuringPlay.count % 2 == 0 && !checkForThreeInARow() {
-            computersTurnToPlay(playerId: cpu)
-            
-        } else if humanHasTakenTurn(squareId: square) && !checkForThreeInARow() {
-            computersTurnToPlay(playerId: cpu)
-        }
+    public func computersTurn(#buttons: [UIButton]) {
+        var squareSelected = controller.miniMax()
+        controller.board.updateGameBoardWithSelectedSquare(squareId: squareSelected)
+        displayTheComputersChoice(square: squareSelected, buttons: buttons)
+        
     }
     
-    public func humanVsHuman(squareId square :Int) -> Bool {
-        if humanHasTakenTurn(squareId: square) {
-            playerId = switchPlayersId(playerId: playerId)
-            return true
-        }
-        return false
+    func displayTheComputersChoice(#square: Int, buttons: [UIButton]) {
+        buttons[square].setImage(UIImage(named: imageTodisplay()), forState: UIControlState.Normal)
     }
-    
-    public func humanHasTakenTurn(squareId square :Int) -> Bool {
-        if isSquareStillInPlay(squareId: square) {
-            updateGameBoardWithSelectedSquare(playerId: playerId, squareId: square)
-            return true
-        }
-        return false
-    }
-
 }
 
 

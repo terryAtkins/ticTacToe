@@ -9,162 +9,72 @@
 
 import Foundation
 
-public class AIController :ThreeInARow {
+public class AIController {
     
-    var squaresToPlay = [Int]()
-
+    public let board = GameBoard() // public for testing
+    let boardInPlay :[Int]
+    
+    public init() {
+        boardInPlay = board.gameSquares
+    }
+    
+    public func miniMax() -> Int {
         
-    public func computersTurnToPlay(playerId player :Int) -> Bool {
-        if isFirstPlayer_forTheFirstTwoPlaysSelectACorner(playerId: player) || isSecondPlayerAndFirstGo_PlayMiddleOrACorner(playerId: player) {
-            return true
-        } else if playForWinOrBlock(playerId: player) {
-            return true
-        } else if isSecondPlayerAndSecondGo_playACornerOrAnywhereNotACorner(playerId: player) {
-            return true
-        } else if playAnyFreeSquare(playerId: player){
-            return true
-        }
-        return false
-    }
-    
-    func isFirstPlayer_forTheFirstTwoPlaysSelectACorner(playerId player :Int) -> Bool  {
-        if squaresSelectedDuringPlay.count == 0 || squaresSelectedDuringPlay.count == 2 {
-            isCornersFree_playOne(playerId: player)
-            return true
-        }
-        return false
-    }
-    
-    func isSecondPlayerAndFirstGo_PlayMiddleOrACorner(playerId player :Int) -> Bool {
-        if squaresSelectedDuringPlay.count == 1 {
-            if isMiddleSquareFree_playIt(playerId: player) {
-                return true
-            } else  if squaresSelectedDuringPlay.count == 1 {
-                 isCornersFree_playOne(playerId: player)
-                return true
+        var emptySquares = board.searchForEmptySquares()
+        var dummyBoard = board.gameSquares
+        let currentPlayer = board.squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
+        let opponent = currentPlayer == 1 ? 2 : 1
+        var result :[(squareId: Int, minMax: Int)] = []
+        var remainingSquares :[Int]
+        var forEachEmptySquares :[Int]
+        var score = 0
+        
+        for square in emptySquares {
+            
+            if isNextMoveAWinForCurrentPlayer(squareId: square, currentPlayerId: currentPlayer, dummyBoard: dummyBoard) || dummyBoard.count == 9 {
+                score += 10
+                result += [(squareId:square, minMax: score)]
+                break
+            } else {
+                dummyBoard[square] = currentPlayer
+                emptySquares.removeAtIndex(0)
+                remainingSquares = emptySquares
+                
+                for forEachEmptySquares in remainingSquares {
+                    if isNextMoveAWinForOpponent(squareId: forEachEmptySquares, opponentId: opponent, dummyBoard: dummyBoard) {
+                        score += -1
+                    }
+                    
+                    if forEachEmptySquares < emptySquares.count - 2  {
+                        if isNextMoveAWinForCurrentPlayer(squareId: forEachEmptySquares + 1, currentPlayerId: currentPlayer, dummyBoard: dummyBoard) {
+                            score += 1
+                        }
+                    }
+                    
+                    if forEachEmptySquares == emptySquares.count - 1 && !board.isWin(gameBoard: dummyBoard) {
+                        score += 0
+                    }
+                }
+                result += [(squareId:square, minMax: score)]
+                score = 0
             }
+            dummyBoard = board.gameSquares
         }
-        return false
+        result.sort({a,b in a.1 > b.1})
+        return result.first!.squareId
     }
     
-    func isSecondPlayerAndSecondGo_playACornerOrAnywhereNotACorner(playerId player :Int) -> Bool {
-        if squaresSelectedDuringPlay.count == 3  && gameSquares[4] == player {
-            chooseAnySquareExceptACorner(playerId: player)
-            return true
-        } else if squaresSelectedDuringPlay.count == 3  && gameSquares[4] != player {
-            isCornersFree_playOne(playerId: player)
-            return true
-        }
-        return false
+    public func isNextMoveAWinForCurrentPlayer(var #squareId :Int, var currentPlayerId :Int, var dummyBoard: [Int]) -> Bool {
+        dummyBoard[squareId] = currentPlayerId
+        return board.isWin(gameBoard: dummyBoard)
     }
     
-    
-    public func isCornersFree_playOne(playerId player :Int) -> Bool {
-        let cornerSquares = [0, 2, 6, 8]
-        var ramdonSquare = [Int]()
-        
-        for corner in cornerSquares {
-            if isSquareStillInPlay(squareId: corner) {
-                ramdonSquare.append(corner)
-            }
-        }
-        
-        if !ramdonSquare.isEmpty {
-            var randomNumber = Int(arc4random_uniform(UInt32(ramdonSquare.count)))
-            var ramdonSquareId = ramdonSquare[randomNumber]
-            updateGameBoardWithSelectedSquare(playerId: player, squareId: ramdonSquareId)
-            return true
-        }
-        return false
-    }
-    
-    public func isMiddleSquareFree_playIt(playerId player :Int) -> Bool {
-        if isSquareStillInPlay(squareId: 4) {
-            updateGameBoardWithSelectedSquare(playerId: player, squareId: 4)
-            return true
-        }
-        return false
-    }
-    
-    public func chooseAnySquareExceptACorner(playerId player: Int) -> Bool {
-        var notACornerOrTheMiddle = [1, 3, 5, 7]
-        var ramdonSquare = [Int]()
-        
-        for square in notACornerOrTheMiddle {
-            if isSquareStillInPlay(squareId: square) {
-                ramdonSquare.append(square)
-            }
-        }
-        
-        if !ramdonSquare.isEmpty {
-            var randomNumber = Int(arc4random_uniform(UInt32(ramdonSquare.count)))
-            var ramdonSquareId = ramdonSquare[randomNumber]
-            updateGameBoardWithSelectedSquare(playerId: player, squareId: ramdonSquareId)
-            return true
-        }
-        return false
-    }
-    
-    public func playAnyFreeSquare(playerId player :Int) -> Bool {
-        squaresToPlay = searchForEmptySquares()
-        for square in squaresToPlay {
-            if isSquareStillInPlay(squareId: square) {
-                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-                return true
-            }
-        }
-        return false
-    }
-    
-    public func playForWinOrBlock(playerId player :Int) -> Bool {
-        
-        squaresToPlay = searchForEmptySquares()
-        
-        for square in squaresToPlay {
-            if winningMove(playerId: player, squareId: square) {
-                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-                return true
-            }
-        }
-        
-        for square in squaresToPlay {
-            if aBlockingMove(playerId: player, squareId: square) {
-                updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-                return true
-            }
-        }
-        return false
-    }
-
-    public func winningMove(playerId player :Int, squareId square :Int) -> Bool {
-        updateGameBoardWithSelectedSquare(playerId: player, squareId: square)
-        
-        if checkForThreeInARow() {
-            resetSquare(squareId: square)
-            return true
-        } else {
-            resetSquare(squareId: square)
-        }
-        return false
-    }
-    
-    public func aBlockingMove(playerId player:Int, squareId square :Int) -> Bool {
-        var switchedId = switchPlayersId(playerId: player)
-        updateGameBoardWithSelectedSquare(playerId: switchedId, squareId: square)
-        
-        if checkForThreeInARow() {
-            resetSquare(squareId: square)
-            return true
-        } else {
-            resetSquare(squareId: square)
-            return false
-        }
-    }
-
-    public func switchPlayersId(playerId player: Int) -> Int {
-       return player == 1 ? 2 : 1
+    public func isNextMoveAWinForOpponent(var #squareId :Int, var opponentId :Int, var dummyBoard: [Int]) -> Bool {
+        dummyBoard[squareId] = opponentId
+        return board.isWin(gameBoard: dummyBoard)
     }
 }
+
 
 
 

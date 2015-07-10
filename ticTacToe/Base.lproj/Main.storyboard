@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vvH-ZC-Yo9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vvH-ZC-Yo9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -28,7 +28,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zEa-lx-CJP" kind="push" identifier="phoneVsPhone" id="bdT-P7-0Dp"/>
+                                    <segue destination="zEa-lx-CJP" kind="push" identifier="phoneVsphone" id="pc7-9v-qyY"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticTacTow.png" translatesAutoresizingMaskIntoConstraints="NO" id="pF4-Gj-wjx">
@@ -40,7 +40,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hij-sm-3po" kind="push" identifier="onePlayer" id="JGY-sT-UZd"/>
+                                    <segue destination="zEa-lx-CJP" kind="push" identifier="onePlayer" id="Upu-Ce-v6Z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-bm-iqe">
@@ -49,7 +49,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mlY-uu-qSM" kind="push" identifier="twoPlayer" id="Nne-SD-XvI"/>
+                                    <segue destination="zEa-lx-CJP" kind="push" identifier="twoPlayer" id="lY1-gR-OUc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,166 +67,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnQ-sI-JWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5292" y="810"/>
-        </scene>
-        <!--Two Player-->
-        <scene sceneID="C0Q-hN-Goq">
-            <objects>
-                <viewController title="Two Player" id="mlY-uu-qSM" customClass="TwoPlayerViewController" customModule="ticTacToe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gOp-fh-ziJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="UQs-KX-I5f"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pbW-dd-fjb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gridSet" translatesAutoresizingMaskIntoConstraints="NO" id="PHw-Kw-v1T">
-                                <rect key="frame" x="30" y="50" width="260" height="408"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRK-xa-ddU" userLabel="square0">
-                                <rect key="frame" x="28" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="paJ-nh-bKM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgq-F1-H3o" userLabel="square1">
-                                <rect key="frame" x="121" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="wM5-Ij-IAx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKq-yK-XaH" userLabel="square2">
-                                <rect key="frame" x="214" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="gB2-f5-vPp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyv-M5-h2N" userLabel="square3">
-                                <rect key="frame" x="28" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="Fab-4I-9eH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4h-r8-saE" userLabel="square4">
-                                <rect key="frame" x="121" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="njC-82-fu4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4c-pB-IeY" userLabel="square5">
-                                <rect key="frame" x="214" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="Loy-MB-ErW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOl-fj-FEa" userLabel="square6">
-                                <rect key="frame" x="28" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="LhX-jZ-57S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNE-VU-0pF" userLabel="square7">
-                                <rect key="frame" x="121" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="N1z-c4-qQm"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA6-oK-RZ5">
-                                <rect key="frame" x="113" y="291" width="94" height="30"/>
-                                <state key="normal" title="Reset Game?">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetButtonClicked:" destination="mlY-uu-qSM" eventType="touchUpInside" id="Ji9-Ud-EIe"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playing first?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8k-5h-xa6">
-                                <rect key="frame" x="98" y="200" width="125" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" red="0.0" green="0.050397792596610813" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RV-qZ-cb4">
-                                <rect key="frame" x="49" y="229" width="59" height="30"/>
-                                <state key="normal" title="Player O">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playerXSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="IJ9-ve-6Q6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAz-SU-bdx">
-                                <rect key="frame" x="214" y="229" width="57" height="30"/>
-                                <state key="normal" title="Player X">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playerOSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="nPy-XR-xsO"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMB-NK-nSP" userLabel="winnersLabel">
-                                <rect key="frame" x="43" y="182" width="234" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="0.18160115539999999" green="1" blue="0.21132694599999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba9-RJ-dbH" userLabel="square8">
-                                <rect key="frame" x="214" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClicked_twoPlayer:" destination="mlY-uu-qSM" eventType="touchUpInside" id="6fS-uI-PvW"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Two Player" id="8pP-xl-7Mr"/>
-                    <connections>
-                        <outlet property="playerOToGoFirst" destination="MAz-SU-bdx" id="rPV-gI-dtR"/>
-                        <outlet property="playerXToGoFirst" destination="8RV-qZ-cb4" id="sCh-ub-PJf"/>
-                        <outlet property="playingFirstLabel" destination="s8k-5h-xa6" id="RSo-S4-KFE"/>
-                        <outlet property="resetButton" destination="kA6-oK-RZ5" id="mTV-FR-rnW"/>
-                        <outlet property="square0" destination="YRK-xa-ddU" id="w8R-SI-uYB"/>
-                        <outlet property="square1" destination="Qgq-F1-H3o" id="J63-Wy-Moo"/>
-                        <outlet property="square2" destination="vKq-yK-XaH" id="JZa-zC-D15"/>
-                        <outlet property="square3" destination="Hyv-M5-h2N" id="XDY-J1-Ryt"/>
-                        <outlet property="square4" destination="K4h-r8-saE" id="ACh-hq-pEb"/>
-                        <outlet property="square5" destination="K4c-pB-IeY" id="ttu-RI-482"/>
-                        <outlet property="square6" destination="GOl-fj-FEa" id="5ZN-yK-mIy"/>
-                        <outlet property="square7" destination="KNE-VU-0pF" id="C9a-1x-llU"/>
-                        <outlet property="square8" destination="ba9-RJ-dbH" id="Nnc-Fl-1BB"/>
-                        <outlet property="winnersLabel" destination="mMB-NK-nSP" id="d76-gt-z9T"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cUc-WK-f14" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5292" y="1540"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3u2-rG-c9c">
@@ -247,172 +87,10 @@
             </objects>
             <point key="canvasLocation" x="4931" y="810"/>
         </scene>
-        <!--One Player-->
-        <scene sceneID="mvR-bS-deK">
-            <objects>
-                <viewController title="One Player" id="hij-sm-3po" customClass="OnePlayerViewController" customModule="ticTacToe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HYf-EA-Itm"/>
-                        <viewControllerLayoutGuide type="bottom" id="sSQ-K3-ikH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zBp-TG-RVa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gridSet" translatesAutoresizingMaskIntoConstraints="NO" id="g6i-J2-8gX">
-                                <rect key="frame" x="30" y="50" width="260" height="408"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lK-33-Pfl" userLabel="square0">
-                                <rect key="frame" x="28" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="HF1-qb-6fb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8h-EA-WRs" userLabel="square1">
-                                <rect key="frame" x="121" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="y4D-Yw-uug"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDJ-dY-rzX" userLabel="square2">
-                                <rect key="frame" x="214" y="78" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="xRC-HT-mwA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HV-sE-9dm" userLabel="square3">
-                                <rect key="frame" x="28" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="QFl-ml-Otf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIy-Q6-YOz" userLabel="square4">
-                                <rect key="frame" x="121" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="8SO-L4-hGt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGP-b0-Lqw" userLabel="square5">
-                                <rect key="frame" x="214" y="214" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="MPD-Ft-fdr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My1-2M-ES3" userLabel="square6">
-                                <rect key="frame" x="28" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="3Zc-KV-if8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ype-dA-sWh" userLabel="square8">
-                                <rect key="frame" x="214" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="GRO-BU-kzi"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playing first?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNm-DH-sEK">
-                                <rect key="frame" x="98" y="194" width="125" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" red="0.0" green="0.050397792599999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdO-g5-JDS" userLabel="Human">
-                                <rect key="frame" x="30" y="223" width="57" height="30"/>
-                                <state key="normal" title="Human">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="humanSelectedToPlayFirst:" destination="hij-sm-3po" eventType="touchUpInside" id="Qeq-Qx-kom"/>
-                                    <action selector="playerXSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="b3O-A3-ee6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrR-gK-Dfz" userLabel="Phone">
-                                <rect key="frame" x="218" y="223" width="59" height="30"/>
-                                <state key="normal" title="Phone">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="phoneSelectedToPlayFirst:" destination="hij-sm-3po" eventType="touchUpInside" id="Bbc-Od-GJd"/>
-                                    <action selector="playerOSelectedToPlayFirst:" destination="mlY-uu-qSM" eventType="touchUpInside" id="b8W-Ci-7TU"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMu-5B-yTc">
-                                <rect key="frame" x="114" y="287" width="94" height="30"/>
-                                <state key="normal" title="Reset Game?">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetButtonClicked:" destination="hij-sm-3po" eventType="touchUpInside" id="YrS-3G-bdh"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9U-HC-cfA" userLabel="winnersLabel">
-                                <rect key="frame" x="21" y="182" width="283" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="0.18160115539999999" green="1" blue="0.21132694599999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A5-v7-Wxv" userLabel="square7">
-                                <rect key="frame" x="121" y="349" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="squareHasBeenClickedByHuman:" destination="hij-sm-3po" eventType="touchUpInside" id="RnZ-kQ-Rp2"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="One Player" id="UIs-R6-SSY"/>
-                    <connections>
-                        <outlet property="humanFirstButton" destination="KdO-g5-JDS" id="sgV-rc-Svq"/>
-                        <outlet property="phoneFirstButton" destination="BrR-gK-Dfz" id="Rpe-gq-n85"/>
-                        <outlet property="playingFirstLabel" destination="NNm-DH-sEK" id="NTQ-t0-yky"/>
-                        <outlet property="resetButton" destination="YMu-5B-yTc" id="LVI-ev-IMy"/>
-                        <outlet property="square0" destination="1lK-33-Pfl" id="2nq-zL-OpE"/>
-                        <outlet property="square1" destination="D8h-EA-WRs" id="26y-s7-uFC"/>
-                        <outlet property="square2" destination="WDJ-dY-rzX" id="GJX-tG-gea"/>
-                        <outlet property="square3" destination="7HV-sE-9dm" id="Yqw-Gf-wND"/>
-                        <outlet property="square4" destination="bIy-Q6-YOz" id="c0Z-Wu-4xm"/>
-                        <outlet property="square5" destination="WGP-b0-Lqw" id="dck-p4-mbt"/>
-                        <outlet property="square6" destination="My1-2M-ES3" id="kLL-IU-q1t"/>
-                        <outlet property="square7" destination="0A5-v7-Wxv" id="5XE-Fh-RYw"/>
-                        <outlet property="square8" destination="Ype-dA-sWh" id="55P-oS-wgw"/>
-                        <outlet property="winnersLabel" destination="n9U-HC-cfA" id="u4j-Uy-Txz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U41-Tv-tL2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4914" y="1540"/>
-        </scene>
-        <!--Phone vs Phone-->
+        <!--Game-->
         <scene sceneID="3Ct-mE-WfW">
             <objects>
-                <viewController title="Phone vs Phone" id="zEa-lx-CJP" userLabel="Phone vs Phone" customClass="PhoneVsPhoneViewController" customModule="ticTacToe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Phone vs Phone" id="zEa-lx-CJP" userLabel="Game" customClass="GameViewController" customModule="ticTacToe" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZUU-ft-QvP"/>
                         <viewControllerLayoutGuide type="bottom" id="dgs-qp-cpJ"/>
@@ -429,48 +107,81 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="XLV-Kd-4Wg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S96-dg-VMt" userLabel="square1">
                                 <rect key="frame" x="121" y="78" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="ogp-05-zrJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-ez-3kJ" userLabel="square2">
                                 <rect key="frame" x="214" y="78" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="tcb-gH-XXa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5z-ld-w67" userLabel="square3">
+                                <rect key="frame" x="36" y="190" width="78" height="78"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="7gf-9H-Tt2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0of-r5-yUq" userLabel="square4">
                                 <rect key="frame" x="123" y="190" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="oi2-71-W1S"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJl-wb-zlF" userLabel="square5">
                                 <rect key="frame" x="214" y="190" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="WZY-W7-HxU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6m7-MB-mSK" userLabel="square6">
                                 <rect key="frame" x="28" y="312" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="EuM-rC-HHb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udu-8G-UG8" userLabel="square7">
                                 <rect key="frame" x="121" y="312" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="LHY-M9-JdL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbv-9t-bbB" userLabel="square8">
                                 <rect key="frame" x="214" y="312" width="78" height="78"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="squareHasBeenClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="cYh-vI-YvE"/>
+                                </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmE-6k-yAg" userLabel="winnersLabel">
                                 <rect key="frame" x="43" y="170" width="234" height="39"/>
@@ -484,24 +195,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="resetButtonClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="eId-FG-j3z"/>
+                                    <action selector="resetButtonClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="7T7-ZP-Tqs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4B-ze-krm">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4B-ze-krm">
                                 <rect key="frame" x="122" y="224" width="79" height="30"/>
                                 <state key="normal" title="Start Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="resetButtonClicked:" destination="zEa-lx-CJP" eventType="touchUpInside" id="gnK-eA-oju"/>
-                                    <action selector="startGame:" destination="zEa-lx-CJP" eventType="touchUpInside" id="Eul-gK-WyN"/>
+                                    <action selector="startAndWatchComputersNextMove:" destination="zEa-lx-CJP" eventType="touchUpInside" id="ZkZ-TH-LJu"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5z-ld-w67" userLabel="square3">
-                                <rect key="frame" x="36" y="190" width="78" height="78"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pie-WT-pXq">
                                 <rect key="frame" x="90" y="417" width="145" height="30"/>
@@ -509,32 +213,59 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startGame:" destination="zEa-lx-CJP" eventType="touchUpInside" id="D2x-6d-MVx"/>
+                                    <action selector="startAndWatchComputersNextMove:" destination="zEa-lx-CJP" eventType="touchUpInside" id="gmd-Ih-m7C"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDA-sB-asH">
+                                <rect key="frame" x="42" y="224" width="50" height="30"/>
+                                <state key="normal" title="Human">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="humanSelectedToPlayFirst:" destination="zEa-lx-CJP" eventType="touchUpInside" id="HmR-Q2-Gnq"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez5-sq-26k">
+                                <rect key="frame" x="231" y="224" width="44" height="30"/>
+                                <state key="normal" title="Phone">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="phoneSelectedToPlayFirst:" destination="zEa-lx-CJP" eventType="touchUpInside" id="gJD-9B-xXZ"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playing First?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-Aa-Zic">
+                                <rect key="frame" x="110" y="179" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.18160115539999999" green="1" blue="0.21132694599999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Phone vs Phone" id="7JW-Si-6OS"/>
+                    <navigationItem key="navigationItem" id="7JW-Si-6OS" userLabel="Tic Tac Toe"/>
                     <connections>
-                        <outlet property="resetButton" destination="U5K-6h-YnH" id="esT-3S-752"/>
-                        <outlet property="square0" destination="sRt-iN-l5V" id="fVC-Qr-Mtl"/>
-                        <outlet property="square1" destination="S96-dg-VMt" id="ELr-Dx-Qnh"/>
-                        <outlet property="square2" destination="Igv-ez-3kJ" id="mPb-du-o7l"/>
-                        <outlet property="square3" destination="q5z-ld-w67" id="m81-Nn-guc"/>
-                        <outlet property="square4" destination="0of-r5-yUq" id="Etf-r2-BrR"/>
-                        <outlet property="square5" destination="EJl-wb-zlF" id="D8b-2J-RpU"/>
-                        <outlet property="square6" destination="6m7-MB-mSK" id="UU5-4C-Vml"/>
-                        <outlet property="square7" destination="Udu-8G-UG8" id="nlC-56-UVl"/>
-                        <outlet property="square8" destination="nbv-9t-bbB" id="hvT-fl-GmX"/>
-                        <outlet property="startGameButton" destination="r4B-ze-krm" id="rww-pq-6gw"/>
-                        <outlet property="watchTheNextMoveButton" destination="pie-WT-pXq" id="9JB-BP-cuX"/>
-                        <outlet property="winnersLabel" destination="CmE-6k-yAg" id="2l0-Er-Wgo"/>
+                        <outlet property="humanFirstButton" destination="GDA-sB-asH" id="C23-qz-Teh"/>
+                        <outlet property="phoneFirstButton" destination="ez5-sq-26k" id="QpX-iR-jBh"/>
+                        <outlet property="playingFirstLabel" destination="GhP-Aa-Zic" id="rXQ-vV-REv"/>
+                        <outlet property="resetButton" destination="U5K-6h-YnH" id="tvc-sh-5IG"/>
+                        <outlet property="square0" destination="sRt-iN-l5V" id="YTq-0j-pgd"/>
+                        <outlet property="square1" destination="S96-dg-VMt" id="jui-NP-J9M"/>
+                        <outlet property="square2" destination="Igv-ez-3kJ" id="4T6-8N-EsB"/>
+                        <outlet property="square3" destination="q5z-ld-w67" id="lHV-9D-KKh"/>
+                        <outlet property="square4" destination="0of-r5-yUq" id="Bih-PM-JUZ"/>
+                        <outlet property="square5" destination="EJl-wb-zlF" id="n7X-bp-zfQ"/>
+                        <outlet property="square6" destination="6m7-MB-mSK" id="wBf-9F-ga9"/>
+                        <outlet property="square7" destination="Udu-8G-UG8" id="iNG-2F-WIo"/>
+                        <outlet property="square8" destination="nbv-9t-bbB" id="Cqi-ES-ZBh"/>
+                        <outlet property="startGameButton" destination="r4B-ze-krm" id="IRa-43-2iK"/>
+                        <outlet property="watchTheNextMoveButton" destination="pie-WT-pXq" id="0Py-Oy-OY7"/>
+                        <outlet property="winnersLabel" destination="CmE-6k-yAg" id="JgQ-HH-oWp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xqg-RJ-JX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5647" y="1540"/>
+            <point key="canvasLocation" x="5699" y="810"/>
         </scene>
     </scenes>
     <resources>
@@ -546,4 +277,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Upu-Ce-v6Z"/>
+    </inferredMetricsTieBreakers>
 </document>
