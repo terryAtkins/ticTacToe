@@ -12,7 +12,7 @@ public class GameBoard {
     
     public var gameSquares = [0,0,0,0,0,0,0,0,0] // public for testing in XCTest
     public var squaresSelectedDuringPlay = [Int]()
-    var player = 1 // put back in isWin
+
     
     public init() {
     }
@@ -52,31 +52,30 @@ public class GameBoard {
     }
     
     public func isWin(#gameBoard: [Int]) -> Bool {
-        player = squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
-        return checkHorizontal(gameBoard: gameBoard, playerId: player) || checkVertical(gameBoard: gameBoard, playerId: player)  || checkDiagonal(gameBoard: gameBoard, playerId: player)
+        return checkHorizontal(gameBoard: gameBoard) || checkVertical(gameBoard: gameBoard)  || checkDiagonal(gameBoard: gameBoard)
     }
     
-    func checkHorizontal(#gameBoard :[Int], playerId: Int) -> Bool {
+    func checkHorizontal(#gameBoard :[Int]) -> Bool {
         for var i = 0; i < gameBoard.count - 1; i += 3 {
-            if gameBoard[i] == playerId && gameBoard[i] == gameBoard[i + 1] && gameBoard[i] == gameBoard[i + 2] {
+            if gameBoard[i] != 0 && gameBoard[i] == gameBoard[i + 1] && gameBoard[i] == gameBoard[i + 2] {
                 return true
             }
         }
         return false
     }
     
-    func checkVertical(#gameBoard :[Int], playerId: Int) -> Bool {
+    func checkVertical(#gameBoard :[Int]) -> Bool {
         for var i = 0; i < 3; ++i {
-            if gameBoard[i] == playerId && gameBoard[i] == gameBoard[i + 3] && gameBoard[i] == gameBoard[i + 6] {
+            if gameBoard[i] != 0 && gameBoard[i] == gameBoard[i + 3] && gameBoard[i] == gameBoard[i + 6] {
                 return true
             }
         }
         return false
     }
     
-    func checkDiagonal(#gameBoard :[Int], playerId: Int) -> Bool {
-        return gameBoard[0] == playerId &&  gameBoard[0] == gameBoard[4] && gameBoard[0] == gameBoard[8] ||
-            gameBoard[2] == playerId && gameBoard[2] == gameBoard[4] && gameBoard[2] == gameBoard[6]
+    func checkDiagonal(#gameBoard :[Int]) -> Bool {
+        return gameBoard[0] != 0 &&  gameBoard[0] == gameBoard[4] && gameBoard[0] == gameBoard[8] ||
+            gameBoard[2] != 0 && gameBoard[2] == gameBoard[4] && gameBoard[2] == gameBoard[6]
     }
 }
 

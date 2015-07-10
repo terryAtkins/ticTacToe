@@ -20,7 +20,7 @@ public class GameController  {
     func imageTodisplay() -> String {
         var image = "playerO"
         for square in controller.board.squaresSelectedDuringPlay {
-            image = controller.board.gameSquares[square] == 1 ? "playerO" : "playerX"
+            image = controller.board.gameSquares[square] == 2 ? "playerX" : "playerO"
         }
         return image
     }

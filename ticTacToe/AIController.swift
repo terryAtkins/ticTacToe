@@ -11,67 +11,55 @@ import Foundation
 
 public class AIController {
     
-    public let board = GameBoard() // public for testing
-    let boardInPlay :[Int]
+    public let board = GameBoard()
     
-    public init() {
-        boardInPlay = board.gameSquares
+    public init(){
     }
     
     public func miniMax() -> Int {
         
+        var playerId = board.squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
+        var currentBoard = board.gameSquares
+        var dummyBoard = currentBoard
+        var currentSquaresSelected = board.squaresSelectedDuringPlay
         var emptySquares = board.searchForEmptySquares()
-        var dummyBoard = board.gameSquares
-        let currentPlayer = board.squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
-        let opponent = currentPlayer == 1 ? 2 : 1
-        var result :[(squareId: Int, minMax: Int)] = []
-        var remainingSquares :[Int]
-        var forEachEmptySquares :[Int]
-        var score = 0
+        let opponent = playerId == 1 ? 2 : 1
+        var result: [(squareId: Int, minMax: Int)] = []
         
         for square in emptySquares {
-            
-            if isNextMoveAWinForCurrentPlayer(squareId: square, currentPlayerId: currentPlayer, dummyBoard: dummyBoard) || dummyBoard.count == 9 {
-                score += 10
-                result += [(squareId:square, minMax: score)]
+            dummyBoard[square] = playerId
+            if board.isWin(gameBoard: dummyBoard) {
+                result += [(squareId: square, minMax: 10)]
+                break
+            } else if emptySquares.count == 1  && !board.isWin(gameBoard: dummyBoard) {
+                result += [(squareId: square, minMax: 0)]
                 break
             } else {
-                dummyBoard[square] = currentPlayer
                 emptySquares.removeAtIndex(0)
-                remainingSquares = emptySquares
-                
-                for forEachEmptySquares in remainingSquares {
-                    if isNextMoveAWinForOpponent(squareId: forEachEmptySquares, opponentId: opponent, dummyBoard: dummyBoard) {
-                        score += -1
-                    }
+                for var i = 0; i < emptySquares.count; ++i {
                     
-                    if forEachEmptySquares < emptySquares.count - 2  {
-                        if isNextMoveAWinForCurrentPlayer(squareId: forEachEmptySquares + 1, currentPlayerId: currentPlayer, dummyBoard: dummyBoard) {
-                            score += 1
+                    if i % 2 == 0 && i < emptySquares.count {
+                        dummyBoard[emptySquares[i]] = opponent
+                        result += [(squareId: square, minMax: -1)]
+                        if board.isWin(gameBoard: dummyBoard) {
+                            break
+                        }
+                        
+                    } else if i % 2 == 1 && i < emptySquares.count  {
+                        dummyBoard[emptySquares[i]] = playerId
+                        if board.isWin(gameBoard: dummyBoard) {
+                            result += [(squareId: square, minMax: 1)]
+                            break
                         }
                     }
-                    
-                    if forEachEmptySquares == emptySquares.count - 1 && !board.isWin(gameBoard: dummyBoard) {
-                        score += 0
-                    }
                 }
-                result += [(squareId:square, minMax: score)]
-                score = 0
             }
-            dummyBoard = board.gameSquares
+            dummyBoard = currentBoard
+            board.squaresSelectedDuringPlay = currentSquaresSelected
         }
-        result.sort({a,b in a.1 > b.1})
+        
+        result.sort { $0.1 > $1.1 }
         return result.first!.squareId
-    }
-    
-    public func isNextMoveAWinForCurrentPlayer(var #squareId :Int, var currentPlayerId :Int, var dummyBoard: [Int]) -> Bool {
-        dummyBoard[squareId] = currentPlayerId
-        return board.isWin(gameBoard: dummyBoard)
-    }
-    
-    public func isNextMoveAWinForOpponent(var #squareId :Int, var opponentId :Int, var dummyBoard: [Int]) -> Bool {
-        dummyBoard[squareId] = opponentId
-        return board.isWin(gameBoard: dummyBoard)
     }
 }
 

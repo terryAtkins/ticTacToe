@@ -16,10 +16,10 @@ class TestGameBoard: XCTestCase {
         let board = GameBoard()
         
         board.updateGameBoardWithSelectedSquare(squareId: 0)
-        XCTAssertEqual(board.gameSquares[0], 1)
+        XCTAssertEqual(board.gameSquares[0], 2)
  
         board.updateGameBoardWithSelectedSquare(squareId: 8)
-        XCTAssertEqual(board.gameSquares[8], 2)
+        XCTAssertEqual(board.gameSquares[8], 1)
     }
     
     func testSquaresSelectedDuringPlay() {

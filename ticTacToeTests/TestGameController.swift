@@ -17,7 +17,6 @@ class TestGameController: XCTestCase {
         let button  = UIButton()
 
         XCTAssertEqual(human.controller.board.squaresSelectedDuringPlay.count, 0)
-
         human.humanHasTakenTurn(squareId: button)
         XCTAssertEqual(human.controller.board.squaresSelectedDuringPlay.count, 1)
 
