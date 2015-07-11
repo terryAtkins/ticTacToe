@@ -20,7 +20,7 @@ public class GameController  {
     func imageTodisplay() -> String {
         var image = "playerO"
         for square in controller.board.squaresSelectedDuringPlay {
-            image = controller.board.gameSquares[square] == 2 ? "playerX" : "playerO"
+            image = controller.board.gameSquares[square] == 1 ? "playerX" : "playerO"
         }
         return image
     }
@@ -42,7 +42,7 @@ public class GameController  {
     
     func updateSquareImages(#buttons :[UIButton]) {
         for choice in controller.board.squaresSelectedDuringPlay {
-            var image = controller.board.squaresSelectedDuringPlay.count % 2 == 1  ? "playerX" : "playerO"
+            var image = controller.board.squaresSelectedDuringPlay.count % 2 == 0  ? "playerX" : "playerO"
             buttons[choice].setImage(UIImage(named: image), forState: UIControlState.Normal)
         }
     }

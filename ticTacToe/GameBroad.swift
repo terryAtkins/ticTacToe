@@ -12,7 +12,7 @@ public class GameBoard {
     
     public var gameSquares = [0,0,0,0,0,0,0,0,0] // public for testing in XCTest
     public var squaresSelectedDuringPlay = [Int]()
-
+    var squareOwner = 1
     
     public init() {
     }
@@ -23,7 +23,8 @@ public class GameBoard {
     
     public func updateGameBoardWithSelectedSquare(squareId square :Int) {
         squaresSelectedDuringPlay.append(square)
-        gameSquares[square] = squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
+        gameSquares[square] = squareOwner
+        squareOwner = squareOwner == 1 ? 2 : 1
     }
 
     public func searchForEmptySquares() -> [Int] {
@@ -40,6 +41,7 @@ public class GameBoard {
     public func resetBoard() {
         gameSquares = [0,0,0,0,0,0,0,0,0]
         squaresSelectedDuringPlay = [Int]()
+        squareOwner = 1
     }
     
     func resetSquaresSelectedDuringPlay() {

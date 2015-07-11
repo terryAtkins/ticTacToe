@@ -21,15 +21,5 @@ class TestGameController: XCTestCase {
         XCTAssertEqual(human.controller.board.squaresSelectedDuringPlay.count, 1)
 
     }
-    
-    func testComputersTurn() {
-        let computer = GameController()
-        let button  = UIButton()
-        var buttons: [UIButton] = [button]
-        
-        XCTAssertEqual(computer.controller.board.squaresSelectedDuringPlay.count, 0)
-        computer.computersTurn(buttons: buttons)
-        XCTAssertEqual(computer.controller.board.squaresSelectedDuringPlay.count, 1)
-    }
 }
 

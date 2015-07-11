@@ -18,50 +18,75 @@ public class AIController {
     
     public func miniMax() -> Int {
         
-        var playerId = board.squaresSelectedDuringPlay.count % 2 == 0 ? 1 : 2
+        var currentPlayer = board.squareOwner
         var currentBoard = board.gameSquares
         var dummyBoard = currentBoard
-        var currentSquaresSelected = board.squaresSelectedDuringPlay
         var emptySquares = board.searchForEmptySquares()
-        let opponent = playerId == 1 ? 2 : 1
+        var switchedPlayerId = currentPlayer == 1 ? 2 : 1
+        let playerToBlock = switchedPlayerId
         var result: [(squareId: Int, minMax: Int)] = []
         
         for square in emptySquares {
-            dummyBoard[square] = playerId
+            dummyBoard[square] = currentPlayer
             if board.isWin(gameBoard: dummyBoard) {
                 result += [(squareId: square, minMax: 10)]
                 break
-            } else if emptySquares.count == 1  && !board.isWin(gameBoard: dummyBoard) {
+            }
+            
+            if !board.isWin(gameBoard: dummyBoard) {
+                dummyBoard[square] = playerToBlock
+                if board.isWin(gameBoard: dummyBoard) {
+                    result += [(squareId: square, minMax: 10)]
+                    break
+                }
+            }
+            
+            if square == emptySquares.last && !board.isWin(gameBoard: dummyBoard) {
                 result += [(squareId: square, minMax: 0)]
                 break
             } else {
-                emptySquares.removeAtIndex(0)
-                for var i = 0; i < emptySquares.count; ++i {
-                    
-                    if i % 2 == 0 && i < emptySquares.count {
-                        dummyBoard[emptySquares[i]] = opponent
-                        result += [(squareId: square, minMax: -1)]
+                dummyBoard[square] = currentPlayer
+                
+                for remainingSquare in emptySquares {
+                    if dummyBoard[remainingSquare] == 0 {
+                        dummyBoard[remainingSquare] = switchedPlayerId
                         if board.isWin(gameBoard: dummyBoard) {
-                            break
-                        }
-                        
-                    } else if i % 2 == 1 && i < emptySquares.count  {
-                        dummyBoard[emptySquares[i]] = playerId
-                        if board.isWin(gameBoard: dummyBoard) {
-                            result += [(squareId: square, minMax: 1)]
+                            if switchedPlayerId == currentPlayer {
+                                result += [(squareId: square, minMax: 1)]
+                                break
+                            } else {
+                                result += [(squareId: square, minMax: -1)]
+                                break
+                            }
+                        } else if remainingSquare == emptySquares.last && !board.isWin(gameBoard: dummyBoard) {
+                            result += [(squareId: square, minMax: 0)]
                             break
                         }
                     }
+                    
+                    switchedPlayerId = switchedPlayerId == 1 ? 2 : 1
                 }
             }
+            
             dummyBoard = currentBoard
-            board.squaresSelectedDuringPlay = currentSquaresSelected
         }
-        
         result.sort { $0.1 > $1.1 }
         return result.first!.squareId
     }
+    
 }
+
+          
+
+
+
+
+
+
+
+
+
+
 
 
 
